@@ -1,0 +1,67 @@
+{% extends 'website/components/base.html' %}
+{% block title %}partner{% endblock %}
+{% load static %}
+{% block body %}
+<style>
+	.partner-card {
+		border: none;
+		border-radius: 15px;
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+		transition: 0.3s;
+	}
+
+	.partner-card:hover {
+		transform: translateY(-5px);
+	}
+
+	.partner-logo {
+		width: 90px;
+		height: 90px;
+		object-fit: contain;
+		border-radius: 12px;
+		background: #fff;
+		padding: 10px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+	}
+
+	.partner-link {
+		text-decoration: none;
+		font-weight: 500;
+	}
+</style>
+<section class="page-title">
+	<div class="auto-container">
+
+	</div>
+</section>
+<section class="pricing-section price-page-section py-5">
+
+	<div class="container py-5">
+
+		<div class="text-center mb-5">
+			<h2 class="fw-bold">Our Trusted Partners</h2>
+			<p class="text-muted">We collaborate with amazing companies</p>
+		</div>
+
+		<div class="row g-4">
+			<!-- Repeat Card -->
+			{% for partner in partners %}
+			<div class="col-md-6 col-lg-4">
+				<div class="card partner-card p-4 text-center">
+					<a class="mb-3" href="{{partner.logo.url}}" target="_blank">
+						<img src="{% if partner.logo %}{{partner.logo.url}}{% endif %}" class="partner-logo">
+					</a>
+					<h5 class="fw-semibold mb-2">{{partner.title}}</h5>
+					<a href="{{partner.link}}" class="partner-link text-primary" target="_blank">
+						Visit Website
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+
+		</div>
+
+	</div>
+
+</section>
+{% endblock %}

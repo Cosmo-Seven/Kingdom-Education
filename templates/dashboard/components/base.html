@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{{ site.title }} | {% block title %}{% endblock %}</title>
+    {% include 'dashboard/components/favicon.html' %}
+    {% include 'dashboard/components/css.html' %}
+</head>
+
+<body>
+
+    {% include 'dashboard/components/loader.html' %}
+
+    <div class="main-wrapper">
+        {% include 'dashboard/components/toast.html' %}
+        {% if request.user.is_authenticated and request.user.is_active %}
+
+        {% include 'dashboard/components/header.html' %}
+        {% include 'dashboard/components/sidebar.html' %}
+
+        <div class="page-wrapper">
+            <div class="content">
+                {% block body %}{% endblock %}
+            </div>
+            {% include 'dashboard/components/footer.html' %}
+        </div>
+
+        {% else %}
+        {% block auth %}{% endblock %}
+        {% endif %}
+    </div>
+
+    {% include 'dashboard/components/js.html' %}
+
+</body>
+
+</html>

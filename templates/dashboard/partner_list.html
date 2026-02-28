@@ -1,0 +1,278 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Partner List{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Partners</h2>
+        <nav>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{dashboard_url}}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    partner
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Partners</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
+        <!-- <div class="me-2 mb-2">
+            <div class="dropdown d-flex">
+                <a href="javascript:void(0);" class="dropdown-toggle btn btn-white d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown">
+                    <i class="ti ti-file-export me-1"></i>Export
+                </a>
+                {% with request.GET.urlencode as querystring %}
+                <ul class="dropdown-menu dropdown-menu-end p-3">
+                    <li>
+                        <a href="{{item_export_pdf_url}}?{{ querystring }}" class="dropdown-item rounded-1">
+                            <i class="ti ti-file-type-pdf me-1"></i>Export as PDF
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{item_export_excel_url}}?{{ querystring }}" class="dropdown-item rounded-1">
+                            <i class="ti ti-file-type-xls me-1"></i>Export as Excel
+                        </a>
+                    </li>
+                </ul>
+                {% endwith %}
+            </div>
+        </div> -->
+        <div class="mb-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#createModal"
+                class="btn btn-primary d-flex align-items-center"><i class="ti ti-circle-plus me-2"></i>Add Partner</a>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+        <h5>Partner List</h5>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+            <div class="me-3">
+                <a href="{{partner_list_url}}" class="btn btn-primary"><i class="ti ti-repeat"></i> Reset</a>
+            </div>
+            <!-- Search -->
+            {% include 'dashboard/components/search.html'%}
+        </div>
+    </div>
+    <!-- Date -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Logo</th>
+                        <th>Link</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for partner in partners %}
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{partner.title}}</td>
+                        <td>
+                            {% if partner.logo %}
+                            <div class="d-flex align-item-center file-name-icon">
+                                <a class="avatar avatar-md avatar-rounded">
+                                    <img src="{% if partner.logo %}{{partner.logo.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}"
+                                        class="img-fluid object-fit-cover w-100 h-100" />
+                                </a>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>{{partner.link | truncatewords:10}}</td>
+                       
+                        <td>{{partner.created_at | date:'d M Y'}}</td>
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a class="me-2" data-bs-toggle="modal" data-bs-target="#updateModel_{{partner.id}}"><i
+                                        class="ti ti-edit"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#deleteModal_{{partner.id}}"><i
+                                        class="ti ti-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===================== CREATE Item MODAL ===================== -->
+<div class="modal fade" id="createModal">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Partner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{partner_create_url}}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">logo</label>
+                                <input type="file" name="logo" required class="form-control">
+                            </div>
+                        </div>
+                         <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Link</label>
+                                <input type="text" name="link" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== UPDATE Item MODAL ===================== -->
+{% for partner in partners %}
+<div class="modal fade" id="updateModel_{{partner.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Partner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+         <form action="{% url 'partner_update'  partner.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" value="{{partner.title}}" name="title" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Logo</label>
+                                <input type="file" name="logo"  class="form-control">
+                            </div>
+                        </div>
+                         <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Link</label>
+                                <input type="text" value="{{partner.link}}" name="link" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- ======================== Delete lecturer model =========================== -->
+{% for partner in partners %}
+<div class="modal fade" id="deleteModal_{{partner.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span class="avatar avatar-xl bg-transparent-danger text-danger mb-3">
+                    <i class="ti ti-trash-x fs-36"></i>
+                </span>
+                <h4 class="mb-1">Confirm Delete</h4>
+                <p class="mb-3">You want to delete partner, this cant be undone once you delete.</p>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:void(0);" class="btn btn-outline-light border me-2" data-bs-dismiss="modal">Cancel</a>
+                    <a href="{% url 'partner_delete' partner.id %}" class="btn btn-danger">Yes, Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        flatpickr("#flatpickr-date", {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+
+
+        flatpickr("#flatpickr-range", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+    });
+</script>
+
+<script>
+    function setupProfilePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const originalSrc = preview.getAttribute('data-original');
+
+        input.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    preview.src = ev.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = originalSrc;
+            }
+        });
+    }
+
+    // Initialize previews
+    setupProfilePreview('profileInput', 'profilePreview');
+    {% for user in users %}
+    setupProfilePreview('profileInput_{{user.id}}', 'profilePreview_{{user.id}}');
+    {% endfor %}
+
+    // Reset buttons
+    document.querySelectorAll('.reset-profile-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.input);
+            const preview = document.getElementById(this.dataset.preview);
+            const originalSrc = preview.getAttribute('data-original');
+
+            input.value = '';
+            preview.src = originalSrc;
+        });
+    });
+</script>
+{% endblock %}

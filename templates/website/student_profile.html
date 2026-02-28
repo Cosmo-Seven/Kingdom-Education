@@ -1,0 +1,67 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Student Profile{% endblock %}
+{% load static %}
+{% block body %}
+
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+    </div>
+</section>
+<!--End Page Title-->
+
+<!-- Student Profile Section -->
+<section class="student-profile-section" style="padding-top: 50px;">
+    <div class="auto-container">
+
+        <div class="row clearfix">
+
+            <!-- Image Section -->
+            <div class="image-column col-lg-3 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <div class="image">
+                        <img src="{% if request.user.profile %}{{request.user.profile.url}}{% else %}{% static 'website/images/no-profile.png' %}{% endif %}"
+                            alt="{{request.user.username}}">
+                    </div>
+                    <h4>{{request.user.username}}</h4>
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="content-column col-lg-9 col-md-12 col-sm-12">
+                <div class="inner-column">
+
+                    <div class="sec-title">
+                        <h2>Courses In Progress</h2>
+                    </div>
+
+                    <div class="row clearfix">
+
+                        {% for course in enroll_courses %}
+                        <div class="cource-block-two col-lg-4 col-md-6 col-sm-12">
+                            <div class="inner-box">
+                                <div class="image">
+                                    <a href="{{course_details_url}}?title={{course.course.slug}}"><img
+                                            style="height: 200px;object-fit: cover;width: 100%;"
+                                            src="{% if course.course.featured_image %}{{ course.course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
+                                            alt="{{course.course.title}}"></a>
+                                </div>
+                                <div class="lower-content">
+                                    <h5><a
+                                            href="{{course_details_url}}?title={{course.course.slug}}">{{course.course.title}}</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

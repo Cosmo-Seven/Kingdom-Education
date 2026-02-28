@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>{{site.title}} - {% block title %}{% endblock %}</title>
+    {% include 'website/components/css.html' %}
+    {% include 'website/components/favicon.html' %}
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Titillium+Web:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+
+<body>
+   {% include 'dashboard/components/toast.html' %}
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        {% include 'website/components/preloader.html' %}
+
+        <!-- Main Header-->
+        {% include 'website/components/header.html' %}
+        <!-- End Main Header -->
+
+        {% block body %} {% endblock %}
+
+        <!-- Call To Action Section Two -->
+        <section class="call-to-action-section-two" style="background-image: url({% static 'website/images/3.png' %})">
+            <div class="auto-container">
+                <div class="content">
+                    <h2>Ready to get started?</h2>
+                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
+                        they’re two <br> waters own morning gathered greater shall had behold had seed.</div>
+                    <div class="buttons-box">
+                        <a href="{{courses_url}}" class="theme-btn btn-style-one"><span class="txt">All Courses <i
+                                    class="fa fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Call To Action Section Two -->
+
+        <!--Main Footer-->
+        {% include 'website/components/footer.html' %}
+
+    </div>
+    <!--End pagewrapper-->
+
+    <!--Scroll to top-->
+    {% include 'website/components/scroll_to_top.html' %}
+
+    {% include 'website/components/js.html' %}
+
+
+</body>
+
+</html>

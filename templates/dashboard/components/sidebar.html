@@ -1,0 +1,47 @@
+{% load static %}
+{% load permissions %}
+<div class="sidebar" id="sidebar">
+    <!-- Logo -->
+    <div class="sidebar-logo" style="padding-top: 0.5rem;">
+        <a href="{{dashboard_url}}" class="logo logo-normal">
+            <img src="{% static 'dashboard/images/logo.webp' %}" alt="Logo" style="width: 100%;height: 50px;object-fit: contain;">
+        </a>
+        <a href="{{dashboard_url}}" class="logo-small">
+            <img src="{% static 'dashboard/images/logo.webp' %}" alt="Logo">
+        </a>
+        <a href="{{dashboard_url}}" class="dark-logo">
+            <img src="{% static 'dashboard/images/logo.webp' %}" alt="Logo">
+        </a>
+    </div>
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                {% for section in SIDEBAR_MENU %}
+                {% if request.user|can_any:section.permissions %}
+                <li class="menu-title">
+                    <span>{{section.title}}</span>
+                </li>
+
+                <li>
+                    <ul>
+                        {% for item in section.items %}
+                        {% if not item.permission or request.user|can:item.permission %}
+                        {% if not item.visibility or request.user|can:item.visibility %}
+                        <li class="{% if request.resolver_match.url_name == item.url_name %}active{% endif %}">
+                            <a href="{% url item.url_name %}">
+                                <i class="{{ item.icon }}"></i>
+                                <!-- <span>{{ item.label }}</span> -->
+                                <span>{{ item.label }}</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

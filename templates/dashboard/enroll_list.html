@@ -1,0 +1,293 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Enroll{% endblock %}
+{% load static %}
+{% load enroll_status %}
+{% block body %}
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Enrollments</h2>
+        <nav>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{dashboard_url}}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    Enrollment
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Enrollments</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
+        <!-- <div class="me-2 mb-2">
+            <div class="dropdown d-flex">
+                <a href="javascript:void(0);" class="dropdown-toggle btn btn-white d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown">
+                    <i class="ti ti-file-export me-1"></i>Export
+                </a>
+                {% with request.GET.urlencode as querystring %}
+                <ul class="dropdown-menu dropdown-menu-end p-3">
+                    <li>
+                        <a href="{{item_export_pdf_url}}?{{ querystring }}" class="dropdown-item rounded-1">
+                            <i class="ti ti-file-type-pdf me-1"></i>Export as PDF
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{item_export_excel_url}}?{{ querystring }}" class="dropdown-item rounded-1">
+                            <i class="ti ti-file-type-xls me-1"></i>Export as Excel
+                        </a>
+                    </li>
+                </ul>
+                {% endwith %}
+            </div>
+        </div> -->
+
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+        <h5>Enrollment List</h5>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+            <div class="me-3">
+                <a href="{{enroll_list_url}}" class="btn btn-primary"><i class="ti ti-repeat"></i> Reset</a>
+            </div>
+            <!-- Search -->
+            {% include 'dashboard/components/search.html'%}
+        </div>
+    </div>
+    <!-- Date -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Progress</th>
+                        <th>Payment</th>
+                        <!-- <th>Access Expires</th> -->
+                        <th>Status</th>
+                        <th>Approved</th>
+                        <th>Photo</th>
+                        <th>Completed</th>
+                        <th>Created_at</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enroll in enrolls %}
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{enroll.student}}</td>
+                        <td>{{enroll.course}}</td>
+                        <td>{{enroll.progress}}</td>
+                        <td>{{enroll.payment_method}}</td>
+                        <!-- <td>{{enroll.access_expires_at}}</td> -->
+                        <td>
+                            <span class="badge badge-{{ enroll.status|status_color }} me-2 text-capitalize">
+                                {{ enroll.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button data-bs-target="#statusChangeModal_{{enroll.id}}" data-bs-toggle="modal"
+                                    class="dropdown-toggle btn btn-sm btn-white d-inline-flex align-items-center">
+                                    <span
+                                        class="rounded-circle bg-transparent-success d-flex justify-content-center align-items-center me-2">
+                                        <i class="ti ti-point-filled text-success"></i>
+                                    </span>{{enroll.status}}
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            {% if enroll.screenshot %}
+                            <div class="d-flex align-item-center file-name-icon">
+                                <a href="{{enroll.screenshot.url}}" target="_blank"
+                                    class="avatar avatar-md avatar-rounded">
+                                    <img src="{% if enroll.screenshot %}{{enroll.screenshot.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}"
+                                        class="img-fluid object-fit-cover w-100 h-100" />
+                                </a>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>{{enroll.updated_at | date:'d M Y'}}</td>
+                        <td>{{enroll.enrolled_at | date:'d M Y'}}</td>
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a class="me-2" data-bs-toggle="modal" data-bs-target="#viewModel_{{enroll.id}}"><i
+                                        class="ti ti-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Status -->
+{% for enroll in enrolls %}
+<div class="modal fade" id="statusChangeModal_{{enroll.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Seen Status</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+            <form action="{% url 'status_change' enroll.id %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <select name="status" class="form-select" required>
+                                    <option value="" selected disabled>Select Status</option>
+                                    {% for key,label in status %}
+                                    <option value="{{ key }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- View -->
+{% for enroll in enrolls %}
+<div class="modal fade" id="viewModel_{{enroll.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h4 class="text-white modal-title">{{ enroll.course }}</h4>
+                <button type="button" class="text-white bg-transparent btn-close custom-btn-close fs-16 position-static"
+                    data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="mb-2">Student : {{enroll.student}}</h5>
+                <div class="p-2 mb-3 border rounded">
+                    <div class="row-gap-3 row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <span class="mb-1 d-block">Created_at</span>
+                                <p class="text-dark">{{ enroll.created_at|date:'d M Y' }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <span class="mb-1 d-block">Payment Method</span>
+                                <p class="text-dark">{{ enroll.payment_method}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <span class="mb-1 d-block">Status</span>
+                              <span class="badge badge-{{ enroll.status|status_color }} me-2 text-capitalize">
+                                {{ enroll.status }}
+                            </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <span class="mb-1 d-block">Progress</span>
+                                <p class="text-dark">{{ enroll.progress}}</p>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="text-center">
+                                <span class="mb-1 d-block">Access Expires</span>
+                                <p class="text-dark">{{ enroll.access_expires_at}}</p>
+                            </div>
+                        </div> -->
+                          <div class="col-md-4">
+                            <div class="text-center">
+                                <span class="mb-1 d-block">Completed</span>
+                                <p class="text-dark">{{ enroll.updated_at | date:'d M Y'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h5 class="mb-2">Message</h5>
+                    <p>{{ enroll.message}}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        flatpickr("#flatpickr-date", {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+
+
+        flatpickr("#flatpickr-range", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+    });
+</script>
+
+<script>
+    function setupProfilePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const originalSrc = preview.getAttribute('data-original');
+
+        input.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    preview.src = ev.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = originalSrc;
+            }
+        });
+    }
+
+    // Initialize previews
+    setupProfilePreview('profileInput', 'profilePreview');
+    {% for user in users %}
+    setupProfilePreview('profileInput_{{user.id}}', 'profilePreview_{{user.id}}');
+    {% endfor %}
+
+    // Reset buttons
+    document.querySelectorAll('.reset-profile-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.input);
+            const preview = document.getElementById(this.dataset.preview);
+            const originalSrc = preview.getAttribute('data-original');
+
+            input.value = '';
+            preview.src = originalSrc;
+        });
+    });
+</script>
+{% endblock %}

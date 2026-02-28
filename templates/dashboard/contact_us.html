@@ -1,0 +1,154 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Contact Form{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Contact Form</h2>
+        <nav>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{dashboard_url}}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Contact Form</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+        <h5>Contact Form List</h5>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+            <div class="me-3">
+                <a href="{{contact_list_url}}" class="btn btn-primary"><i class="ti ti-repeat"></i> Reset</a>
+            </div>
+            <!-- Search -->
+            {% include 'dashboard/components/search.html'%}
+        </div>
+    </div>
+    <!-- Date -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Subject</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.email}}</td>
+                        <td>{{contact.phone}}</td>
+                        <td>{{contact.subject}}</td>
+                        </td>
+                        <td>{{contact.created_at | date:'d M Y'}}</td>
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a class="me-2" data-bs-toggle="modal" data-bs-target="#updateModel_{{contact.id}}"><i
+                                        class="ti ti-eye"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#deleteModal_{{contact.id}}"><i
+                                        class="ti ti-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== UPDATE Item MODAL ===================== -->
+{% for contact in contacts %}
+<div class="modal fade" id="updateModel_{{contact.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form>
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" value="{{contact.name}}" name="name" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" value="{{contact.phone}}" name="phone" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="text" value="{{contact.email}}" name="email" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Subject</label>
+                                <input type="text" value="{{contact.subject}}" name="subject" class="form-control"
+                                    disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" disabled>{{contact.message}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- ======================== Delete contact model =========================== -->
+{% for contact in contacts %}
+<div class="modal fade" id="deleteModal_{{contact.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span class="avatar avatar-xl bg-transparent-danger text-danger mb-3">
+                    <i class="ti ti-trash-x fs-36"></i>
+                </span>
+                <h4 class="mb-1">Confirm Delete</h4>
+                <p class="mb-3">You want to delete contact, this cant be undone once you delete.</p>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:void(0);" class="btn btn-outline-light border me-2" data-bs-dismiss="modal">Cancel</a>
+                    <a href="{% url 'contact_delete' contact.id %}" class="btn btn-danger">Yes, Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Contact Us{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+    </div>
+</section>
+<!--End Page Title-->
+
+<!-- Contact Page Section -->
+<section class="contact-page-section" style="padding-top: 50px;">
+    <div class="auto-container">
+        <div class="inner-container">
+            <!-- Sec Title -->
+            <div class="sec-title centered">
+                <h2>Get in touch</h2>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+
+                <!-- Profile Form -->
+                <form method="post" action="{% url 'contact_us' %}">
+                    {% csrf_token %}
+                    <div class="row clearfix">
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="name" placeholder="Name*" required="">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="email" name="email" placeholder="Email Address*" required="">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="phone" placeholder="Phone Number*" required="">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="subject" placeholder="Subject" required="">
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <textarea class="" name="message" placeholder="Send Message"></textarea>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group text-right">
+                            <button class="theme-btn btn-style-three" type="submit">
+                                <span class="txt">Send Message <i class="fa fa-angle-right"></i></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="contact-info-section">
+            <div class="title-box">
+                <h2>Contact Information</h2>
+                <div class="text">Lorem Ipsum is simply dummy text of the printing <br> and typesetting
+                    industry.</div>
+            </div>
+
+            <div class="row clearfix">
+
+                <!-- Info Column -->
+                <div class="info-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="info-inner">
+                        <div class="icon fa fa-phone"></div>
+                        <strong>Phone</strong>
+                        <ul>
+                            <li><a href="tel:+1-123-456-7890">+1 (123) 456-7890</a></li>
+                            <li><a href="tel:+1-123-456-7890">+1 (123) 456-7890</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Info Column -->
+                <div class="info-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="info-inner">
+                        <div class="icon fa fa-envelope-o"></div>
+                        <strong>Email</strong>
+                        <ul>
+                            <li><a href="/cdn-cgi/l/email-protection#41282f272e01382e3433222e2c31202f386f222e2c"><span
+                                        class="__cf_email__"
+                                        data-cfemail="1e777078715e67716b6c7d71736e7f7067307d7173">[email protected]</span></a>
+                            </li>
+                            <li><a href="/cdn-cgi/l/email-protection#61080f070e030e0e1502000c1121060c00080d4f020e0c"><span
+                                        class="__cf_email__"
+                                        data-cfemail="9ef7f0f8f1fcf1f1eafdfff3eedef9f3fff7f2b0fdf1f3">[email protected]</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Info Column -->
+                <div class="info-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="info-inner">
+                        <div class="icon fa fa-map-marker"></div>
+                        <strong>Address</strong>
+                        <ul>
+                            <li>Portfolio Technology 07, Capetown 12 Road, Chicago, 2436, USA</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- End Contact Page Section -->
+
+<!-- Map Section -->
+<section class="map-section">
+    <!-- Map Boxed -->
+    <div class="map-boxed">
+        <!--Map Outer-->
+        <div class="map-outer">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s"
+                allowfullscreen=""></iframe>
+        </div>
+    </div>
+</section>
+<!-- End Map Section -->
+
+{% endblock %}

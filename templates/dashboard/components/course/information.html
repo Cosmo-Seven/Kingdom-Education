@@ -1,0 +1,75 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="title" class="form-label">Course Title</label>
+            <input type="text" class="form-control" id="title" name="title"
+                value="{{ course.title|default:'' }}" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="regular_price" class="form-label">Regular Price</label>
+            <input type="number" class="form-control" id="regular_price" name="regular_price"
+                value="{{ course.regular_price|default:'' }}" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="sale_price" class="form-label">Sale Price</label>
+            <input type="number" class="form-control" id="sale_price" name="sale_price"
+                value="{{ course.sale_price|default:'' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="topic" class="form-label">Topic</label>
+            <select class="form-select" id="topic" name="topic" required>
+                {% for topic in topics %}
+                <option value="{{ topic.id }}" {% if course.topic.id == topic.id %}selected{% endif %}>{{ topic.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="featured_image" class="form-label">Featured Image</label>
+            <input type="file" class="form-control" id="featured_image" name="featured_image" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="level" class="form-label">Level</label>
+            <select class="form-select" id="level" name="level" required>
+                {% for key,label in level_choices %}
+                <option value="{{ key }}" {% if course.level == key %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="enrollment_count" class="form-label">Enrollment Count</label>
+            <input type="number" class="form-control" value="{{course.enrollment_count}}" id="enrollment_count"
+                name="enrollment_count" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="access_duration_days" class="form-label">Access Duration Days</label>
+            <input type="number" class="form-control" value="{{course.access_duration_days}}" id="access_duration_days"
+                name="access_duration_days" required>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="lecturers" class="form-label">Lecturers</label>
+            <select class="form-select" id="lecturers" name="lecturers" required multiple>
+                {% for lecturer in lecturers %}
+                <option value="{{ lecturer.id }}" {% if lecturer in course.lecturers.all %}selected{% endif %}>
+                    {{ lecturer.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" rows="10">{{course.description}}</textarea>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="learning_outcomes" class="form-label">Learning Outcomes</label>
+            <textarea class="form-control" name="learning_outcomes" rows="10">{{course.learning_outcomes}}</textarea>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label for="requirements" class="form-label">Requirements</label>
+            <textarea class="form-control" name="requirements" rows="10">{{course.requirements}}</textarea>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,14 @@
+<div class="search-boxed">
+    <div class="search-box">
+        <form method="GET" action="{{courses_url}}">
+            <div class="form-group">
+                <input type="hidden" name="topic" value="{{ request.GET.topic }}">
+                <input type="hidden" name="page" value="{{ request.GET.page }}">
+                <input type="hidden" name="sort" value="{{ request.GET.sort }}">
+                <input type="search" name="search" value="{{ request.GET.search }}"
+                    placeholder="What do you want to learn?" required="">
+                <button type="submit"><span class="icon fa fa-search"></span></button>
+            </div>
+        </form>
+    </div>
+</div>

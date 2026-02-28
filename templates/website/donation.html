@@ -1,0 +1,145 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Donation Form{% endblock %}
+{% load static %}
+{% block body %}
+
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+
+                <div class="border p-4">
+
+                    <!-- HEADER -->
+                 <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <!-- Logo Left -->
+                        <div>
+                            <img src="{% static 'website/images/logo.webp' %}"
+                                 alt="Organization Logo"
+                                 style="max-height:70px;">
+                        </div>
+
+                        <!-- Contact Info Right -->
+                        <div class="text-end small">
+                            <div>+358 45 947 284</div>
+                            <div>kingdomeducationmission.com</div>
+                            <div>Tarpitintie 6A 6, 15950, Lahti, Finland</div>
+                            <div>kingdommission.edu@gmail.com</div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- TITLE -->
+                    <div class="text-center mb-4">
+                        <h4 class="fw-bold text-uppercase">
+                            Donors & Supporters
+                        </h4>
+                        <p class="fst-italic mb-0">
+                            For Supporters and Those Interested in KEME
+                        </p>
+                    </div>
+
+                    <form method="POST" action="{% url 'form_upload'%}">
+                        {% csrf_token %}
+
+                        <!-- PERSONAL INFO -->
+                        <h6 class="fw-bold mb-3">Personal Information:</h6>
+
+                        <div class="mb-3">
+                            <label class="fw-semibold">Full Name</label>
+                            <input type="text" name="name"
+                                class="form-control border-0 border-bottom rounded-0">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-semibold">Email Address</label>
+                            <input type="email" name="email"
+                                class="form-control border-0 border-bottom rounded-0">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="fw-semibold">Phone Number (Optional)</label>
+                            <input type="text" name="phone"
+                                class="form-control border-0 border-bottom rounded-0">
+                        </div>
+
+                        <!-- DONATION -->
+                        <h6 class="fw-bold mb-3">Donation (Optional):</h6>
+                       
+                        <div class="mb-3">
+                            <label class="fw-semibold d-block">
+                                I would like to make a donation:
+                            </label>
+                           {% for key, label in status %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                    name="status" value="{{key}}">
+                                <label class="form-check-label">{{label}}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-semibold">If yes, amount (€)</label>
+                            <input type="number" name="amount"
+                                class="form-control border-0 border-bottom rounded-0">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="fw-semibold">
+                                Preferred donation method
+                            </label>
+                            <input type="text" name="payment"
+                                class="form-control border-0 border-bottom rounded-0" placeholder="eg,K Pay,Cash,Wave">
+                        </div>
+
+                        <!-- PROGRAM -->
+                        <h6 class="fw-bold mb-3">
+                            Program Preferences:
+                        </h6>
+                       {% for program in programs %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                name="programs" value="{{program.id}}">
+                            <label class="form-check-label">{{program.name}}</label>
+                        </div>
+                        {% endfor %}
+                        <!-- THANK YOU -->
+                        <p class="mt-4">
+                            <strong>Thank You:</strong><br>
+                            We deeply appreciate your commitment and support.
+                        </p>
+
+                        <!-- QR CODE SECTION -->
+                        <div class="text-center mt-4">
+                            <p class="fw-bold">Scan Me to Pay</p>
+                            <img src="{% static 'website/images/qr.jpg' %}"
+                                 class="img-fluid"
+                                 style="max-width:150px;">
+                        </div>
+
+                        <!-- SUBMIT -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-dark px-5">
+                                Submit Form
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

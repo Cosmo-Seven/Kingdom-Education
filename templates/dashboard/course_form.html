@@ -1,0 +1,569 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Course Form{% endblock %}
+{% load static %}
+{% block body %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="accordion" id="courseInformationPanel">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="courseInformationAccordion">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#courseInformation" aria-expanded="true" aria-controls="courseInformation">
+                        <h5 class="card-title">Course Information</h5>
+                    </button>
+                </h2>
+                <div id="courseInformation" class="accordion-collapse collapse"
+                    aria-labelledby="courseInformationAccordion">
+                    <div class="accordion-body">
+                        {% include 'dashboard/components/course/information.html' %}
+                    </div>
+                </div>
+            </div>
+            {% if course.title %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="sectionAccordion">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#section" aria-expanded="false" aria-controls="section">
+                        <h5 class="card-title">Section</h5>
+                    </button>
+                </h2>
+                <div id="section" class="accordion-collapse collapse" aria-labelledby="sectionAccordion">
+                    <div class="accordion-body">
+                        <div class="d-flex justify-content-end mb-2">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#createSectionModal"
+                                class="btn btn-primary">+ Add New Section</button>
+                        </div>
+                        <div class="accordion" id="sectionPanel">
+                            {% for section in course.sections.all %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="sectionHeading_{{section.id}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#sectionCollapse_{{section.id}}" aria-expanded="false"
+                                        aria-controls="sectionCollapse_{{section.id}}">
+                                        {{section.title}}
+                                    </button>
+                                    <div class="d-flex ps-2 py-2" style="gap:5px">
+                                        <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#updateSectionModal_{{section.id}}" aria-expanded="false">
+                                            Update
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#deleteSectionModal_{{section.id}}" aria-expanded="false">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </h2>
+                                <div id="sectionCollapse_{{section.id}}" class="accordion-collapse collapse"
+                                    aria-labelledby="sectionHeading_{{section.id}}">
+                                    <div class="accordion-body">
+                                        <p class="mb-3">{{section.description}}</p>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h5 class="card-title">Lessons</h5>
+                                                    <button type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#createLessonModal_{{section.id}}"
+                                                        class="btn btn-primary">+
+                                                        Add New Lesson</button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="accordion" id="lessonPanel">
+                                                    {% if section.lessons.count > 0 %}
+                                                    {% for lesson in section.lessons.all %}
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="lessonHeading_{{lesson.id}}">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#lessonCollapse_{{lesson.id}}"
+                                                                aria-expanded="false"
+                                                                aria-controls="lessonCollapse_{{lesson.id}}">
+                                                                {{lesson.title}}
+                                                            </button>
+                                                            <div class="d-flex ps-2 py-2" style="gap:5px">
+                                                                <button class="btn btn-warning btn-sm" type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#updateLessonModal_{{lesson.id}}"
+                                                                    aria-expanded="false">
+                                                                    Update
+                                                                </button>
+                                                                <button class="btn btn-danger btn-sm" type="button"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteLessonModal_{{lesson.id}}"
+                                                                    aria-expanded="false">
+                                                                    Delete
+                                                                </button>
+                                                            </div>
+                                                        </h2>
+                                                        <div id="lessonCollapse_{{lesson.id}}"
+                                                            class="accordion-collapse collapse"
+                                                            aria-labelledby="lessonHeading_{{lesson.id}}">
+                                                            <div class="accordion-body">
+                                                                <p class="mb-3">{{lesson.description}}</p>
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <div
+                                                                            class="d-flex justify-content-between align-items-center">
+                                                                            <h5 class="card-title">Files</h5>
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#createFileModal_{{section.id}}_{{lesson.id}}"
+                                                                                class="btn btn-primary">+
+                                                                                Add New File</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <div class="accordion" id="filePanel">
+                                                                            {% if lesson.files.count > 0 %}
+                                                                            {% for file in lesson.files.all %}
+                                                                            <div class="accordion-item">
+                                                                                <h2 class="accordion-header"
+                                                                                    id="fileHeading_{{file.id}}">
+                                                                                    <button
+                                                                                        class="accordion-button collapsed"
+                                                                                        type="button"
+                                                                                        data-bs-toggle="collapse"
+                                                                                        data-bs-target="#fileCollapse_{{file.id}}"
+                                                                                        aria-expanded="false"
+                                                                                        aria-controls="fileCollapse_{{file.id}}">
+                                                                                        {{file.title}}
+                                                                                    </button>
+                                                                                    <div class="d-flex ps-2 py-2"
+                                                                                        style="gap:5px">
+                                                                                        <button
+                                                                                            class="btn btn-warning btn-sm"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="modal"
+                                                                                            data-bs-target="#updateFileModal_{{file.id}}"
+                                                                                            aria-expanded="false">
+                                                                                            Update
+                                                                                        </button>
+                                                                                        <button
+                                                                                            class="btn btn-danger btn-sm"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="modal"
+                                                                                            data-bs-target="#deleteFileModal_{{file.id}}"
+                                                                                            aria-expanded="false">
+                                                                                            Delete
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </h2>
+                                                                                <div id="fileCollapse_{{file.id}}"
+                                                                                    class="accordion-collapse collapse"
+                                                                                    aria-labelledby="fileHeading_{{file.id}}">
+                                                                                    <div class="accordion-body">
+                                                                                        <p class="mb-3">
+                                                                                            {{file.description}}</p>
+
+                                                                                        <a href="{{file.file.url}}"
+                                                                                            class="btn btn-secondary btn-sm"
+                                                                                            target="_blank">View
+                                                                                            File</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% endfor %}
+                                                                            {% else %}
+                                                                            <p>No item available</p>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% else %}
+                                                    <p>No item available</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- ===================== CREATE SECTION MODAL ===================== -->
+<div class="modal fade" id="createSectionModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Section</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="section_title" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" name="section_description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="create_section_submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% for section in sections %}
+<!-- ===================== CREATE LESSON MODAL ===================== -->
+<div class="modal fade" id="createLessonModal_{{section.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Lesson</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="section_id" value="{{section.id}}">
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="lesson_title" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" name="lesson_description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="create_lesson_submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== CREATE FILE MODAL ===================== -->
+{% for lesson in section.lessons.all %}
+<div class="modal fade" id="createFileModal_{{section.id}}_{{lesson.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="lesson_id" value="{{lesson.id}}">
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">File</label>
+                                <input type="file" name="file" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="file_title" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" name="file_description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="create_file_submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===================== UPDATE LESSON MODAL ===================== -->
+<div class="modal fade" id="updateLessonModal_{{lesson.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Lesson</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="lesson_id" value="{{lesson.id}}">
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="lesson_title" value="{{lesson.title}}" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" name="lesson_description"
+                                    class="form-control">{{lesson.description}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="update_lesson_submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ===================== DELETE LESSON MODAL ===================== -->
+<div class="modal fade" id="deleteLessonModal_{{ lesson.id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="lesson_id" value="{{lesson.id}}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete Lesson</h5>
+                </div>
+
+                <div class="modal-body">
+                    Are you sure you want to delete
+                    <strong>{{ lesson.title }}</strong>?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="delete_lesson_submit" class="btn btn-danger ms-2">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% for file in lesson.files.all %}
+<!-- ===================== UPDATE FILE MODAL ===================== -->
+<div class="modal fade" id="updateFileModal_{{file.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="file_id" value="{{file.id}}">
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">File</label>
+                                <input type="file" name="file" class="form-control mb-2" required>
+                                <a href="{{file.file.url}}" target="_blank" class="btn btn-secondary btn-sm">view old
+                                    file</a>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" value="{{file.title}}" name="file_title" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" name="file_description"
+                                    class="form-control">{{file.description}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="update_file_submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== DELETE FILE MODAL ===================== -->
+<div class="modal fade" id="deleteFileModal_{{ file.id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="file_id" value="{{file.id}}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete File</h5>
+                </div>
+
+                <div class="modal-body">
+                    Are you sure you want to delete
+                    <strong>{{ file.title }}</strong>?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="delete_file_submit" class="btn btn-danger ms-2">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endfor %}
+
+{% endfor%}
+
+<!-- ===================== UPDATE SECTION MODAL ===================== -->
+<div class="modal fade" id="updateSectionModal_{{section.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Section</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="section_id" value="{{section.id}}">
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" value="{{section.title}}" name="section_title" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea rows="5" name="section_description"
+                                    class="form-control">{{section.description}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="update_section_submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== DELETE SECTION MODAL ===================== -->
+<div class="modal fade" id="deleteSectionModal_{{ section.id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="section_id" value="{{section.id}}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete Section</h5>
+                </div>
+
+                <div class="modal-body">
+                    Are you sure you want to delete
+                    <strong>{{ section.title }}</strong>?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="delete_section_submit" class="btn btn-danger ms-2">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endfor %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const STORAGE_KEY = "open_accordions_course_{{ course.id }}";
+        let openAccordions = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+        // first visit
+        if (openAccordions === null) {
+            openAccordions = ["courseInformation"];
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(openAccordions));
+        }
+
+        // restore
+        openAccordions.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.add("show");
+
+                const btn = document.querySelector(`[data-bs-target="#${id}"]`);
+                if (btn) btn.classList.remove("collapsed");
+            }
+        });
+
+        document.querySelectorAll(".accordion-collapse").forEach(collapse => {
+
+            collapse.addEventListener("shown.bs.collapse", function (event) {
+                // ✅ prevent bubbling
+                if (event.target !== this) return;
+
+                if (!openAccordions.includes(this.id)) {
+                    openAccordions.push(this.id);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(openAccordions));
+                }
+            });
+
+            collapse.addEventListener("hidden.bs.collapse", function (event) {
+                // ✅ prevent bubbling
+                if (event.target !== this) return;
+
+                openAccordions = openAccordions.filter(id => id !== this.id);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(openAccordions));
+            });
+
+        });
+
+    });
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,896 @@
+{% extends 'website/components/base.html' %}
+{% block title %}About Page{% endblock %}
+{% load static %}
+{% block body %}
+<style>
+    html {
+        overflow-x: hidden;
+    }
+
+    .hero-section {
+        background: #0d1b3d;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+
+    }
+
+    .hero-section h1 {
+        font-size: 48px;
+        font-weight: 700;
+    }
+
+    .section-padding {
+        padding: 80px 0;
+    }
+
+    .white-color {
+        color: #fff;
+    }
+
+
+
+    .modern-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
+
+    .modern-card img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .modern-card:hover img {
+        transform: scale(1.0.8);
+    }
+
+    .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3), transparent 70%);
+        display: flex;
+        align-items: flex-end;
+        padding: 25px;
+    }
+
+    .overlay-content {
+        color: #fff;
+        transform: translateY(40px);
+        transition: all 0.4s ease;
+    }
+
+    .overlay-content h4 {
+        font-weight: 600;
+
+    }
+
+    .overlay-content p {
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .objective-card{
+        background: #fff;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+    }
+    .objective-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .modern-card:hover .overlay-content {
+        transform: translateY(0);
+    }
+
+    .modern-card:hover .overlay-content p {
+        opacity: 1;
+    }
+
+    .white-section {
+        background: #0d1b3d;
+    }
+
+
+    .contact-card {
+        background: #fff;
+        padding: 35px 25px;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #4e73df, #4ab8e4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        color: #fff;
+        font-size: 28px;
+    }
+
+    .contact-email {
+        text-decoration: none;
+        font-weight: 500;
+        color: #4e73df;
+    }
+
+    .contact-email:hover {
+        text-decoration: underline;
+    }
+
+    .contact-p {
+        font-weight: 700;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .history-content p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+    }
+
+    /* Mobile Card Effect */
+    @media(max-width:991px) {
+
+        .side-image {
+            border-radius: 20px;
+        }
+
+        .text-content {
+            background: #fff;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    /* Make image column full height */
+    .image-col {
+        min-height: 500px;
+    }
+
+    /* Card style for mobile */
+    @media(max-width:991px) {
+
+        .text-wrapper {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-col {
+            min-height: 300px;
+        }
+
+        .about-img {
+            width: 70%;
+            /* Desktop မှာ 70% */
+            max-width: 600px;
+            /* အများဆုံး မကျော် */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .about-img {
+                width: 90%;
+            }
+        }
+
+    }
+
+    .section-title {
+        font-weight: 700;
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    .section-title::after {
+        content: "";
+        width: 60px;
+        height: 4px;
+        background: #0d6efd;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        border-radius: 5px;
+    }
+
+    .content-card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+    }
+
+    .content-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .side-image {
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .alt-bg {
+        background: #f8f9fa;
+    }
+
+    .about-large-image {
+        border-radius: .5rem;
+        object-fit: cover;
+    }
+
+    .image-wrapper {
+        position: relative;
+    }
+
+    .image-wrapper::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #0d6efd;
+        border-radius: 20px;
+        top: 15px;
+        left: 15px;
+        z-index: -1;
+        opacity: 0.08;
+    }
+</style>
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+
+{% if page == "historical-background" %}
+<section class="hero-section">
+    <div class="container">
+        <h1>Historical Background of Kingdom Mission Society & KEME</h1>
+    </div>
+</section>
+<section class="section-padding py-5 hero-section ">
+    <div class="container text-center">
+        <img src="{% static 'website/images/kdm.jpg'%}" class="about-img" alt="">
+    </div>
+</section>
+<section class="bg-dark-section section-padding hero-section py-5">
+    <div class="container">
+
+        <div class="history-wrapper">
+            <h2 class="text-center mb-3">Our History (2004 - 2024)</h2>
+            <p class="text-center history-verse">
+                "WISDOM IS TRUE LIFE, WEALTH AND HONOR, PROVERBS 3:13-20."
+            </p>
+
+            <div class="history-content">
+                <p>
+                    Kingdom Educational Mission Euro (KEME) provides educational support for students from war-torn
+                    regions of Burma, particularly Kachin and other ethnic regions, after six decades of civil war.
+                </p>
+
+                <p>
+                    It is a partnership mission of the Kingdom Mission Society (KMS), Kachin Baptist Churches,
+                    Kuki Churches of Manipur, Baptist Churches of Nagaland, Singhpo Baptist Community, and
+                    the Churches of Assam and Arunachal.
+                </p>
+
+                <p>
+                    KEME is rooted in Christian and democratic principles and seeks to instill in every student
+                    faith in the Bible, Christian ethics, spiritual maturity, and leadership.
+                </p>
+
+                <p>
+                    KEME welcomes all students regardless of denomination or ethnicity and is funded by donations
+                    and student fees, with scholarships available for poorer students,, and provides access to primary
+                    through higher education in Burma and neighboring countries.
+                </p>
+                <p>
+                    KEME emerged out of the Kachin Baptist Churches and resurrects a mission school tradition that
+                    flourished from the late nineteenth century until 1962 when the mission schools were outlawed.
+                </p>
+                <p>
+                    The Kachin, Shan, and Kayah ethnic regions have been particularly damaged by Burma's ongoing
+                    warfare.
+                    Burmese troops have targeted Kachin churches and about 40,000 students have had even a basic
+                    education disrupted.
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="section-padding white-section">
+    <div class="container">
+        <h2 class="text-center mb-5 white-color">Objectives of Kingdom Education Mission Euro</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Faith-Based Education</h5>
+                    <p>Integrating Christian faith with academic excellence.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Inclusive Access to Quality Education</h5>
+                    <p>To offer equitable educational opportunities—especially in mission schools—for students from
+                        underrepresented ethnic groups and regions affected by civil conflict. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Leadership and Civic Development</h5>
+                    <p>To train and mentor youth as future leaders committed to democracy, peacebuilding, and social
+                        justice through scholarships and leadership development programs. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Humanitarian Relief and Holistic Care</h5>
+                    <p>To support elderly care centers, orphanages, and communities in crisis through emergency relief,
+                        food assistance, and sustainable development programs.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Vocational and Language Training</h5>
+                    <p>To provide practical education, including vocational skills and Finnish/English language
+                        training, that enhances employability and community resilience. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Mission School Support and Development
+                    </h5>
+                    <p>To revitalize mission schools through infrastructure development, scholarships, curriculum
+                        support, and collaboration with church networks. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Environmental and Community Health Education</h5>
+                    <p>To promote environmental awareness, safety, and public health through educational initiatives
+                        that foster stewardship and sustainable living. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="objective-card">
+                    <h5>Global and Local Partnerships
+                    </h5>
+                    <p>To expand the mission’s impact through strategic partnerships with churches, NGOs, and
+                        educational institutions that share a commitment to equity, faith, and sustainable development.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+<section class="section-padding white-section">
+    <div class="conatiner">
+        <h2 class="text-center">Background of KEM</h2>
+        <div class="row mt-4">
+            <div class="col-12 d-flex justify-content-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/vYvAhOlBMww?si=fEzxqc-Qvwj8uq7f"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% elif page == "mission-statement" %}
+<section class="hero-section">
+    <div class="container">
+        <h1>MISSION & VISION</h1>
+    </div>
+</section>
+<section class="section-padding white-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+                <h2 class="section-title white-color">About KEM</h2>
+
+                <div class="content-card mb-4">
+                    <h5 class="fw-bold">Who We Are</h5>
+                    <p class="text-muted mb-0">
+                        KEM is a Christian educational mission founded under the Kingdom Mission Society (KMS),
+                        serving students from war-torn and ethnic minority regions of Burma.
+                    </p>
+                </div>
+
+                <div class="content-card mb-4">
+                    <h5 class="fw-bold">Our Vision</h5>
+                    <p class="text-muted mb-0">
+                        To revive Christian mission education and raise spiritually mature,
+                        ethical, and educated leaders for Burma.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <h5 class="fw-bold">Our Goal</h5>
+                    <p class="text-muted mb-0">
+                        To serve as God’s agent by ministering through education
+                        and proclaiming wisdom rooted in His Kingdom.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 p-0 text-center">
+                <img src="{% static 'website/images/f-16.jpg'%}" class="img-fluid about-large-image">
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-5 white-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <h2 class="fw-bold display-6 mb-4 white-color">
+                Academic Explanation of KEM Mission Components
+            </h2>
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6">
+
+                <h5 class="white-color">1. Faith-Based Educational Vision</h5>
+                <p class="text-muted mb-3">
+                    KEM’s foundation lies in Christian principles and biblical ethics, which guide its vision of
+                    educational transformation. The organization seeks to revive the legacy of Christian mission
+                    education in Myanmar by fostering spiritually mature, ethically grounded, and academically capable
+                    individuals. These values are intended to prepare young people to lead their communities with
+                    integrity and a strong moral compass. This aligns closely with the legacy of missionaries such as
+                    Adoniram Judson and William Carey, who served in the region.
+                </p>
+                <h5 class="white-color">2. Empowerment through Inclusive Education</h5>
+                <p class="text-muted">
+                    KEM aims to offer access to quality education for students from diverse ethnic backgrounds,
+                    especially those affected by civil conflict. By running mission schools and partnering with local
+                    churches and educational institutions, KEM provides a learning environment where inclusivity and
+                    respect are core values. The mission is open to students regardless of ethnicity or denomination,
+                    emphasizing a democratic and just approach to education that uplifts marginalized populations.
+                </p>
+                <h5 class="white-color">3. Leadership Development and Civic Engagement</h5>
+                <p class="text-muted">
+                    Leadership formation is a central pillar of KEM’s strategy. The organization cultivates future
+                    leaders through academic and vocational programs that encourage critical thinking, moral
+                    decision-making, and civic responsibility. KEM's goal is to nurture a new generation of ethical
+                    leaders who can contribute to democratic development and peacebuilding in Myanmar’s complex
+                    socio-political landscape.
+                </p>
+
+                <a href="{% url 'courses'%}" class="btn btn-primary mt-3 px-4 rounded-pill">
+                    Learn More
+                </a>
+            </div>
+
+            <!-- RIGHT IMAGE -->
+            <div class="col-lg-6 p-0 text-center">
+                <img src="{% static 'website/images/f-16.jpg'%}" class="img-fluid about-large-image">
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-5 white-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6">
+
+                <h5 class="white-color">4. Humanitarian Relief and Community Health</h5>
+                <p class="text-muted mb-3">
+                    Recognizing the immediate needs of vulnerable populations, KEM integrates humanitarian support into
+                    its mission. This includes establishing and supporting elderly care centers, orphanages, and
+                    emergency relief care facilities for people affected by ongoing conflicts. These services address
+                    both short-term survival needs and long-term well-being, reinforcing the organization’s holistic
+                    approach to human development.
+                </p>
+                <h5 class="white-color">5. Vocational and Language Training</h5>
+                <p class="text-muted">
+                    In response to regional labor market needs and international opportunities, KEM provides vocational
+                    education and language training (Finnish and English). These programs equip students with employable
+                    skills and increase their mobility and readiness for higher education or careers abroad. This
+                    practical focus supports KEM’s broader objective of creating sustainable livelihoods and
+                    self-sufficient communities.
+                <h5 class="white-color">6. Global and Local Partnerships</h5>
+                <p class="text-muted">
+                    KEM actively seeks collaborations with both local and international partners to enhance its reach
+                    and effectiveness. Its programs are designed to align with the missions of educational institutions,
+                    churches, and humanitarian organizations. By fostering partnerships with stakeholders who share
+                    similar values—such as educational equity, faith-based service, and sustainable development—KEM
+                    ensures mutual benefit and increased impact through resource sharing, cultural exchange, and
+                    programmatic innovation.
+                </p>
+
+                <a href="{% url 'courses'%}" class="btn btn-primary mt-3 px-4 rounded-pill">
+                    Learn More
+                </a>
+            </div>
+
+            <!-- RIGHT IMAGE -->
+            <div class="col-lg-6 p-0 text-center">
+                <img src="{% static 'website/images/f-17.jpg'%}" class="img-fluid about-large-image">
+            </div>
+
+        </div>
+    </div>
+</section>
+{% elif page == "board-members" %}
+<section class="hero-section">
+    <div class="container">
+        <h1 style="white-space: nowrap;">Board Members</h1>
+    </div>
+</section>
+<section class="py-5 white-section">
+    <div class="container">
+        <div class="row g-4">
+
+
+            <!-- Card -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card">
+                    <img src="{% static 'website/images/f-1.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Dr. Lahpai Shawng Htoi</h4>
+                            <p>Chairman & Founder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat Cards -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card">
+                    <img src="{% static 'website/images/f-3.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Sr. Sumlut Yaku</h4>
+                            <p style="white-space: nowrap;">Organizational Development Consultant (ODC)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card">
+                    <img src="{% static 'website/images/f-2.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Mr. Htoi Aung</h4>
+                            <p>Chief Executive Officer (CEO)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-4.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Ms. Ida keränen</h4>
+                            <p>Director (Global Partnership Executive)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-5.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Dr. Dashi Tu Ring</h4>
+                            <p> Principal (Vocational Trainning School)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-6.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Mr. Seng Naw</h4>
+                            <p>Finance Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-7.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Sr. Maji Naw Hkaung</h4>
+                            <p>Business Consultant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-8.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Mr. Sinpraw Tu Tawng</h4>
+                            <p style="white-space: nowrap;">Coordinator (Mission Schools Development)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-9.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Mr. Zay Khaung</h4>
+                            <p>Admission Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-10.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Mrs. Twehi Lu San</h4>
+                            <p>Finance Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-11.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Ms. Lu Lu Aung</h4>
+                            <p>Marketing Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-12.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Mr. Gyung Hkawng</h4>
+                            <p>Assistant (Media Team)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-5 white-section">
+    <div class="container">
+        <!-- <h1 class="text-center">Our Founder</h1> -->
+        <div class="row g-5 align-items-center justify-content-center mt-2">
+
+            <!-- Card -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card">
+                    <img src="{% static 'website/images/f-13.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4 style="white-space: nowrap;">Dr. Lahpai Shawng Htoi</h4>
+                            <p>Mission School Manager</p>
+                            <p style="white-space: nowrap;">(Beth Shalom Children's Palace)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat Cards -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card">
+                    <img src="{% static 'website/images/f-14.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Sr. Sumlut Yaku</h4>
+                            <p style="white-space: nowrap;">Founder & Director </p>
+                            <p style="white-space: nowrap;">(Elderly Health care Centre- SLLG)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% elif page == "contact-information" %}
+<section class="hero-section">
+    <div class="container">
+        <h1>Contact Information</h1>
+    </div>
+</section>
+<section class="py-5 white-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Dr. Shawng Htoi Lahpai</h5>
+                    <p class="text-muted mb-2 contact-p">Chairman and Founder</p>
+                    <a href="shawnghtoilahpai@gmail.com" class="contact-email">shawnghtoilahpai@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Sir. Sumlut Yaku</h5>
+                    <p class="text-muted mb-2 contact-p">Organizational Development Consultant</p>
+                    <a href="Yakusumlut12@gmail.com" class="contact-email">Yakusumlut12@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Mr. Htoi Aung</h5>
+                    <p class="text-muted mb-2 contact-p">Chief Executive Officer</p>
+                    <a href="htoiawngnhkum96@gmail.com" class="contact-email">htoiawngnhkum96@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Ms. Ida Keränen </h5>
+                    <p class="text-muted mb-2 contact-p" style="white-space: nowrap;">Director (Global partnership
+                        Executive)</p>
+                    <a href="Ida.keränen@gmail.com" class="contact-email">Ida.keränen@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Mr. Seng Naw</h5>
+                    <p class="text-muted mb-2 contact-p">Finance Director</p>
+                    <a href="Sengnaw0088@gmail.com" class="contact-email">Sengnaw0088@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Dr. Dashi Tu Ring</h5>
+                    <p class="text-muted mb-2 contact-p" style="white-space: nowrap;">Principal(Vocational Training
+                        School)</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Sr. Maji Naw Hkawng</h5>
+                    <p class="text-muted mb-2 contact-p">Business Consultant</p>
+                    <a href="mj.hkawng@gmail.com" class="contact-email">mj.hkawng@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Mr. Sinpraw Tu Tawng</h5>
+                    <p class="text-muted mb-2 contact-p" style="white-space: nowrap;">Coordinator(Mission School
+                        Development)</p>
+                    <a href="tutawng@keme.fi" class="contact-email">tutawng@keme.fi</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Mr. Zay Khaung</h5>
+                    <p class="text-muted mb-2 contact-p">Admission Director</p>
+                    <a href="zehkawngmaru@gmail.com" class="contact-email">zehkawngmaru@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Mrs. Twehi Lu San</h5>
+                    <p class="text-muted mb-2 contact-p">Finance Manager</p>
+                    <a href="twehilusan@gmail.com" class="contact-email">twehilusan@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Ms. Lu Lu Aung</h5>
+                    <p class="text-muted mb-2 contact-p">Marketing Director</p>
+                    <a href="Luluaung323@gmail.com" class="contact-email">Luluaung323@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="contact-card h-100 mt-4">
+                    <div class="contact-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <h5 class="mt-3 mb-1">Mr. Gyung Hkawng</h5>
+                    <p class="text-muted mb-2 contact-p">Assistant(Media Team)</p>
+                    <a href="mrgyunghkawng@gmail.com" class="contact-email">mrgyunghkawng@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 white-section">
+    <div class="container">
+        <div class="row g-5 justify-content-center align-items-center">
+
+            <h1 class="text-center" style="color: #fff;">Contact Now!</h1>
+            <div class="d-block">
+                <p class="text-center fw-bold">Myanmar : +959 769 997 080</p>
+                <p class=" text-center fw-bold">Thailand : +66 983 455 239</p>
+                <p class=" text-center fw-bold">Finland : +358 464 947 284</p>
+                <p class=" text-center fw-bold mt-4"><a href="Email: info@keme.fi" style="color: #fff;">Email:
+                        info@keme.fi</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

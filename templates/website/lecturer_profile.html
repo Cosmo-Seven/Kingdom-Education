@@ -1,0 +1,111 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Student Profile{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+    </div>
+</section>
+<!--End Page Title-->
+<section class="profile-section" style="padding-top: 50px;">
+    <div class="auto-container">
+
+        <div class="row clearfix">
+
+            <!-- Content Section -->
+            <div class="content-column col-lg-7 col-md-12 col-sm-12">
+                <div class="inner-column">
+                
+                    <h2>{{profile.name}}</h2>
+                    <h4>{{profile.position}}</h4>
+                    <!-- Student List -->
+                    <ul class="student-list">
+                        <li>{{profile.total_students}} Total Students</li>
+                        <li><span class="theme_color">4.5</span> <span class="fa fa-star"></span><span
+                                class="fa fa-star"></span><span class="fa fa-star"></span><span
+                                class="fa fa-star"></span><span class="fa fa-star"></span> (1254 Rating)</li>
+                        <li>256 Reviews</li>
+                    </ul>
+                    <h5>About Me</h5>
+                    <p>{{profile.about}}</p>
+                   
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="image-column col-lg-5 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <div class="image">
+                        <img src="{% if profile.featured_image %}{{profile.featured_image.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}" alt="AA">
+                    </div>
+                    <h3>{{profile.name}}</h3>
+                    <div class="text">{{profile.position}}</div>
+                    <div class="social-box">
+                        <a href="#" class="fa fa-facebook-square"></a>
+                        <a href="#" class="fa fa-twitter-square"></a>
+                        <a href="#" class="fa fa-linkedin-square"></a>
+                        <a href="#" class="fa fa-github"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Browse Course Section -->
+    <div class="browse-course-section">
+        <div class="auto-container">
+           
+            <div class="sec-title">
+                <h2>All Courses by {{profile.name}}</h2>
+            </div>
+            <div class="row clearfix">
+                {% for course in courses %}
+                <!-- Cource Block Two -->
+                <div class="cource-block-two col-lg-3 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="{{course_details_url}}?title={{course.slug}}"><img src="{% if course.featured_image %}{{course.featured_image.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}" alt=""></a>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
+                            <div class="text">{{course.description | truncatewords:15}}</div>
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <div class="students">{{course.lecturers.count}} Lecturers</div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="hours">For {{course.level}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 {% endfor %}
+              
+
+            </div>
+
+            <!-- Post Share Options -->
+            <div class="styled-pagination text-center">
+                <ul class="clearfix">
+                    <li class="prev"><a href="#"><span class="fa fa-angle-left"></span> </a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li class="active"><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">8</a></li>
+                    <li class="next"><a href="#"><span class="fa fa-angle-right"></span> </a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+{% endblock %}

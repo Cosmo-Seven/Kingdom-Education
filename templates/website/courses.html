@@ -1,0 +1,189 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Courses{% endblock %}
+{% load static %}
+{% block body %}
+
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+        <h1>Courses</h1>
+
+        <!-- Search Boxed -->
+        {% include 'website/components/search.html' %}
+
+    </div>
+</section>
+<!--End Page Title-->
+
+
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+
+    {% if courses %}
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Content Side -->
+            <div class="content-side col-12">
+                <div class="our-courses">
+
+                    <!-- Options View -->
+                    <div class="options-view">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h3>Browse {% if course.topic %}{{ course.topic.name }}{% else %}{{course}}{% endif %}
+                                </h3>
+                            </div>
+                            <div class="pull-right clearfix">
+
+                                <!-- Type Form -->
+                                <div class="type-form">
+                                    <form method="GET" action="{{courses_url}}">
+                                        <input type="hidden" name="topic" value="{{ request.GET.topic }}">
+                                        <input type="hidden" name="page" value="{{ request.GET.page }}">
+                                        <div class="form-group">
+                                            <select name="sort" class="form-control" onchange="this.form.submit()">
+                                                <option value="newest" {% if selected_sort == "newest" %}selected{% endif %}>Newest Courses</option>
+                                                <option value="oldest" {% if selected_sort == "oldest" %}selected{% endif %}>Oldest Courses</option>
+                                                <option value="price_low" {% if selected_sort == "price_low" %}selected{% endif %}>Price Low to High</option>
+                                                <option value="price_high" {% if selected_sort == "price_high" %}selected{% endif %}>Price High to Low</option>
+                                                <option value="free" {% if selected_sort == "free" %}selected{% endif %}>Free</option>
+                                                <option value="paid" {% if selected_sort == "paid" %}selected{% endif %}>Paid</option>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" name="search" value="{{ request.GET.search }}">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cource Block Two -->
+                    {% for course in courses %}
+                    <div class="cource-block-three">
+                        <div class="inner-box">
+                            <div class="image">
+                                <a href="{{course_details_url}}?title={{course.slug}}"><img
+                                        src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
+                                        alt="{{course.title}}"></a>
+                            </div>
+                            <div class="content-box">
+                                <div class="box-inner">
+                                    <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
+                                    <div class="text">{{course.description|truncatewords:20}}</div>
+                                    <div class="clearfix">
+                                        <div class="pull-left">
+                                            <div class="level-box text-capitalize">
+                                                <span class="icon flaticon-settings-1"></span>
+                                                {{course.level}} Level
+                                            </div>
+                                        </div>
+                                        <div class="pull-right clearfix">
+                                            <div class="students">{{course.lecturers.count}} Lecturer</div>
+                                            <div class="hours">{% if course.regular_price > 0 %}KS {{ course.regular_price }}{% else %}<span
+                                                    class="text-success">Free</span>{% endif %}</div>
+                                            <!-- <div class="hours">{{course.duration}} Hours</div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Post Share Options -->
+        {% if paginator.num_pages > 1 %}
+        <div class="styled-pagination">
+            <ul class="clearfix">
+                {% if courses.has_previous %}
+                <li class="prev">
+                    <a href="?{% if topic %}topic={{ topic }}&{% endif %}page={{ courses.previous_page_number }}">
+                        <span class="fa fa-angle-left"></span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="prev disabled"><span><span class="fa fa-angle-left"></span></span></li>
+                {% endif %}
+
+                {% for num in page_range %}
+                {% if num == page_number %}
+                <li class="active"><a href="#">{{ num }}</a></li>
+                {% else %}
+                <li><a href="?{% if topic %}topic={{ topic }}&{% endif %}page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if courses.has_next %}
+                <li class="next">
+                    <a href="?{% if topic %}topic={{ topic }}&{% endif %}page={{ courses.next_page_number }}">
+                        <span class="fa fa-angle-right"></span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="next disabled"><span><span class="fa fa-angle-right"></span></span></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+
+
+    </div>
+
+    {% else %}
+    <div class="text-center">
+        <h3 class="mb-3">No courses available</h3>
+        <a href="{{courses_url}}" class="theme-btn btn-style-one"><span class="txt">Browse All Courses</span></a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Popular Courses -->
+{% if popular_courses %}
+<section class="popular-courses-section">
+    <div class="auto-container">
+        <div class="sec-title">
+            <h2>Most Popular Courses</h2>
+        </div>
+
+        <!-- Cource Block Four -->
+       {% for course in popular_courses %}
+        <div class="cource-block-four">
+            <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                <div class="image">
+                    <a href="{{course_details_url}}?title={{course.slug}}"><img
+                            src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
+                            alt="{{course.title}}"></a>
+                </div>
+                <div class="content-box">
+                    <div class="box-inner">
+                        <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
+                        <div class="text">{{course.description|truncatewords:20}}</div>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="level-box text-capitalize">
+                                    <span class="icon flaticon-settings-1"></span>
+                                    {{course.level}} Level
+                                </div>
+                            </div>
+                            <div class="pull-right clearfix">
+                                <div class="students">{{course.lecturers.count}} Lecturer</div>
+                                <div class="hours">{% if course.regular_price > 0 %}KS {{ course.regular_price }}{% else %}<span class="text-success">Free</span>{% endif %}</div>
+                                <!-- <div class="hours">{{course.duration}} Hours</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Translations{% endblock %}
+{% load static %}
+{% load translate %}
+{% block body %}
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Translation Key</h2>
+        <nav>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{dashboard_url}}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    site_settings
+
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Translation Key</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
+        <div class="mb-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#createModal"
+                class="btn btn-primary d-flex align-items-center"><i class="ti ti-circle-plus me-2"></i>Add Text Key</a>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Key</th>
+                        <th>Default</th>
+                        {% for lang in languages %}
+                        <th>{{ lang.name }}</th>
+                        {% endfor %}
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key in text_keys %}
+                    <tr>
+                        <td>{{ key.key }}</td>
+                        <td>{{ key.default_text }}</td>
+
+                        {% for lang in languages %}
+                        {% with arg=key.id|stringformat:"s"|add:"|"|add:lang.code %}
+                        <td>
+                            <input type="text" class="auto-translate-input form-control" style="min-width: 150px;" data-key="{{ key.id }}"
+                                data-lang="{{ lang.code }}" value="{{ translations|get_translation:arg }}" />
+                        </td>
+                        {% endwith %}
+                        {% endfor %}
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a href="#" class="me-2" data-bs-toggle="modal"
+                                    data-bs-target="#updateModal_{{key.id}}"><i class="ti ti-edit"></i></a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal_{{key.id}}"><i
+                                        class="ti ti-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ===================== CREATE TEXT KEY MODAL ===================== -->
+<div class="modal fade" id="createModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Text Key</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{ text_key_create_url }}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Key <span class="text-danger">*</span></label>
+                                <input type="text" name="key" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Default Text <span class="text-danger">*</span></label>
+                                <input type="text" name="default_text" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Text Key</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== UPDATE TEXT KEY MODAL ===================== -->
+{% for text_key in text_keys %}
+<div class="modal fade" id="updateModal_{{text_key.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Text Key</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{% url 'text_key_update' text_key.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Key <span class="text-danger">*</span></label>
+                                <input type="text" name="key" value="{{text_key.key}}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Default Text <span class="text-danger">*</span></label>
+                                <input type="text" name="default_text" value="{{text_key.default_text}}"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Text Key</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+{% for text_key in text_keys %}
+<div class="modal fade" id="deleteModal_{{text_key.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span class="avatar avatar-xl bg-transparent-danger text-danger mb-3">
+                    <i class="ti ti-trash-x fs-36"></i>
+                </span>
+                <h4 class="mb-1">Confirm Delete</h4>
+                <p class="mb-3">You want to delete all the marked items, this cant be undone once you delete.</p>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:void(0);" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</a>
+                    <a href="{% url 'text_key_delete' text_key.id %}" class="btn btn-danger">Yes, Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        flatpickr("#flatpickr-date", {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+
+
+        flatpickr("#flatpickr-range", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+    });
+</script>
+
+{% endblock %}

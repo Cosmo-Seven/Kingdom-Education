@@ -1,0 +1,275 @@
+{% extends 'website/components/base.html' %}
+{% block title %}{{course.title}}{% endblock %}
+{% load static %}
+{% block body %}
+{% load humanize %}
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+<!--End Page Title-->
+
+<!-- Intro Courses -->
+<section class="intro-section" style="padding-top: 50px;">
+    <div class="auto-container">
+        <div class="sec-title">
+            <h2>{{course.title}}</h2>
+        </div>
+
+        <div class="inner-container">
+            <div class="row clearfix">
+
+                <!-- Content Column -->
+                <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                    <div class="inner-column">
+
+                        <!-- Intro Info Tabs-->
+                        <div class="intro-info-tabs">
+                            <!-- Intro Tabs-->
+                            <div class="intro-tabs tabs-box">
+
+                                <!--Tab Btns-->
+                                <ul class="tab-btns tab-buttons clearfix" style="width: max-content;">
+                                    <li data-tab="#prod-overview" style="width: max-content;"
+                                        class="tab-btn active-btn">Overview</li>
+                                    <li data-tab="#prod-curriculum" style="width: max-content;" class="tab-btn">
+                                        Curriculum</li>
+                                </ul>
+
+                                <!--Tabs Container-->
+                                <div class="tabs-content">
+
+                                    <!--Tab / Active Tab-->
+                                    <div class="tab active-tab" id="prod-overview">
+                                        <div class="content">
+
+                                            <!-- Course Overview -->
+                                            <div class="course-overview">
+                                                <div class="inner-box">
+                                                    <p>{{course.description}}</p>
+                                                    <ul class="student-list">
+                                                        <li>{{course.enrollment_count|intcomma}} Total Students</li>
+                                                    </ul>
+                                                    {% if course.learning_outcomes %}
+                                                    <h3>What you’ll learn?</h3>
+                                                    <ul class="review-list">
+                                                        {% for item in course.learning_outcomes.splitlines %}
+                                                        <li>{{ item }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                    {% if course.requirements %}
+                                                    <h3>Requirements</h3>
+                                                    <ul class="requirement-list">
+                                                        {% for item in course.requirements.splitlines %}
+                                                        <li>{{ item }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% endif %}
+                                                    {% if course.lecturers.count > 0 %}
+                                                    <h3>Lecturers</h3>
+
+                                                    <div class="row clearfix">
+
+                                                        <!-- Student Block -->
+                                                        {% for lecturer in course.lecturers.all %}
+                                                        <div class="student-block col-lg-6 col-md-6 col-sm-12">
+                                                            <div class="block-inner">
+                                                                <div class="image">
+                                                                    <img src="{% if lecturer.featured_image %}{{ lecturer.featured_image.url }}{% else %}{% static 'website/images/no-profile.png' %}{% endif %}"
+                                                                        alt="{{lecturer.name}}">
+                                                                </div>
+                                                                <h2>{{lecturer.name}}</h2>
+                                                                <div class="text">{{lecturer.position}}</div>
+                                                                <a href="{{lecturer_profile_url}}?name={{lecturer.slug}}"
+                                                                    class="more">Know More <span
+                                                                        class="fa fa-angle-right"></span></a>
+                                                            </div>
+
+                                                        </div>
+                                                        {% endfor %}
+
+                                                    </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Tab -->
+                                    <div class="tab" id="prod-curriculum">
+                                        <div class="content">
+
+                                            <!-- Accordion Box -->
+                                            <ul class="accordion-box">
+
+                                                <!-- Block -->
+                                                {% for section in course.sections.all %}
+                                                <li class="accordion block">
+                                                    <div class="acc-btn {% if forloop.first %}active{% endif %}">
+                                                        <div class="icon-outer"><span
+                                                                class="icon icon-plus flaticon-angle-arrow-down"></span>
+                                                        </div> {{section.title}}
+                                                    </div>
+                                                    <div class="acc-content {% if forloop.first %}current{% endif %}">
+                                                        <p class="text-muted px-4">
+                                                            {{section.description}}</p>
+                                                        {% for lesson in section.lessons.all %}
+                                                        <div class="content">
+                                                            <div class="clearfix">
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-between">
+
+                                                                    <button class="play-icon" {% if is_locked %}
+                                                                        disabled {% else %} data-bs-toggle="modal"
+                                                                        data-bs-target="#pdfFileModal_{{ lesson.id }}"
+                                                                        {% endif %}>
+                                                                        <span class="fa fa-download"></span>
+                                                                        {{ lesson.title }}
+                                                                    </button>
+
+                                                                    {% if is_locked %}
+                                                                    <img src="{% static 'website/images/lock.jpg' %}"
+                                                                        style="width:30px;height:30px;object-fit:contain;">
+                                                                    {% else %}
+                                                                    <button type="button" data-bs-toggle="modal"
+                                                                        data-bs-target="#pdfFileModal_{{ lesson.id }}">
+                                                                        <img
+                                                                            src="{% static 'website/images/pdf.svg' %}">
+                                                                    </button>
+                                                                    {% endif %}
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Video Column -->
+                <div class="video-column col-lg-4 col-md-12 col-sm-12">
+                    <div class="inner-column sticky-top">
+
+                        <!-- img Box -->
+                        <div class="img-box mb-4">
+                            <div style="width: 100%;height: 100%"><img src="{{ course.featured_image.url }}"
+                                    style="width: 100%;height: 100%" alt="{{ course.name }}"></div>
+                        </div>
+
+                        <!-- End img Box -->
+                        {% if enroll.status == "pending" %}
+                        <h6 class="mb-3">Waiting For Admin Approval</h6>
+                        {% elif enroll.status == "approved" %}
+                        <h6 class="mb-3">Enrolled at : {{ enroll.enrolled_at|date:"M d, Y" }}</h6>
+                        {% else %}
+                        <h3 class="mb-3">
+                            {% if course.regular_price == 0 %}
+                            <span class="text-success">Free Course</span>
+                            {% else %}
+                            KS {{ course.regular_price }}
+                            {% endif %}
+                        </h3>
+
+                        {% if course.regular_price > 0 %}
+                        <a href="{% url 'enroll_course' course.id %}" class="theme-btn btn-style-three"><span
+                                class="txt">Buy Now <i class="fa fa-angle-right"></i></span></a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End intro Courses -->
+
+<!-- PDF FILE MODAL -->
+{% for section in course.sections.all %}
+{% for lesson in section.lessons.all %}
+<div class="modal fade" id="pdfFileModal_{{lesson.id}}" tabindex="-1" aria-labelledby="pdfFileModalLabel_{{lesson.id}}"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfFileModalLabel_{{lesson.id}}">{{lesson.title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>{{ lesson.description }}</p>
+                {% for file in lesson.files.all %}
+                <div class="mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ file.title }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ file.description }}</p>
+                            <a href="{{ file.file.url }}" class="btn btn-danger" download>Download File</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endfor %}
+<!-- END PDF FILE MODAL -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabs = document.querySelectorAll(".tab");
+
+        function activateTab(tabId) {
+            tabBtns.forEach(btn => btn.classList.remove("active-btn"));
+            tabs.forEach(tab => tab.classList.remove("active-tab"));
+
+            const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+            const activeTab = document.querySelector(tabId);
+
+            if (activeBtn && activeTab) {
+                activeBtn.classList.add("active-btn");
+                activeTab.classList.add("active-tab");
+            }
+        }
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener("click", function () {
+                const tabId = this.getAttribute("data-tab");
+
+                // ⭐ scroll မရွှေ့ဘဲ URL hash update
+                history.replaceState(null, null, tabId);
+
+                activateTab(tabId);
+            });
+        });
+
+        // page reload
+        if (window.location.hash) {
+            activateTab(window.location.hash);
+        }
+    });
+</script>
+
+
+
+{% endblock %}

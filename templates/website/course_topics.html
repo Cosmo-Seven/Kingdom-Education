@@ -1,0 +1,147 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Course Topics{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+
+
+    </div>
+</section>
+<!--End Page Title-->
+
+<!-- Topics Courses -->
+<section class="topics-section" style="padding-top: 50px;">
+    <div class="auto-container">
+        <div class="sec-title centered">
+            <h2>Choose a topic</h2>
+            <div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum mollitia suscipit
+                repellat? Sequi laboriosam libero voluptas molestias harum, dolor adipisci.
+            </div>
+        </div>
+        <div class="row clearfix">
+
+            <!-- Topic Block -->
+            {% for topic in topics %}
+            <div class="topic-block col-lg-3 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <div onclick="window.location.href='{{courses_url}}?topic={{topic.slug}}'" class="icon-box">
+                        <img src="{% if topic.featured_image %}{{ topic.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
+                            alt="{{topic.name}}">
+                    </div>
+                    <h5><a href="{{courses_url}}?topic={{topic.slug}}">{{topic.name}}</a></h5>
+                    <div class="text">{{topic.description|default:"No description available"}}</div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+<!-- End Topics Courses -->
+
+<!-- Popular Courses -->
+<section class="popular-courses-section">
+    <div class="auto-container">
+        <div class="sec-title centered">
+            <h2>Popular Courses</h2>
+            <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re, <br> they’re
+                two waters own morning gathered.</div>
+        </div>
+        <div class="row clearfix">
+
+            <!-- Cource Block -->
+            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <div class="image">
+                        <a href="course-detail.html"><img src="images/course-3.jpg" alt=""></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h5><a href="course-detail.html">Development Course</a></h5>
+                            </div>
+                            <div class="pull-right">
+                                <div class="price">$140</div>
+                            </div>
+                        </div>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
+                            they’re two waters.</div>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="students">125 Student</div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="course-detail.html" class="enroll">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cource Block -->
+            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <div class="image">
+                        <a href="course-detail.html"><img src="images/course-4.jpg" alt=""></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h5><a href="course-detail.html">Language Course</a></h5>
+                            </div>
+                            <div class="pull-right">
+                                <div class="price">$140</div>
+                            </div>
+                        </div>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
+                            they’re two waters.</div>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="students">125 Student</div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="course-detail.html" class="enroll">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cource Block -->
+            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <div class="image">
+                        <a href="course-detail.html"><img src="images/course-5.jpg" alt=""></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h5><a href="course-detail.html">Business Course</a></h5>
+                            </div>
+                            <div class="pull-right">
+                                <div class="price">$140</div>
+                            </div>
+                        </div>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
+                            they’re two waters.</div>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="students">125 Student</div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="course-detail.html" class="enroll">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Popular Courses -->
+
+{% endblock %}

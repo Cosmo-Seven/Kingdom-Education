@@ -1,0 +1,157 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Blogs{% endblock %}
+{% load static %}
+{% block body %}
+
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+<!--End Page Title-->
+
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container" style="padding-top: 50px;">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Content Side -->
+            <div class="content-side col-lg-9 col-md-12 col-sm-12">
+                <div class="our-courses">
+
+                    <!-- Options View -->
+                    {% if latest_blogs %}
+                    <div class="row clearfix">
+                        {% for blog in blogs %}
+                        {% if blog.is_popular == False%}
+                        <div class="cource-block-two col-lg-4 col-md-6 col-sm-12">
+                            <div class="inner-box">
+                                <div class="image">
+                                    <a href="{% url 'blog_details' blog.id %}"><img
+                                            src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}"
+                                            alt="AA"></a>
+                                </div>
+                                <div class="lower-content">
+                                    <h5><a href="blog-detail.html">{{blog.title}}</a></h5>
+                                    <div class="text">{{blog.description|truncatewords:10}}</div>
+                                    <div class="clearfix">
+                                        <div class="pull-left">
+                                            <div class="students">{{blog.created_by.username}}</div>
+                                        </div>
+                                        <div class="pull-right">
+                                            <div class="hours">{{blog.created_at | date:'d M Y'}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% include 'website/components/pagination.html' %}
+                    {% endif %}
+
+                    <!-- Post Share Options -->
+
+
+                </div>
+
+            </div>
+
+            <!-- Sidebar Side -->
+            <div class="sidebar-side style-two col-lg-3 col-md-12 col-sm-12">
+                <div class="sidebar-inner sticky-top">
+                    <aside class="sidebar ">
+
+                        <!-- Popular Posts -->
+                        <div class="sidebar-widget popular-posts">
+
+                            <!-- Sidebar Title -->
+                            <div class="sidebar-title">
+                                <h5>Recent Blogs</h5>
+                            </div>
+
+                            <div class="widget-content">
+                                {% for blog in blogs %}
+                                <article class="post">
+                                    <div class="post-inner">
+                                        <figure class="post-thumb"><a href="{% url 'blog_details' blog.id %}"><img
+                                                    src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}"
+                                                    alt=""></a></figure>
+                                        <div class="text"><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a>
+                                        </div>
+                                        <div class="post-info">{{blog.created_by.username}}</div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Popular Tags -->
+                        <div class="sidebar-widget popular-tags">
+
+                            <!-- Sidebar Title -->
+                            <div class="sidebar-title">
+                                <h5>Categories</h5>
+                            </div>
+
+                            <div class="widget-content">
+                                {% for category in blog_categories %}
+                                <a href="#">{{category.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </aside>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Popular Courses -->
+<section class="popular-courses-section">
+    {% if popular_blogs %}
+    <div class="auto-container">
+        <div class="sec-title">
+
+            <h2>Most Popular Blogs</h2>
+        </div>
+
+        <div class="row clearfix">
+            {% for blog in blogs %}
+            {% if blog.is_popular == True%}
+            <div class="cource-block-two col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                    <div class="image">
+                        <a href="{% url 'blog_details' blog.id %}"><img
+                                src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}" alt=""></a>
+                    </div>
+                    <div class="lower-content">
+                        <h5><a href="blog-detail.html">{{blog.title}}</a></h5>
+                        <div class="text">{{blog.description|truncatewords:10}}.</div>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="students">{{blog.created_by.username}}</div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="hours">{{blog.created_at | date:'d M Y'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% include 'website/components/pagination.html' %}
+    </div>
+
+    {% endif %}
+</section>
+<!-- End Popular Courses -->
+
+{% endblock %}

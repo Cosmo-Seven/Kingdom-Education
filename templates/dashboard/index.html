@@ -1,0 +1,71 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}User List{% endblock %}
+{% load static %}
+{% block body %}
+
+
+<!-- Breadcrumb -->
+<div class="mb-3 d-md-flex d-block align-items-center justify-content-between page-breadcrumb">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Courses</h2>
+        <nav>
+            <ol class="mb-0 breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ dashboard_url }}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Courses</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="flex-wrap d-flex my-xl-auto right-content align-items-center ">
+        <div class="mb-2">
+            <a href="{{course_create_url}}" class="btn btn-primary d-flex align-items-center"><i
+                    class="ti ti-circle-plus me-2"></i>Add
+                Course</a>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+        <h5>Course List</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Title</th>
+                        <th>Topics</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{course.title}}</td>
+                        <td>{{course.topic.name}}</td>
+                        <td>
+                            {% if course.regular_price == 0 %}
+                            <span class="badge badge-success">Free Course</span>
+                            {% else %}
+                            KS {{ course.regular_price }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a href="{% url 'course_update' course.id %}" class="me-2"><i class="ti ti-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

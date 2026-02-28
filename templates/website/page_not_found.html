@@ -1,0 +1,28 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Page Not Found{% endblock %}
+{% load static %}
+{% block body %}
+
+<!-- Page Title -->
+<section class="page-title style-two">
+    <div class="auto-container">
+        <h1>Page Not Found</h1>
+    </div>
+</section>
+<!--End Page Title-->
+
+<!--Error Section-->
+<section class="error-section">
+    <div class="auto-container">
+        <div class="content">
+            <div class="image">
+                <img src="{% static 'website/images/error.png' %}" alt="">
+            </div>
+            <a href="{{courses_url}}" class="theme-btn btn-style-two"><span class="txt">Back to the homepage <i
+                        class="fa fa-angle-right"></i></span></a>
+        </div>
+    </div>
+</section>
+<!--End Error Section-->
+
+{% endblock %}

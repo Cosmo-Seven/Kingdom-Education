@@ -1,0 +1,318 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Role List{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+  <div class="my-auto mb-2">
+    <h2 class="mb-1">Roles</h2>
+    <nav>
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+          <a href="{{ dashboard_url }}"><i class="ti ti-smart-home"></i></a>
+        </li>
+        <li class="breadcrumb-item">
+          Authentication
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Roles</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
+    
+    <div class="mb-2">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#createModal"
+        class="btn btn-primary d-flex align-items-center"><i class="ti ti-circle-plus me-2"></i>Add</a>
+    </div>
+  </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Assets Lists -->
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+    <h5>Role List</h5>
+    <div class="d-flex my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+      <div class="me-3">
+        <a href="{{ role_list_url }}" class="btn btn-primary"><i class="ti ti-repeat"></i>Reset</a>
+      </div>
+      {% include 'dashboard/components/search.html' %}
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Role Name</th>
+            <th>Created Date</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for role in roles %}
+          <tr>
+            <td>{{ forloop.counter}}</td>
+            <td>{{ role.name|upper }}</td>
+            <td>{{ role.created_at|date:"d M Y" }}</td>
+            <td class="text-end">
+              <div class="action-icon d-inline-flex">
+                <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#updateModal_{{role.id}}"><i
+                    class="ti ti-edit"></i></a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal_{{role.id}}"><i
+                    class="ti ti-trash"></i></a>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include 'dashboard/components/pagination.html' %}
+  </div>
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <form action="{{ role_create_url }}" method="POST">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Add Role</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label>Role Name</label>
+          <input type="text" name="name" class="form-control mb-3" required>
+
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <thead>
+                <tr>
+                  <th>Module</th>
+                  <th>
+                    <div class="form-check">
+                      <input id="global-all-create" type="checkbox" class="form-check-input">
+                      <label for="global-all-create">All</label>
+                    </div>
+                  </th>
+                  <th>View</th>
+                  <th>Add</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for module_name, perms in grouped_permissions %}
+                <tr>
+                  <td>{{ module_name }}</td>
+                  <!-- Row-level All -->
+                  <td>
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input module-all" type="checkbox" data-module="{{ module_name }}"
+                        data-scope="create">
+                    </div>
+                  </td>
+
+                  <!-- Individual permissions -->
+                  <td>
+                    {% if perms.view %}
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input perm-checkbox" type="checkbox" name="permissions"
+                        value="{{ perms.view.id }}" data-module="{{ module_name }}" data-scope="create">
+                    </div>
+                    {% endif %}
+                  </td>
+
+                  <td>
+                    {% if perms.add %}
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input perm-checkbox" type="checkbox" name="permissions"
+                        value="{{ perms.add.id }}" data-module="{{ module_name }}" data-scope="create">
+                    </div>
+                    {% endif %}
+                  </td>
+
+                  <td>
+                    {% if perms.change %}
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input perm-checkbox" type="checkbox" name="permissions"
+                        value="{{ perms.change.id }}" data-module="{{ module_name }}" data-scope="create">
+                    </div>
+                    {% endif %}
+                  </td>
+
+                  <td>
+                    {% if perms.delete %}
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input perm-checkbox" type="checkbox" name="permissions"
+                        value="{{ perms.delete.id }}" data-module="{{ module_name }}" data-scope="create">
+                    </div>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% for role in roles %}
+<div class="modal fade" id="updateModal_{{ role.id }}">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <form action="{% url 'role_update' role.id %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Role - {{ role.name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label>Role Name</label>
+          <input type="text" name="name" class="form-control mb-3" value="{{ role.name }}" required>
+
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <thead>
+                <tr>
+                  <th>Module</th>
+                  <th>
+                    <div class="form-check">
+                      <input id="global-all-update-{{ role.id }}" type="checkbox"
+                        class="form-check-input global-all-update" data-role="{{ role.id }}">
+                      <label for="global-all-update-{{ role.id }}">All</label>
+                    </div>
+                  </th>
+                  <th>View</th>
+                  <th>Add</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for module_name, perms in grouped_permissions %}
+                <tr>
+                  <td>{{ module_name }}</td>
+
+                  <!-- Row-level All -->
+                  <td>
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input module-all" type="checkbox" data-module="{{ module_name }}"
+                        data-scope="update-{{ role.id }}">
+                    </div>
+                  </td>
+
+                  <!-- Individual Permissions -->
+                  {% for p in perms.values %}
+                  <td>
+                    {% if p %}
+                    <div class="form-check form-check-md">
+                      <input class="form-check-input perm-checkbox" type="checkbox" name="permissions"
+                        value="{{ p.id }}" data-module="{{ module_name }}" data-scope="update-{{ role.id }}" {% if p in role.permissions.all %}checked{% endif %}>
+                    </div>
+                    {% endif %}
+                  </td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+{% for role in roles %}
+<div class="modal fade" id="deleteModal_{{role.id}}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <span class="avatar avatar-xl bg-transparent-danger text-danger mb-3">
+          <i class="ti ti-trash-x fs-36"></i>
+        </span>
+        <h4 class="mb-1">Confirm Delete</h4>
+        <p class="mb-3">You want to delete all the marked items, this cant be undone once you delete.</p>
+        <div class="d-flex justify-content-center">
+          <a href="javascript:void(0);" class="btn btn-light me-2" data-bs-dismiss="modal">Close</a>
+          <a href="{% url 'role_delete' role.id %}" class="btn btn-danger">Yes's Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!-- /Delete Modal -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // ✅ Function for row-level All checkbox logic
+    function setupCheckboxSync(scope) {
+      const rowAlls = document.querySelectorAll(`.module-all[data-scope="${scope}"]`);
+      const permBoxes = document.querySelectorAll(`.perm-checkbox[data-scope="${scope}"]`);
+
+      rowAlls.forEach(allCheckbox => {
+        allCheckbox.addEventListener("change", function () {
+          const module = this.dataset.module;
+          const boxes = document.querySelectorAll(`.perm-checkbox[data-module="${module}"][data-scope="${scope}"]`);
+          boxes.forEach(cb => cb.checked = this.checked);
+        });
+      });
+
+      permBoxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+          const module = this.dataset.module;
+          const allBox = document.querySelector(`.module-all[data-module="${module}"][data-scope="${scope}"]`);
+          const allPerms = document.querySelectorAll(`.perm-checkbox[data-module="${module}"][data-scope="${scope}"]`);
+          const allChecked = Array.from(allPerms).every(x => x.checked);
+          allBox.checked = allChecked;
+        });
+      });
+    }
+
+    // ✅ Create Modal Logic
+    setupCheckboxSync("create");
+
+    // ✅ Update Modal Logic for each role
+    document.querySelectorAll(".global-all-update").forEach(global => {
+      const roleId = global.dataset.role;
+      setupCheckboxSync(`update-${roleId}`);
+
+      global.addEventListener("change", function () {
+        const checkboxes = document.querySelectorAll(`.perm-checkbox[data-scope="update-${roleId}"], .module-all[data-scope="update-${roleId}"]`);
+        checkboxes.forEach(cb => cb.checked = this.checked);
+      });
+    });
+
+    // ✅ Global All (Create)
+    const globalAllCreate = document.getElementById("global-all-create");
+    if (globalAllCreate) {
+      globalAllCreate.addEventListener("change", function () {
+        const boxes = document.querySelectorAll(`.perm-checkbox[data-scope="create"], .module-all[data-scope="create"]`);
+        boxes.forEach(cb => cb.checked = this.checked);
+      });
+    }
+
+  });
+</script>
+
+{% endblock %}

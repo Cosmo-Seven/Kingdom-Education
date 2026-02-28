@@ -1,0 +1,318 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}Blog List{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Blogs</h2>
+        <nav>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{dashboard_url}}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    Blog
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
+        <!-- <div class="me-2 mb-2">
+            <div class="dropdown d-flex">
+                <a href="javascript:void(0);" class="dropdown-toggle btn btn-white d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown">
+                    <i class="ti ti-file-export me-1"></i>Export
+                </a>
+                {% with request.GET.urlencode as querystring %}
+                <ul class="dropdown-menu dropdown-menu-end p-3">
+                    <li>
+                        <a href="{{item_export_pdf_url}}?{{ querystring }}" class="dropdown-item rounded-1">
+                            <i class="ti ti-file-type-pdf me-1"></i>Export as PDF
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{item_export_excel_url}}?{{ querystring }}" class="dropdown-item rounded-1">
+                            <i class="ti ti-file-type-xls me-1"></i>Export as Excel
+                        </a>
+                    </li>
+                </ul>
+                {% endwith %}
+            </div>
+        </div> -->
+        <div class="mb-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#createModal"
+                class="btn btn-primary d-flex align-items-center"><i class="ti ti-circle-plus me-2"></i>Add Blog</a>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+        <h5>Blog List</h5>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+            <div class="me-3">
+                <a href="{{blog_list_url}}" class="btn btn-primary"><i class="ti ti-repeat"></i> Reset</a>
+            </div>
+            <!-- Search -->
+            {% include 'dashboard/components/search.html'%}
+        </div>
+    </div>
+    <!-- Date -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Featured Image</th>
+                        <th>Is Popular</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for blog in blogs %}
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{blog.title}}</td>
+                        <td>{{blog.category}}</td>
+                        <td>
+                            {% if blog.featured_image %}
+                            <div class="d-flex align-item-center file-name-icon">
+                                <a class="avatar avatar-md avatar-rounded">
+                                    <img src="{% if blog.featured_image %}{{blog.featured_image.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}"
+                                        class="img-fluid object-fit-cover w-100 h-100" />
+                                </a>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span
+                                class="badge badge-{% if blog.is_popular %}success{% else %}danger{% endif %} d-inline-flex align-items-center badge-xs">
+                                <i class="ti ti-point-filled me-1"></i>
+                                {% if blog.is_popular %}Yes{% else %}No{% endif %}
+                            </span>
+                        </td>
+                        <td>{{blog.created_at | date:'d M Y'}}</td>
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a class="me-2" data-bs-toggle="modal" data-bs-target="#updateModel_{{blog.id}}"><i
+                                        class="ti ti-edit"></i></a>
+                                <a data-bs-toggle="modal" data-bs-target="#deleteModal_{{blog.id}}"><i
+                                        class="ti ti-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===================== CREATE Item MODAL ===================== -->
+<div class="modal fade" id="createModal">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Blog</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{blog_create_url}}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Category</label>
+                                <select name="category" id="" class="form-control">
+                                    <option value="" selected disabled>Choose Category</option>
+                                    {% for category in blog_categories %}
+                                    <option value="{{category.id}}">{{category.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Featured Image</label>
+                                <input type="file" name="featured_image" required class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" rows="10" class="form-control" id=""></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="is_popular" name="is_popular">
+                            <label class="form-check-label" for="is_popular">Is Popular</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== UPDATE Item MODAL ===================== -->
+{% for blog in blogs %}
+<div class="modal fade" id="updateModel_{{blog.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Blog</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+         <form action="{% url 'blog_update'  blog.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" value="{{blog.title}}" name="title" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Category</label>
+                                <select name="category" id="" class="form-control">
+                                    <option value="" disabled>Choose Category</option>
+                                    {% for category in blog_categories %}
+                                    <option value="{{category.id}}" {% if blog.category.id == category.id %} selected {% endif %}>{{category.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Featured Image</label>
+                                <input type="file" name="featured_image"  class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" rows="10" class="form-control" id="">{{blog.description}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="is_popular_{{blog.id}}" {% if blog.is_popular%} checked {% endif %} name="is_popular">
+                            <label class="form-check-label" for="is_popular_{{blog.id}}">Is Popular</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- ======================== Delete lecturer model =========================== -->
+{% for blog in blogs %}
+<div class="modal fade" id="deleteModal_{{blog.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span class="avatar avatar-xl bg-transparent-danger text-danger mb-3">
+                    <i class="ti ti-trash-x fs-36"></i>
+                </span>
+                <h4 class="mb-1">Confirm Delete</h4>
+                <p class="mb-3">You want to delete blog, this cant be undone once you delete.</p>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:void(0);" class="btn btn-outline-light border me-2" data-bs-dismiss="modal">Cancel</a>
+                    <a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger">Yes, Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        flatpickr("#flatpickr-date", {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+
+
+        flatpickr("#flatpickr-range", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+    });
+</script>
+
+<script>
+    function setupProfilePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const originalSrc = preview.getAttribute('data-original');
+
+        input.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    preview.src = ev.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = originalSrc;
+            }
+        });
+    }
+
+    // Initialize previews
+    setupProfilePreview('profileInput', 'profilePreview');
+    {% for user in users %}
+    setupProfilePreview('profileInput_{{user.id}}', 'profilePreview_{{user.id}}');
+    {% endfor %}
+
+    // Reset buttons
+    document.querySelectorAll('.reset-profile-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.input);
+            const preview = document.getElementById(this.dataset.preview);
+            const originalSrc = preview.getAttribute('data-original');
+
+            input.value = '';
+            preview.src = originalSrc;
+        });
+    });
+</script>
+{% endblock %}

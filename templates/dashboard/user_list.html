@@ -1,0 +1,448 @@
+{% extends 'dashboard/components/base.html' %}
+
+{% block title %}User List{% endblock %}
+{% load static %}
+{% block body %}
+
+<!-- Breadcrumb -->
+<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
+    <div class="my-auto mb-2">
+        <h2 class="mb-1">Users</h2>
+        <nav>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{dashboard_url}}"><i class="ti ti-smart-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    Authentication
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Users</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="d-flex my-xl-auto right-content align-items-center flex-wrap ">
+        <div class="mb-2">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#createModal"
+                class="btn btn-primary d-flex align-items-center"><i class="ti ti-circle-plus me-2"></i>Add</a>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+        <h5>User List</h5>
+        <div class="d-flex my-xl-auto right-content align-items-center flex-wrap row-gap-3">
+            <div class="me-3">
+                <a href="{{user_list_url}}" class="btn btn-primary"><i class="ti ti-repeat"></i>Reset</a>
+            </div> 
+            <!-- {% include 'dashboard/components/entries.html' %}
+            {% include 'dashboard/components/search.html' %} -->
+            {% include 'dashboard/components/search.html'%}
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Date Join</th>
+                        <th>Role</th>
+                        <th>Is Active?</th>
+                        <th>Is Staff?</th>
+                        <th>Is Superuser?</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>
+                            {{ forloop.counter}}
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center file-name-icon">
+                                <a href="#" class="avatar avatar-md avatar-rounded">
+                                    <img src="{% if user.profile %}{{user.profile.url}}{% else %}{% static 'dashboard/images/no-profile.png' %}{% endif %}"
+                                        class="img-fluid object-fit-cover w-100 h-100" alt="{{user.username}}">
+                                </a>
+                                <div class="ms-2">
+                                    <h6 class="fw-medium"><a href="#">{{user.username}}</a></h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{user.email|default:'-'}}</td>
+                        <td>{{user.phone|default:'-'}}</td>
+                        <td>
+                            {{user.created_at | date:'d M Y'}}
+                        </td>
+                        <td>
+                            {% if user.role.name %}
+                            {{user.role.name | title}}
+                            {% else %}
+                            {{user.role.name | default:'-'|title}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span
+                                class="badge badge-{% if user.is_active %}success{% else %}danger{% endif %} d-inline-flex align-items-center badge-xs">
+                                <i class="ti ti-point-filled me-1"></i>
+                                {% if user.is_active %}Active{% else %}Inactive{% endif %}
+                            </span>
+                        </td>
+                        <td>
+                            <span
+                                class="badge badge-{% if user.is_staff %}success{% else %}danger{% endif %} d-inline-flex align-items-center badge-xs">
+                                <i class="ti ti-point-filled me-1"></i>
+                                {% if user.is_staff %}Active{% else %}Inactive{% endif %}
+                            </span>
+                        </td>
+                        <td>
+                            <span
+                                class="badge badge-{% if user.is_superuser %}success{% else %}danger{% endif %} d-inline-flex align-items-center badge-xs">
+                                <i class="ti ti-point-filled me-1"></i>
+                                {% if user.is_superuser %}Active{% else %}Inactive{% endif %}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="action-icon d-inline-flex">
+                                <a href="#" class="me-2" data-bs-toggle="modal"
+                                    data-bs-target="#updateModal_{{user.id}}"><i class="ti ti-edit"></i></a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal_{{user.id}}"><i
+                                        class="ti ti-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+          {% include 'dashboard/components/pagination.html' %}
+    </div>
+</div>
+
+
+<!-- ===================== CREATE USER MODAL ===================== -->
+<div class="modal fade" id="createModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{ user_create_url }}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex align-items-center flex-wrap row-gap-3 bg-light w-100 rounded p-3 mb-4">
+                                <div
+                                    class="avatar avatar-xxl rounded-circle border border-dashed me-3 position-relative">
+                                    <img id="profilePreview" src="{% static 'dashboard/images/no-profile.png' %}"
+                                        class="rounded-circle w-100 h-100 object-fit-cover"
+                                        data-original="{% static 'dashboard/images/no-profile.png' %}">
+                                </div>
+
+                                <div class="profile-upload">
+                                    <div class="mb-2">
+                                        <h6 class="mb-1">Change Profile Image</h6>
+                                        <p class="fs-12">Image should be below 4 MB</p>
+                                    </div>
+                                    <div class="profile-uploader d-flex align-items-center">
+                                        <div class="drag-upload-btn btn btn-sm btn-primary me-2">
+                                            Upload
+                                            <input type="file" class="form-control image-sign" id="profileInput"
+                                                name="profile">
+                                        </div>
+                                        <button type="button" class="btn btn-light btn-sm reset-profile-btn"
+                                            data-input="profileInput" data-preview="profilePreview">Cancel</button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Password <span class="text-danger">*</span></label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                <input type="password" name="confirm_password" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                <input type="text" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Role / Department / Position -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Role <span class="text-danger">*</span></label>
+                                <select name="role" class="form-select" required>
+                                    <option value="" disabled selected>Select Role</option>
+                                    {% for r in roles %}
+                                    <option value="{{ r.id }}">{{ r.name|title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="is_active" name="is_active">
+                                <label class="form-check-label" for="is_active">Active</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="is_staff" name="is_staff">
+                                <label class="form-check-label" for="is_staff">Staff</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="is_superuser" name="is_superuser">
+                                <label class="form-check-label" for="is_superuser">Superuser</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close </button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== UPDATE USER MODAL ===================== -->
+{% for user in users %}
+<div class="modal fade" id="updateModal_{{user.id}}">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit User - <span>({{user.username}})</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{% url 'user_update' user.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body pb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex align-items-center flex-wrap row-gap-3 bg-light w-100 rounded p-3 mb-4">
+                                <div
+                                    class="avatar avatar-xxl rounded-circle border border-dashed me-3 position-relative">
+                                    <img id="profilePreview_{{user.id}}"
+                                        src="{% if user.profile %}{{ user.profile.url }}{% else %}{% static 'dashboard/images/no-profile.png' %}{% endif %}"
+                                        class="rounded-circle w-100 h-100 object-fit-cover"
+                                        data-original="{% if user.profile %}{{ user.profile.url }}{% else %}{% static 'dashboard/images/no-profile.png' %}{% endif %}">
+
+                                </div>
+
+                                <div class="profile-upload">
+                                    <div class="mb-2">
+                                        <h6 class="mb-1">Change Profile Image</h6>
+                                        <p class="fs-12">Image should be below 4 MB</p>
+                                    </div>
+                                    <div class="profile-uploader d-flex align-items-center">
+                                        <div class="drag-upload-btn btn btn-sm btn-primary me-2">
+                                            Upload
+                                            <input type="file" class="form-control image-sign"
+                                                id="profileInput_{{user.id}}" name="profile">
+                                        </div>
+                                        <button type="button" class="btn btn-light btn-sm reset-profile-btn"
+                                            data-input="profileInput_{{user.id}}"
+                                            data-preview="profilePreview_{{user.id}}">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Name <span class="text-danger">*</span></label>
+                                <input type="text" name="username" value="{{user.username}}" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" value="{{user.email}}" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Password <span class="text-danger">*</span></label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                <input type="password" name="confirm_password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                <input type="text" name="phone" value="{{user.phone}}" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Role / Department / Position -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Role <span class="text-danger">*</span></label>
+                                <select name="role" class="form-select" required>
+                                    <option value="" disabled>Select Role</option>
+                                    {% for role in roles %}
+                                    <option value="{{ role.id }}" {% if user.role.id == role.id %} selected{% endif %}>{{ role.name|title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" {% if user.is_active %}checked{% endif %}
+                                    type="checkbox" id="is_active_{{ user.id }}" name="is_active">
+                                <label class="form-check-label" for="is_active_{{ user.id }}">Active</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" {% if user.is_staff %}checked{% endif %} type="checkbox"
+                                    id="is_staff_{{ user.id }}" name="is_staff">
+                                <label class="form-check-label" for="is_staff_{{ user.id }}">Staff</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" {% if user.is_superuser %}checked{% endif %}
+                                    type="checkbox" id="is_superuser_{{ user.id }}" name="is_superuser">
+                                <label class="form-check-label" for="is_superuser_{{ user.id }}">Superuser</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+{% for user in users %}
+<div class="modal fade" id="deleteModal_{{user.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <span class="avatar avatar-xl bg-transparent-danger text-danger mb-3">
+                    <i class="ti ti-trash-x fs-36"></i>
+                </span>
+                <h4 class="mb-1">Confirm Delete</h4>
+                <p class="mb-3">You want to delete all the marked items, this cant be undone once you delete.</p>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:void(0);" class="btn btn-light me-2" data-bs-dismiss="modal">Save</a>
+                    <a href="{% url 'user_delete' user.id %}" class="btn btn-danger">Yes' Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+<script>
+    function setupProfilePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const originalSrc = preview.getAttribute('data-original');
+
+        input.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    preview.src = ev.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = originalSrc;
+            }
+        });
+    }
+
+    // Initialize previews
+    setupProfilePreview('profileInput', 'profilePreview');
+    {% for user in users %}
+    setupProfilePreview('profileInput_{{user.id}}', 'profilePreview_{{user.id}}');
+    {% endfor %}
+
+    // Reset buttons
+    document.querySelectorAll('.reset-profile-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.input);
+            const preview = document.getElementById(this.dataset.preview);
+            const originalSrc = preview.getAttribute('data-original');
+
+            input.value = '';
+            preview.src = originalSrc;
+        });
+    });
+</script>
+{% endblock %}

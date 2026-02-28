@@ -1,0 +1,11 @@
+<form method="GET" class="d-inline-block me-3">
+    <input type="hidden" name="search" value="{{search}}">
+    <input type="hidden" name="page" value="{{page}}">
+    <select name="entries" onchange="this.form.submit()" class="form-select">
+        {% for option in entries_options %}
+        <option value="{{ option }}" {% if option == entries %}selected{% endif %}>Show {{ option }}</option>
+        {% endfor %}
+    </select>
+    <input type="hidden" name="date" value="{{date}}">
+    <input type="hidden" name="date_range" value="{{date_range}}">
+</form>

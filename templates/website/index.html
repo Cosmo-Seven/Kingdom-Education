@@ -1,0 +1,277 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Home{% endblock %}
+{% load static %}
+{% block body %}
+<!-- Banner Section -->
+<section class="banner-section">
+    <div class="pattern-layer" style="background-image: url({% static 'website/images/1.png' %})"></div>
+    <div class="auto-container">
+
+        <!-- Content Boxed -->
+        <div class="content-boxed">
+            <div class="inner-column">
+                <h1>Learn Math, Science, English and Test <br> Prep from our Experts</h1>
+                <div class="buttons-box">
+                    <a href="course.html" class="theme-btn btn-style-one"><span class="txt">Get Stared <i
+                                class="fa fa-angle-right"></i></span></a>
+                    <a href="course.html" class="theme-btn btn-style-two"><span class="txt">All Courses <i
+                                class="fa fa-angle-right"></i></span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Boxed -->
+        <div class="image titlt" data-tilt="" data-tilt-max="4">
+            <a href="{% static 'website/images/banner.png' %}" data-fancybox="banner" data-caption="" class=""><img
+                    src="{% static 'website/images/banner.png' %}" alt=""></a>
+        </div>
+
+        <!-- Search Boxed -->
+        {% include 'website/components/search.html' %}
+
+    </div>
+</section>
+<!-- End Banner Section -->
+
+<!-- Education Section -->
+<section class="education-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Image Column -->
+            <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column parallax-scene-1">
+                    <div class="image parallax-layer" data-depth="0.30">
+                        <img src="{% static 'website/images/education.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Column -->
+            <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <h2>Our education system <br> works for you</h2>
+                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                        you’re, they’re two waters own morning gathered greater shall had behold had seed.</div>
+                    <a href="course.html" class="theme-btn btn-style-two"><span class="txt">Learn More <i
+                                class="fa fa-angle-right"></i></span></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Education Section -->
+
+<!-- Courses Section -->
+<section class="courses-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Title Column -->
+            <div class="title-column col-lg-4 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <!-- Sec Title -->
+                    <div class="sec-title">
+                        <h2>Our top courses</h2>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                            you’re, they’re two waters own morning gathered.</div>
+                    </div>
+                    <a href="course.html" class="theme-btn btn-style-three"><span class="txt">Get Stared <i
+                                class="fa fa-angle-right"></i></span></a>
+                </div>
+            </div>
+
+            <!-- Cource Block -->
+            {% for course in popular_courses %}
+            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
+                <div class="inner-box">
+                    <div class="image">
+                        <a href="{{course_details_url}}?title={{course.slug}}"><img style="width: 100%;height: 200px;object-fit: cover;"
+                                src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}" alt="{{course.title}}"></a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
+                            </div>
+                            <div class="pull-right">
+                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
+                            </div>
+                        </div>
+                        <div class="text">{{course.description|truncatewords:20}}</div>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="students">{{course.enrollment_count}} Students</div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{% url 'enroll_course' course.id %}" class="enroll">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- End Courses Section -->
+
+<!-- Call To Action Section -->
+<section class="call-to-action-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Title Column -->
+            <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <!-- Sec Title -->
+                    <div class="sec-title">
+                        <h2>Live the experience <br> learn at your own pace</h2>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                            you’re, they’re two waters.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Column -->
+            <div class="form-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <div class="help">For Help?</div>
+                    <div class="search-box">
+                        <form method="GET" action="{{courses_url}}">
+                            <div class="form-group">
+                                <input type="hidden" name="topic" value="{{ request.GET.topic }}">
+                                <input type="hidden" name="page" value="{{ request.GET.page }}">
+                                <input type="hidden" name="sort" value="{{ request.GET.sort }}">
+                                <input type="search" name="search" value="{{ request.GET.search }}"
+                                    placeholder="What do you want to learn?" required="">
+                                <button type="submit"><span class="icon fa fa-search"></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Call To Action Section -->
+
+<!-- News Section -->
+<section class="news-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Title Column -->
+            <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <!-- Sec Title -->
+                    <div class="sec-title">
+                        <h2>Our Latest blog posts</h2>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                            you’re, they’re two waters own morning gathered greater shall had behold had seed.
+                        </div>
+                    </div>
+                    <a href="course.html" class="theme-btn btn-style-three"><span class="txt">All Blog Post <i
+                                class="fa fa-angle-right"></i></span></a>
+                </div>
+            </div>
+
+            <!-- News Column -->
+            <div class="news-block col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-box">
+                    <div class="image">
+                        <a href="blog-detail.html"><img src="{% static 'website/images/news-1.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="lower-content">
+                        <h3><a href="blog-detail.html">To apply signal detection theory</a></h3>
+                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                            you’re, they’re two waters</div>
+                        <a href="blog-detail.html" class="read-more">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End News Section -->
+
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title centered">
+            <h2>Students & Parents Opinion</h2>
+        </div>
+
+        <!-- Authors Box -->
+        <div class="authors-box">
+            <div class="author-one"><img src="{% static 'website/images/author-2.jpg' %}" alt=""></div>
+            <div class="author-two"><img src="{% static 'website/images/author-3.jpg' %}" alt=""></div>
+            <div class="author-three"><img src="{% static 'website/images/author-4.jpg' %}" alt=""></div>
+            <div class="author-four"><img src="{% static 'website/images/author-5.jpg' %}" alt=""></div>
+
+            <div class="author-five"><img src="{% static 'website/images/author-6.jpg' %}" alt=""></div>
+            <div class="author-six"><img src="{% static 'website/images/author-7.jpg' %}" alt=""></div>
+            <div class="author-seven"><img src="{% static 'website/images/author-8.jpg' %}" alt=""></div>
+            <div class="author-eight"><img src="{% static 'website/images/author-9.jpg' %}" alt=""></div>
+        </div>
+
+        <div class="single-item-carousel owl-carousel owl-theme">
+
+            <!-- Testimonial Block Two -->
+            <div class="testimonial-block">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <div class="quote-icon flaticon-quote-5"></div>
+                        <div class="image">
+                            <img src="{% static 'website/images/author-1.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                        you’re, they’re two waters own morning gathered greater shall had behold had seed.
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                        piece of classical Latin literature from 45 BC, making it</div>
+                </div>
+            </div>
+
+            <!-- Testimonial Block Two -->
+            <div class="testimonial-block">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <div class="image">
+                            <img src="{% static 'website/images/author-5.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                        you’re, they’re two waters own morning gathered greater shall had behold had seed.
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                        piece of classical Latin literature from 45 BC, making it</div>
+                </div>
+            </div>
+
+            <!-- Testimonial Block Two -->
+            <div class="testimonial-block">
+                <div class="inner-box">
+                    <div class="image-box">
+                        <div class="image">
+                            <img src="{% static 'website/images/author-5.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
+                        you’re, they’re two waters own morning gathered greater shall had behold had seed.
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                        piece of classical Latin literature from 45 BC, making it</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- End Testimonial Section -->
+
+{% endblock %}
