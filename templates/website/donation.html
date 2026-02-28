@@ -16,13 +16,12 @@
                 <div class="border p-4">
 
                     <!-- HEADER -->
-                 <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
 
                         <!-- Logo Left -->
                         <div>
-                            <img src="{% static 'website/images/logo.webp' %}"
-                                 alt="Organization Logo"
-                                 style="max-height:70px;">
+                            <img src="{% static 'website/images/logo.webp' %}" alt="Organization Logo"
+                                style="max-height:70px;">
                         </div>
 
                         <!-- Contact Info Right -->
@@ -55,33 +54,31 @@
 
                         <div class="mb-3">
                             <label class="fw-semibold">Full Name</label>
-                            <input type="text" name="name"
+                            <input type="text" name="name" required
                                 class="form-control border-0 border-bottom rounded-0">
                         </div>
 
                         <div class="mb-3">
                             <label class="fw-semibold">Email Address</label>
-                            <input type="email" name="email"
+                            <input type="email" name="email" required
                                 class="form-control border-0 border-bottom rounded-0">
                         </div>
 
                         <div class="mb-4">
                             <label class="fw-semibold">Phone Number (Optional)</label>
-                            <input type="text" name="phone"
-                                class="form-control border-0 border-bottom rounded-0">
+                            <input type="text" name="phone" class="form-control border-0 border-bottom rounded-0">
                         </div>
 
                         <!-- DONATION -->
                         <h6 class="fw-bold mb-3">Donation (Optional):</h6>
-                       
+
                         <div class="mb-3">
                             <label class="fw-semibold d-block">
                                 I would like to make a donation:
                             </label>
-                           {% for key, label in status %}
+                            {% for key, label in status %}
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio"
-                                    name="status" value="{{key}}">
+                                <input class="form-check-input" type="radio" required name="status" value="{{key}}">
                                 <label class="form-check-label">{{label}}</label>
                             </div>
                             {% endfor %}
@@ -89,26 +86,24 @@
 
                         <div class="mb-3">
                             <label class="fw-semibold">If yes, amount (€)</label>
-                            <input type="number" name="amount"
-                                class="form-control border-0 border-bottom rounded-0">
+                            <input type="number" name="amount" class="form-control border-0 border-bottom rounded-0">
                         </div>
 
                         <div class="mb-4">
                             <label class="fw-semibold">
                                 Preferred donation method
                             </label>
-                            <input type="text" name="payment"
-                                class="form-control border-0 border-bottom rounded-0" placeholder="eg,K Pay,Cash,Wave">
+                            <input type="text" name="payment" class="form-control border-0 border-bottom rounded-0"
+                                placeholder="eg,K Pay,Cash,Wave">
                         </div>
 
                         <!-- PROGRAM -->
                         <h6 class="fw-bold mb-3">
                             Program Preferences:
                         </h6>
-                       {% for program in programs %}
+                        {% for program in programs %}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                name="programs" value="{{program.id}}">
+                            <input class="form-check-input" type="checkbox" name="programs" value="{{program.id}}">
                             <label class="form-check-label">{{program.name}}</label>
                         </div>
                         {% endfor %}
@@ -121,9 +116,7 @@
                         <!-- QR CODE SECTION -->
                         <div class="text-center mt-4">
                             <p class="fw-bold">Scan Me to Pay</p>
-                            <img src="{% static 'website/images/qr.jpg' %}"
-                                 class="img-fluid"
-                                 style="max-width:150px;">
+                            <img src="{% static 'website/images/qr.jpg' %}" class="img-fluid" style="max-width:150px;">
                         </div>
 
                         <!-- SUBMIT -->
@@ -142,4 +135,3 @@
     </div>
 </section>
 {% endblock %}
-
