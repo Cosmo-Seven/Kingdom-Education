@@ -2,7 +2,34 @@
 {% block title %}Blogs{% endblock %}
 {% load static %}
 {% block body %}
+<style>
+    .cource-block-two .inner-box {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
+    .cource-block-two .image {
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .cource-block-two .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cource-block-two .lower-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cource-block-two .text {
+        flex-grow: 1;
+    }
+</style>
 <!-- Page Title -->
 <section class="page-title">
     <div class="auto-container">
@@ -21,10 +48,8 @@
                 <div class="our-courses">
 
                     <!-- Options View -->
-                    {% if latest_blogs %}
                     <div class="row clearfix">
                         {% for blog in blogs %}
-                        {% if blog.is_popular == False%}
                         <div class="cource-block-two col-lg-4 col-md-6 col-sm-12">
                             <div class="inner-box">
                                 <div class="image">
@@ -46,11 +71,11 @@
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
+
                         {% endfor %}
                     </div>
                     {% include 'website/components/pagination.html' %}
-                    {% endif %}
+
 
                     <!-- Post Share Options -->
 
@@ -73,7 +98,7 @@
                             </div>
 
                             <div class="widget-content">
-                                {% for blog in blogs %}
+                                {% for blog in recent_blogs %}
                                 <article class="post">
                                     <div class="post-inner">
                                         <figure class="post-thumb"><a href="{% url 'blog_details' blog.id %}"><img
@@ -112,46 +137,6 @@
     </div>
 </div>
 
-<!-- Popular Courses -->
-<section class="popular-courses-section">
-    {% if popular_blogs %}
-    <div class="auto-container">
-        <div class="sec-title">
-
-            <h2>Most Popular Blogs</h2>
-        </div>
-
-        <div class="row clearfix">
-            {% for blog in blogs %}
-            {% if blog.is_popular == True%}
-            <div class="cource-block-two col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="{% url 'blog_details' blog.id %}"><img
-                                src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}" alt=""></a>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="blog-detail.html">{{blog.title}}</a></h5>
-                        <div class="text">{{blog.description|truncatewords:10}}.</div>
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <div class="students">{{blog.created_by.username}}</div>
-                            </div>
-                            <div class="pull-right">
-                                <div class="hours">{{blog.created_at | date:'d M Y'}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        {% include 'website/components/pagination.html' %}
-    </div>
-
-    {% endif %}
-</section>
 <!-- End Popular Courses -->
 
 {% endblock %}

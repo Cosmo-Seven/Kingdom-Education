@@ -26,7 +26,8 @@ def set_language(request):
 
 def index(request):
     popular_courses = CourseModel.objects.filter(is_popular=False)[:5]
-    context = {"popular_courses": popular_courses}
+    blogs = BlogModel.objects.all()[:1]
+    context = {"popular_courses": popular_courses,"blogs":blogs,}
     return render(request, "website/index.html", context)
 
 
@@ -152,26 +153,25 @@ def edit_profile(request):
 
 def blogs(request):
     blog_categories = BlogCategoryModel.objects.all().order_by("-created_at")
+    recent_blogs = BlogModel.objects.all()[:2]
     blogs = BlogModel.objects.all().order_by("-created_at")
-    page_obj = pagination_queryset(request,blogs,per_page = 1)
+    page_obj = pagination_queryset(request,blogs,per_page = 6)
 
-    latest_blogs = blogs.filter(is_popular=False)
-    popular_blogs = blogs.filter(is_popular=True)
-
+ 
     context = {
         "blog_categories": blog_categories,
         "blogs": blogs,
-        "latest_blogs": latest_blogs,
-        "popular_blogs": popular_blogs,
-        "page_obj":page_obj
+        "page_obj":page_obj,
+        "recent_blogs":recent_blogs 
     }
     return render(request, "website/blogs.html", context)
 
 
 def blog_details(request, pk):
     blog_categories = BlogCategoryModel.objects.all().order_by("-created_at")
+    recent_blogs = BlogModel.objects.all()[:2]
     blog = get_object_or_404(BlogModel, id=pk)
-    context = {"blog": blog, "blog_categories": blog_categories}
+    context = {"blog": blog, "blog_categories": blog_categories,"recent_blogs":recent_blogs}
     return render(request, "website/blog_details.html", context)
 
 

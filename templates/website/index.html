@@ -12,9 +12,9 @@
             <div class="inner-column">
                 <h1>Learn Math, Science, English and Test <br> Prep from our Experts</h1>
                 <div class="buttons-box">
-                    <a href="course.html" class="theme-btn btn-style-one"><span class="txt">Get Stared <i
+                    <a href="{% url 'courses'%}" class="theme-btn btn-style-one"><span class="txt">Get Stared <i
                                 class="fa fa-angle-right"></i></span></a>
-                    <a href="course.html" class="theme-btn btn-style-two"><span class="txt">All Courses <i
+                    <a href="{% url 'courses'%}" class="theme-btn btn-style-two"><span class="txt">All Courses <i
                                 class="fa fa-angle-right"></i></span></a>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         <div class="text">Replenish him third creature and meat blessed void a fruit gathered
                             you’re, they’re two waters own morning gathered.</div>
                     </div>
-                    <a href="course.html" class="theme-btn btn-style-three"><span class="txt">Get Stared <i
+                    <a href="{% url 'courses'%}" class="theme-btn btn-style-three"><span class="txt">Get Stared <i
                                 class="fa fa-angle-right"></i></span></a>
                 </div>
             </div>
@@ -87,8 +87,10 @@
             <div class="cource-block col-lg-4 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <div class="image">
-                        <a href="{{course_details_url}}?title={{course.slug}}"><img style="width: 100%;height: 200px;object-fit: cover;"
-                                src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}" alt="{{course.title}}"></a>
+                        <a href="{{course_details_url}}?title={{course.slug}}"><img
+                                style="width: 100%;height: 200px;object-fit: cover;"
+                                src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
+                                alt="{{course.title}}"></a>
                     </div>
                     <div class="lower-content">
                         <div class="clearfix">
@@ -96,7 +98,8 @@
                                 <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
                             </div>
                             <div class="pull-right">
-                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
+                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else
+                                    %}<span class="text-success">Free</span>{% endif %}</div>
                             </div>
                         </div>
                         <div class="text">{{course.description|truncatewords:20}}</div>
@@ -180,19 +183,25 @@
             </div>
 
             <!-- News Column -->
+
+            {% for blog in blogs %}
+            {% if blog.is_popular == True %}
             <div class="news-block col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-box">
                     <div class="image">
-                        <a href="blog-detail.html"><img src="{% static 'website/images/news-1.jpg' %}" alt=""></a>
+                        <a href="{% url 'blog_details' blog.id%}"><img
+                                src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}" alt=""></a>
                     </div>
                     <div class="lower-content">
-                        <h3><a href="blog-detail.html">To apply signal detection theory</a></h3>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                            you’re, they’re two waters</div>
-                        <a href="blog-detail.html" class="read-more">Continue Reading</a>
+                        <h3><a href="blog-detail.html">{{blog.title}}</a></h3>
+                        <div class="text">{{blog.description | truncatewords:50}}</div>
+                        <a href="{% url 'blog_details' blog.id%}" class="read-more">Continue Reading</a>
                     </div>
                 </div>
             </div>
+              {% endif %}
+            {% endfor %}
+
 
         </div>
     </div>

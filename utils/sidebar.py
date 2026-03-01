@@ -80,7 +80,7 @@ def sidebar(request):
                         "permission": "view_blogcategorymodel",
                     },
                     {
-                        "label": "Post",
+                        "label": "Blog",
                         "url_name": "blog_list",
                         "icon": "ti ti-article",
                         "permission": "view_blogmodel",
