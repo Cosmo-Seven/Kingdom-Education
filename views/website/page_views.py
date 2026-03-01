@@ -240,8 +240,14 @@ def enroll_course(request, course_id):
 
 def partner(request):
     partners = PartnerModel.objects.all().order_by("-created_at")
+    partner_id = request.GET.get("id")
+    if partner_id:
+        partner_details = get_object_or_404(PartnerModel, id = partner_id)
+    else:
+        partner_details = None
     context = {
-        "partners":partners
+        "partners":partners,
+        "partner_details":partner_details
     }
     return render(request,"website/partner.html",context)
 

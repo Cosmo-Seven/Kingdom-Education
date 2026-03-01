@@ -34,6 +34,7 @@
 
 	</div>
 </section>
+{% if not request.GET.id %}
 <section class="pricing-section price-page-section py-5">
 
 	<div class="container py-5">
@@ -52,8 +53,8 @@
 						<img src="{% if partner.logo %}{{partner.logo.url}}{% endif %}" class="partner-logo">
 					</a>
 					<h5 class="fw-semibold mb-2">{{partner.title}}</h5>
-					<a href="{{partner.link}}" class="partner-link text-primary" target="_blank">
-						Visit Website
+					<a href="/partners/?id={{partner.id}}" class="partner-link text-primary">
+						View More
 					</a>
 				</div>
 			</div>
@@ -64,4 +65,47 @@
 	</div>
 
 </section>
+{% else %}
+<section class="py-5">
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT IMAGE -->
+            <div class="col-lg-5">
+                <div class="partner-image text-center text-lg-start">
+                    <img src="{% if partner_details.logo %}{{  partner_details.logo.url }}{% endif %}"
+                         alt="{{  partner_details.title }}"
+                         class="img-fluid rounded">
+                </div>
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-lg-7">
+
+                <h1 class="fw-bold mb-4">
+                    {{  partner_details.title }}
+                </h1>
+
+                <div class="partner-description mb-4">
+                    <p class="text-muted">
+                        {{  partner_details.about }}
+                    </p>
+                </div>
+
+                {% if  partner_details.link %}
+                <a href="{{  partner_details.link }}"
+                   target="_blank"
+                   class="btn btn-outline-dark px-4 py-2">
+                    Visit Website
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endif %}
 {% endblock %}

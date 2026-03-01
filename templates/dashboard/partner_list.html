@@ -92,7 +92,7 @@
                             {% endif %}
                         </td>
                         <td>{{partner.link | truncatewords:10}}</td>
-                       
+
                         <td>{{partner.created_at | date:'d M Y'}}</td>
                         <td>
                             <div class="action-icon d-inline-flex">
@@ -135,14 +135,20 @@
                                 <input type="file" name="logo" required class="form-control">
                             </div>
                         </div>
-                         <div class="col-md-12">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Link</label>
                                 <input type="text" name="link" class="form-control" required>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="about" id="" class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
-                  
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-light border me-2"
@@ -163,7 +169,7 @@
                 <h5 class="modal-title">Update Partner</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-         <form action="{% url 'partner_update'  partner.id %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'partner_update'  partner.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="modal-body pb-0">
                     <div class="row">
@@ -176,18 +182,23 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Logo</label>
-                                <input type="file" name="logo"  class="form-control">
+                                <input type="file" name="logo" class="form-control">
                             </div>
                         </div>
-                         <div class="col-md-12">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Link</label>
                                 <input type="text" value="{{partner.link}}" name="link" class="form-control" required>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="about" id="" class="form-control">{{partner.about}}</textarea>
+                            </div>
+                        </div>
                     </div>
-                   
-                   
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-light border me-2"
@@ -211,7 +222,8 @@
                 <h4 class="mb-1">Confirm Delete</h4>
                 <p class="mb-3">You want to delete partner, this cant be undone once you delete.</p>
                 <div class="d-flex justify-content-center">
-                    <a href="javascript:void(0);" class="btn btn-outline-light border me-2" data-bs-dismiss="modal">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-outline-light border me-2"
+                        data-bs-dismiss="modal">Cancel</a>
                     <a href="{% url 'partner_delete' partner.id %}" class="btn btn-danger">Yes, Delete</a>
                 </div>
             </div>

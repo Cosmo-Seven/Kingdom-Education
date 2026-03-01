@@ -28,6 +28,7 @@ def partner_create(request):
                 title=request.POST.get("title"),
                 logo=request.FILES.get("logo"),
                 link=request.POST.get("link"),
+                about = request.POST.get("about")
             )
             partner.save()
             messages.success(request, "Partner Create Successfully!")
@@ -42,6 +43,7 @@ def partner_update(request, pk):
             partner = get_object_or_404(PartnerModel, id = pk)
             partner.title = request.POST.get("title")
             partner.link = request.POST.get("link")
+            partner.about = request.POST.get("about")
             if request.FILES.get("logo"):
                 if partner.logo:
                    partner.logo.delete(save=False)
