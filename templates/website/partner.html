@@ -28,6 +28,14 @@
 		text-decoration: none;
 		font-weight: 500;
 	}
+	.btn-primary{
+		background: rgb(241, 180, 66);
+		border: none;
+		outline: none;
+	}
+	.btn-primary:hover{
+		background: orange;
+	}
 </style>
 <section class="page-title">
 	<div class="auto-container">
@@ -94,12 +102,15 @@
                 </div>
 
                 {% if  partner_details.link %}
+				
                 <a href="{{  partner_details.link }}"
                    target="_blank"
-                   class="btn btn-outline-dark px-4 py-2">
+                   class="btn btn-primary px-4 py-2">
                     Visit Website
                 </a>
+				
                 {% endif %}
+
 
             </div>
 
