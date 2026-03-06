@@ -14,12 +14,14 @@ from core.models import (
 )
 from django.contrib import messages
 
+
 @custom_login_required("dashboard_login")
 @role_permission_required("view_coursemodel")
 def index(request):
     courses = CourseModel.objects.all()
     context = {"courses": courses}
     return render(request, "dashboard/index.html", context)
+
 
 @custom_login_required("dashboard_login")
 @role_permission_required("add_coursemodel")
@@ -36,6 +38,79 @@ def course_form(request, id=None):
         sections = SectionModel.objects.filter(course=course)
         context["course"] = course
         context["sections"] = sections
+
+    # ======================
+    # COURSE CREATE / UPDATE
+    # ======================
+    if "course_submit" in request.POST:
+
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        topic_id = request.POST.get("topic")
+        level = request.POST.get("level")
+        regular_price = request.POST.get("regular_price")
+        sale_price = request.POST.get("sale_price")
+        learning_outcomes = request.POST.get("learning_outcomes")
+        requirements = request.POST.get("requirements")
+        access_duration_days = request.POST.get("access_duration_days")
+        is_popular = True if request.POST.get("is_popular") else False
+
+        topic = CourseTopicModel.objects.get(id=topic_id) if topic_id else None
+
+        # ======================
+        # CREATE
+        # ======================
+        if not course:
+
+            course = CourseModel.objects.create(
+                title=title,
+                description=description,
+                topic=topic,
+                level=level,
+                regular_price=regular_price,
+                sale_price=sale_price or None,
+                learning_outcomes=learning_outcomes,
+                requirements=requirements,
+                access_duration_days=access_duration_days or None,
+                is_popular=is_popular,
+                featured_image=request.FILES.get("featured_image"),
+            )
+
+            # lecturers
+            lecturers = request.POST.getlist("lecturers")
+            course.lecturers.set(lecturers)
+
+            messages.success(request, "Course created successfully")
+            return redirect("course_update", course.id)
+
+        # ======================
+        # UPDATE
+        # ======================
+        else:
+
+            course.title = title
+            course.description = description
+            course.topic = topic
+            course.level = level
+            course.regular_price = regular_price
+            course.sale_price = sale_price or None
+            course.learning_outcomes = learning_outcomes
+            course.requirements = requirements
+            course.access_duration_days = access_duration_days or None
+            course.is_popular = is_popular
+
+            if request.FILES.get("featured_image"):
+                if course.featured_image:
+                    course.featured_image.delete()
+                course.featured_image = request.FILES.get("featured_image")
+
+            course.save()
+
+            lecturers = request.POST.getlist("lecturers")
+            course.lecturers.set(lecturers)
+
+            messages.success(request, "Course updated successfully")
+            return redirect("course_update", course.id)
 
     # ======================
     # SECTION CREATE
