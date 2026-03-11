@@ -2,7 +2,27 @@
 {% block title %}Courses{% endblock %}
 {% load static %}
 {% block body %}
+<style>
+.cource-block-three .image{
+    height:100%;
 
+}
+
+.cource-block-three .image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display: block; 
+}
+.image{
+    max-width: 20%;
+  }
+@media (max-width: 768px) {
+  .image{
+    max-width: 100%;
+  }
+}
+</style>
 <!-- Page Title -->
 <section class="page-title">
     <div class="auto-container">
@@ -14,7 +34,6 @@
     </div>
 </section>
 <!--End Page Title-->
-
 
 <!--Sidebar Page Container-->
 <div class="sidebar-page-container">
@@ -43,10 +62,10 @@
                                         <input type="hidden" name="page" value="{{ request.GET.page }}">
                                         <div class="form-group">
                                             <select name="sort" class="form-control" onchange="this.form.submit()">
-                                                <option value="newest" {% if selected_sort == "newest" %}selected{% endif %}>Newest Courses</option>
-                                                <option value="oldest" {% if selected_sort == "oldest" %}selected{% endif %}>Oldest Courses</option>
-                                                <option value="price_low" {% if selected_sort == "price_low" %}selected{% endif %}>Price Low to High</option>
-                                                <option value="price_high" {% if selected_sort == "price_high" %}selected{% endif %}>Price High to Low</option>
+                                                <option value="newest" {% if selected_sort == "newest" %}selected{% endif%}>Newest Courses</option>
+                                                <option value="oldest" {% if selected_sort == "oldest" %}selected{% endif%}>Oldest Courses</option>
+                                                <option value="price_low" {% if selected_sort == "price_low" %}selected{%endif %}>Price Low to High</option>
+                                                <option value="price_high" {% if selected_sort == "price_high"%}selected{% endif %}>Price High to Low</option>
                                                 <option value="free" {% if selected_sort == "free" %}selected{% endif %}>Free</option>
                                                 <option value="paid" {% if selected_sort == "paid" %}selected{% endif %}>Paid</option>
                                             </select>
@@ -61,34 +80,48 @@
                     <!-- Cource Block Two -->
                     {% for course in courses %}
                     <div class="cource-block-three">
-                        <div class="inner-box">
-                            <div class="image">
-                                <a href="{{course_details_url}}?title={{course.slug}}"><img
-                                        src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
-                                        alt="{{course.title}}"></a>
-                            </div>
-                            <div class="content-box">
-                                <div class="box-inner">
-                                    <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
-                                    <div class="text">{{course.description|truncatewords:20}}</div>
-                                    <div class="clearfix">
-                                        <div class="pull-left">
-                                            <div class="level-box text-capitalize">
-                                                <span class="icon flaticon-settings-1"></span>
-                                                {{course.level}} Level
-                                            </div>
-                                        </div>
-                                        <div class="pull-right clearfix">
-                                            <div class="students">{{course.lecturers.count}} Lecturer</div>
-                                            <div class="hours">{% if course.regular_price > 0 %}KS {{ course.regular_price }}{% else %}<span
-                                                    class="text-success">Free</span>{% endif %}</div>
-                                            <!-- <div class="hours">{{course.duration}} Hours</div> -->
-                                        </div>
-                                    </div>
+            <div class="inner-box">
+                <div class="image course-img">
+                    <a href="{{course_details_url}}?title={{course.slug}}">
+                        <img src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}" alt="{{course.title}}">
+                    </a>
+                </div>
+
+                <div class="content-box">
+                    <div class="box-inner">
+                        <h5>
+                            <a href="{{course_details_url}}?title={{course.slug}}">
+                                {{course.title}}
+                            </a>
+                        </h5>
+
+                        <div class="text">{{course.description|truncatewords:20}}</div>
+
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="level-box text-capitalize">
+                                    <span class="icon flaticon-settings-1"></span>
+                                    {{course.level}} Level
                                 </div>
                             </div>
+
+                            <div class="pull-right clearfix">
+                                <div class="students">{{course.lecturers.count}} Lecturer</div>
+
+                                <div class="hours">
+                                    {% if course.regular_price > 0 %}
+                                        KS {{course.regular_price }}
+                                    {% else %}
+                                        <span class="text-success">Free</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                </div>
+            </div>
+                        </div>
                     {% endfor %}
 
                 </div>
@@ -152,7 +185,7 @@
         </div>
 
         <!-- Cource Block Four -->
-       {% for course in popular_courses %}
+        {% for course in popular_courses %}
         <div class="cource-block-four">
             <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                 <div class="image">

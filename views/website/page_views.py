@@ -19,15 +19,20 @@ from core.models import (
 from helpers.pagination import pagination_queryset
 from enums.donation import StatusEnum
 
+
 def set_language(request):
     language = request.GET.get("language")
     request.session["language"] = language
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
+
 def index(request):
-    popular_courses = CourseModel.objects.filter(is_popular=False)[:5]
-    blogs = BlogModel.objects.all()[:1]
-    context = {"popular_courses": popular_courses,"blogs":blogs,}
+    popular_courses = CourseModel.objects.all()
+    blogs = BlogModel.objects.all()
+    context = {
+        "popular_courses": popular_courses,
+        "blogs": blogs,
+    }
     return render(request, "website/index.html", context)
 
 
@@ -93,7 +98,10 @@ def courses(request):
 
 def course_topics(request):
     topics = CourseTopicModel.objects.all()
-    context = {"topics": topics}
+    courses = CourseModel.objects.all()
+
+    context = {"topics": topics,"courses":courses}
+
     return render(request, "website/course_topics.html", context)
 
 
@@ -106,9 +114,9 @@ def course_details(request):
         course = CourseModel.objects.filter(slug=title).first()
         if request.user.is_authenticated:
             enroll = EnrollModel.objects.filter(
-                student=request.user, course=course, status = "approved"
+                student=request.user, course=course, status="approved"
             ).first()
-      
+
         if course and course.regular_price > 0:
             if enroll:
                 is_locked = False
@@ -116,7 +124,7 @@ def course_details(request):
                 is_locked = True
         else:
             is_locked = False
-        
+
     context = {"course": course, "enroll": enroll, "is_locked": is_locked}
     return render(request, "website/course_details.html", context)
 
@@ -127,7 +135,7 @@ def course_lessons(request):
 
 def lecturer_profile(request):
     profile_name = request.GET.get("name")
-    
+
     if profile_name:
         profile = LecturerModel.objects.filter(slug=profile_name).first()
         courses = profile.courses.all()
@@ -135,7 +143,7 @@ def lecturer_profile(request):
         profile_name = None
         courses = None
 
-    context = {"profile": profile,"courses":courses}
+    context = {"profile": profile, "courses": courses}
     return render(request, "website/lecturer_profile.html", context)
 
 
@@ -155,14 +163,17 @@ def blogs(request):
     blog_categories = BlogCategoryModel.objects.all().order_by("-created_at")
     recent_blogs = BlogModel.objects.all()[:2]
     blogs = BlogModel.objects.all().order_by("-created_at")
-    page_obj = pagination_queryset(request,blogs,per_page = 6)
+    category_id = request.GET.get("category")
+    if category_id:
+        blogs = blogs.filter(category_id=category_id)
+    page_obj = pagination_queryset(request, blogs, per_page=6)
 
- 
     context = {
         "blog_categories": blog_categories,
         "blogs": blogs,
-        "page_obj":page_obj,
-        "recent_blogs":recent_blogs 
+        "page_obj": page_obj,
+        "recent_blogs": recent_blogs,
+        "category_id": category_id,
     }
     return render(request, "website/blogs.html", context)
 
@@ -170,8 +181,23 @@ def blogs(request):
 def blog_details(request, pk):
     blog_categories = BlogCategoryModel.objects.all().order_by("-created_at")
     recent_blogs = BlogModel.objects.all()[:2]
+
     blog = get_object_or_404(BlogModel, id=pk)
-    context = {"blog": blog, "blog_categories": blog_categories,"recent_blogs":recent_blogs}
+
+    blogs = BlogModel.objects.all()
+    category_id = request.GET.get("category")
+
+    if category_id:
+        blogs = blogs.filter(category_id=category_id)
+
+    context = {
+        "blog": blog,
+        "blog_categories": blog_categories,
+        "recent_blogs": recent_blogs,
+        "blogs": blogs,
+        "category_id": category_id,
+    }
+
     return render(request, "website/blog_details.html", context)
 
 
@@ -238,49 +264,45 @@ def enroll_course(request, course_id):
         url = reverse("course_details") + f"?title={course.slug}"
         return redirect(url)
 
+
 def partner(request):
     partners = PartnerModel.objects.all().order_by("-created_at")
     partner_id = request.GET.get("id")
     if partner_id:
-        partner_details = get_object_or_404(PartnerModel, id = partner_id)
+        partner_details = get_object_or_404(PartnerModel, id=partner_id)
     else:
         partner_details = None
-    context = {
-        "partners":partners,
-        "partner_details":partner_details
-    }
-    return render(request,"website/partner.html",context)
+    context = {"partners": partners, "partner_details": partner_details}
+    return render(request, "website/partner.html", context)
+
 
 def donation_form(request):
     programs = ProgramModel.objects.all()
     context = {
         "programs": programs,
-        "status":StatusEnum.choices,
+        "status": StatusEnum.choices,
     }
-    return render(request,"website/donation.html",context)
+    return render(request, "website/donation.html", context)
+
 
 def form_upload(request):
-    if request.method ==  "POST":
+    if request.method == "POST":
         donation = DonationModel.objects.create(
-            name = request.POST.get("name"),
-            email = request.POST.get("email"),
-            phone = request.POST.get("phone"),
-            status = request.POST.get("status"),
-            amount = request.POST.get("amount") or 0,
-            payment = request.POST.get("payment"),
+            name=request.POST.get("name"),
+            email=request.POST.get("email"),
+            phone=request.POST.get("phone"),
+            status=request.POST.get("status"),
+            amount=request.POST.get("amount") or 0,
+            payment=request.POST.get("payment"),
         )
         program_ids = request.POST.getlist("programs")
         donation.program.set(program_ids)
-        messages.success(request,"Donation Form Create Successfully!")
+        messages.success(request, "Donation Form Create Successfully!")
         return redirect("donation_form")
+
 
 def about(request):
     page = request.GET.get("page")
 
-    context = {
-        "page":page
-    }
-    return render(request,"website/about.html",context)
-
-    
-
+    context = {"page": page}
+    return render(request, "website/about.html", context)

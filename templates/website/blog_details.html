@@ -61,7 +61,7 @@
 
                             <div class="widget-content">
                                 {% for category in blog_categories %}
-                                <a href="#">{{category.name}}</a>
+                                <a href="/blogs/?category={{category.id}}">{{category.name}}</a>
                                 {% endfor %}
                             </div>
                         </div>

@@ -2,6 +2,40 @@
 {% block title %}Student Profile{% endblock %}
 {% load static %}
 {% block body %}
+<style>
+.cource-block-two .image{
+    position: relative;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+}
+
+.cource-block-two .image img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cource-block-two{
+    margin-bottom:30px;
+}
+
+.cource-block-two .inner-box{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.cource-block-two .lower-content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.cource-block-two .text{
+    flex:1;
+}
+</style>
 <!-- Page Title -->
 <section class="page-title">
     <div class="auto-container">
@@ -37,7 +71,7 @@
             <div class="image-column col-lg-5 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="image">
-                        <img src="{% if profile.featured_image %}{{profile.featured_image.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}" alt="AA">
+                        <img src="{% if profile.featured_image %}{{profile.featured_image.url}}{% else %}{% static 'dashboard/images/no-profile.png' %}{% endif %}" alt="AA">
                     </div>
                     <h3>{{profile.name}}</h3>
                     <div class="text">{{profile.position}}</div>
@@ -71,7 +105,7 @@
                         </div>
                         <div class="lower-content">
                             <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
-                            <div class="text">{{course.description | truncatewords:15}}</div>
+                            <div class="text">{{course.description | truncatewords:10   }}</div>
                             <div class="clearfix">
                                 <div class="pull-left">
                                     <div class="students">{{course.lecturers.count}} Lecturers</div>
@@ -84,28 +118,8 @@
                     </div>
                 </div>
                  {% endfor %}
-              
-
             </div>
-
-            <!-- Post Share Options -->
-            <div class="styled-pagination text-center">
-                <ul class="clearfix">
-                    <li class="prev"><a href="#"><span class="fa fa-angle-left"></span> </a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li class="active"><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li class="next"><a href="#"><span class="fa fa-angle-right"></span> </a></li>
-                </ul>
-            </div>
-
         </div>
     </div>
-
 </section>
 {% endblock %}

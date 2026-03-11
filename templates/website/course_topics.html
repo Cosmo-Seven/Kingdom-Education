@@ -2,6 +2,33 @@
 {% block title %}Course Topics{% endblock %}
 {% load static %}
 {% block body %}
+{% load humanize %}
+<style>
+    .inner-box {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+    }
+
+    .inner-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .theme-btn {
+        background-color: #F6B81E;
+        padding: 10px 10px;
+        border-radius: 10px;
+        color: #fff;
+        transition: all .3s ease;
+    }
+
+    .theme-btn:hover {
+        background: #233094;
+        color: #fff;
+    }
+</style>
 <!-- Page Title -->
 <section class="page-title">
     <div class="auto-container">
@@ -31,7 +58,7 @@
                             alt="{{topic.name}}">
                     </div>
                     <h5><a href="{{courses_url}}?topic={{topic.slug}}">{{topic.name}}</a></h5>
-                    <div class="text">{{topic.description|default:"No description available"}}</div>
+                    <div class="text">{{topic.description|default:"No description available"|truncatewords:20}}</div>
                 </div>
             </div>
             {% endfor %}
@@ -50,95 +77,60 @@
             <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re, <br> they’re
                 two waters own morning gathered.</div>
         </div>
-        <div class="row clearfix">
+        <div class="row">
+            {% for course in courses %}
+            {% if course.is_popular %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex">
+                <div class="cource-block inner-box w-100 d-flex flex-column">
 
-            <!-- Cource Block -->
-            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
                     <div class="image">
-                        <a href="course-detail.html"><img src="images/course-3.jpg" alt=""></a>
+                        <a href="{{course_details_url}}?title={{course.slug}}">
+                            <img src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
+                                class="img-fluid w-100" style="height:220px; object-fit:cover;" alt="">
+                        </a>
                     </div>
-                    <div class="lower-content">
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <h5><a href="course-detail.html">Development Course</a></h5>
-                            </div>
-                            <div class="pull-right">
-                                <div class="price">$140</div>
+
+                    <div class="lower-content d-flex flex-column flex-grow-1 p-3">
+
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="mb-0">
+                                <a href="{{course_details_url}}?title={{course.slug}}">
+                                    {{course.title}}
+                                </a>
+                            </h5>
+
+                            <div class="price fw-bold">
+                                <h5 style="color: #F6B81E;"> {% if course.sale_price > 0 %}
+                                    KS {{course.sale_price|intcomma}}
+                                    {% else %}
+                                    Free
+                                    {% endif %}</h5>
                             </div>
                         </div>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
-                            they’re two waters.</div>
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <div class="students">125 Student</div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="course-detail.html" class="enroll">Enroll Now</a>
-                            </div>
+
+                        <div class="text flex-grow-1">
+                            {{course.description|truncatewords:20}}
                         </div>
+
+                        <div class="mt-3 text-end">
+                            <a href="{% if course.sale_price > 0 %}{% url 'enroll_course' course.id %}{% else %}{{course_details_url}}?title={{course.slug}}{% endif %}"
+                                class="theme-btn">
+
+                                {% if course.sale_price > 0 %}
+                                Enroll Now
+                                {% else %}
+                                View Course
+                                {% endif %}
+
+                            </a>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
-
-            <!-- Cource Block -->
-            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="image">
-                        <a href="course-detail.html"><img src="images/course-4.jpg" alt=""></a>
-                    </div>
-                    <div class="lower-content">
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <h5><a href="course-detail.html">Language Course</a></h5>
-                            </div>
-                            <div class="pull-right">
-                                <div class="price">$140</div>
-                            </div>
-                        </div>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
-                            they’re two waters.</div>
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <div class="students">125 Student</div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="course-detail.html" class="enroll">Enroll Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cource Block -->
-            <div class="cource-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="image">
-                        <a href="course-detail.html"><img src="images/course-5.jpg" alt=""></a>
-                    </div>
-                    <div class="lower-content">
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <h5><a href="course-detail.html">Business Course</a></h5>
-                            </div>
-                            <div class="pull-right">
-                                <div class="price">$140</div>
-                            </div>
-                        </div>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
-                            they’re two waters.</div>
-                        <div class="clearfix">
-                            <div class="pull-left">
-                                <div class="students">125 Student</div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="course-detail.html" class="enroll">Enroll Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>

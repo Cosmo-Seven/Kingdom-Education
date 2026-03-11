@@ -49,6 +49,7 @@ def course_form(request, id=None):
         topic_id = request.POST.get("topic")
         level = request.POST.get("level")
         regular_price = request.POST.get("regular_price")
+        enrollment_count = request.POST.get("enrollment_count")
         sale_price = request.POST.get("sale_price")
         learning_outcomes = request.POST.get("learning_outcomes")
         requirements = request.POST.get("requirements")
@@ -73,6 +74,7 @@ def course_form(request, id=None):
                 requirements=requirements,
                 access_duration_days=access_duration_days or None,
                 is_popular=is_popular,
+                enrollment_count = enrollment_count,
                 featured_image=request.FILES.get("featured_image"),
             )
 
@@ -98,6 +100,7 @@ def course_form(request, id=None):
             course.requirements = requirements
             course.access_duration_days = access_duration_days or None
             course.is_popular = is_popular
+            course.enrollment_count = enrollment_count
 
             if request.FILES.get("featured_image"):
                 if course.featured_image:

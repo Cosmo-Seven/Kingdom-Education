@@ -84,6 +84,7 @@
 
             <!-- Cource Block -->
             {% for course in popular_courses %}
+            {% if course.is_popular %}
             <div class="cource-block col-lg-4 col-md-6 col-sm-12">
                 <div class="inner-box">
                     <div class="image">
@@ -98,8 +99,7 @@
                                 <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
                             </div>
                             <div class="pull-right">
-                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else
-                                    %}<span class="text-success">Free</span>{% endif %}</div>
+                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
                             </div>
                         </div>
                         <div class="text">{{course.description|truncatewords:20}}</div>
@@ -108,12 +108,17 @@
                                 <div class="students">{{course.enrollment_count}} Students</div>
                             </div>
                             <div class="pull-right">
-                                <a href="{% url 'enroll_course' course.id %}" class="enroll">Enroll Now</a>
+                                <a href="{% if course.sale_price > 0 %}{% url 'enroll_course' course.id %}{% else %}{{course_details_url}}?title={{course.slug}}{% endif %}" class="enroll">     {% if course.sale_price > 0 %}
+                                Enroll Now
+                                {% else %}
+                                View Course
+                                {% endif %}</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
 
         </div>
@@ -185,7 +190,7 @@
             <!-- News Column -->
 
             {% for blog in blogs %}
-            {% if blog.is_popular == True %}
+      {% if blog.is_popular %}
             <div class="news-block col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-box">
                     <div class="image">
@@ -194,12 +199,12 @@
                     </div>
                     <div class="lower-content">
                         <h3><a href="blog-detail.html">{{blog.title}}</a></h3>
-                        <div class="text">{{blog.description | truncatewords:50}}</div>
+                        <div class="text">{{blog.description | truncatewords:10}}</div>
                         <a href="{% url 'blog_details' blog.id%}" class="read-more">Continue Reading</a>
                     </div>
                 </div>
             </div>
-              {% endif %}
+            {% endif %}
             {% endfor %}
 
 

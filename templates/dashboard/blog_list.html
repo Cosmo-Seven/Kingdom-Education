@@ -72,7 +72,7 @@
                         <th>Title</th>
                         <th>Category</th>
                         <th>Featured Image</th>
-                        <th>Is Popular</th>
+                        <th>Active</th>
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -164,7 +164,7 @@
                     <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="is_popular" name="is_popular">
-                            <label class="form-check-label" for="is_popular">Is Popular</label>
+                            <label class="form-check-label" for="is_popular">Active</label>
                         </div>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                     <div class="col-md-12 mb-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="is_popular_{{blog.id}}" {% if blog.is_popular%} checked {% endif %} name="is_popular">
-                            <label class="form-check-label" for="is_popular_{{blog.id}}">Is Popular</label>
+                            <label class="form-check-label" for="is_popular_{{blog.id}}">Active</label>
                         </div>
                     </div>
                 </div>

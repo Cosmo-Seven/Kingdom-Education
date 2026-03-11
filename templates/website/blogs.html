@@ -58,7 +58,7 @@
                                             alt="AA"></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h5><a href="blog-detail.html">{{blog.title}}</a></h5>
+                                    <h5><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a></h5>
                                     <div class="text">{{blog.description|truncatewords:10}}</div>
                                     <div class="clearfix">
                                         <div class="pull-left">
@@ -123,7 +123,7 @@
 
                             <div class="widget-content">
                                 {% for category in blog_categories %}
-                                <a href="#">{{category.name}}</a>
+                                <a href="/blogs/?category={{category.id}}">{{category.name}}</a>
                                 {% endfor %}
                             </div>
                         </div>
