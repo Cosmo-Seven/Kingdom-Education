@@ -58,7 +58,7 @@
                                             alt="AA"></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h5><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a></h5>
+                                    <h5><a href="{{blog.link}}" target="_blank">{{blog.title}}</a></h5>
                                     <div class="text">{{blog.description|truncatewords:10}}</div>
                                     <div class="clearfix">
                                         <div class="pull-left">
@@ -104,7 +104,7 @@
                                         <figure class="post-thumb"><a href="{% url 'blog_details' blog.id %}"><img
                                                     src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}"
                                                     alt=""></a></figure>
-                                        <div class="text"><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a>
+                                        <div class="text"><a href="{{blog.link}}" target="_blank">{{blog.title}}</a>
                                         </div>
                                         <div class="post-info">{{blog.created_by.username}}</div>
                                     </div>

@@ -42,7 +42,7 @@
                                     <div class="post-inner">
                                         <figure class="post-thumb"><a href="{% url 'blog_details' blog.id %}"><img
                                                     src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}" alt=""></a></figure>
-                                        <div class="text"><a href="{% url 'blog_details' blog.id %}">{{blog.title}}</a>
+                                        <div class="text"><a href="{{blog.link}}" target="_blank">{{blog.title}}</a>
                                         </div>
                                         <div class="post-info">{{blog.created_by.username}}</div>
                                     </div>
@@ -74,7 +74,7 @@
             <div class="content-side blog-detail-column col-lg-9 col-md-12 col-sm-12">
                 <div class="blog-detail">
                     <div class="inner-box">
-                        <h2>{{blog.title}}</h2>
+                        <a href="{{blog.link}}" target="_blank"><h2>{{blog.title}}</h2></a>
                         <ul class="author-info">
                             <li>{{blog.created_by.username}}</li>
                             <li><span class="theme_color">{{blog.created_at | date:"d M Y"}}</span></li>

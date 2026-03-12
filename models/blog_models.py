@@ -14,6 +14,7 @@ class BlogModel(BaseModel):
         related_name="blogs",
     )
     is_popular = models.BooleanField(default=False)
+    link = models.URLField(null=True)
     def __str__(self):
         return self.title
 

@@ -4,7 +4,7 @@ __pycache__/
 *.pyc
 
 staticfiles/
-
+media/
 .vscode/
 .idea/
 

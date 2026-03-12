@@ -1,4 +1,25 @@
 {% load static %}
+<style>
+    .footer-widget .text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* lines limit */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.7;
+        max-width: 350px;
+    }
+    .logo-widget{
+    max-width:100%;
+}
+
+.footer-about{
+    font-size:14px;
+    line-height:1.8;
+    color:#333;
+    margin-bottom:12px;
+}
+</style>
 <footer class="main-footer">
     <!-- Pattern Layer -->
     <div class="pattern-layer paroller" data-paroller-factor="0.60" data-paroller-factor-lg="0.20"
@@ -20,23 +41,40 @@
                         <!--Footer Column-->
                         <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                             <div class="footer-widget logo-widget">
-                                <div class="logo">
-                                    <a href="{{home_url}}"><img style="height: 100px;object-fit: contain;"
-                                            src="{% static 'website/images/logo.webp' %}" alt=""></a>
+
+                                <div class="logo mb-3">
+                                    <a href="{{home_url}}">
+                                        <img src="{% static 'website/images/logo.webp' %}"
+                                            style="height:80px;object-fit:contain;">
+                                    </a>
                                 </div>
-                                <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-                                    1500s,
-                                </div>
-                                <div class="social-box">
+
+                                <p class="footer-about">
+                                    Welcome to Kingdom Education Mission Euro ry (KEME), a faith-based, non-profit
+                                    association officially registered in Finland with Business ID (Y-tunnus) 3572912-5
+                                    and Organisation ID (OID) E10411526.
+                                </p>
+
+                                <p class="footer-about">
+                                    <strong>Our Mission</strong><br>
+                                    We are dedicated to serving the community through education, training,
+                                    humanitarian aid, and personal guidance. Our mission is to promote cultural
+                                    and educational understanding by providing accessible support to all.
+                                </p>
+
+                                <div class="social-box mt-3">
                                     <a href="#" class="fa fa-facebook"></a>
                                     <a href="#" class="fa fa-instagram"></a>
                                     <a href="#" class="fa fa-twitter"></a>
                                     <a href="#" class="fa fa-google"></a>
                                     <a href="#" class="fa fa-pinterest-p"></a>
                                 </div>
-                                <div class="copyright">Copyright © 2026 | Coded by <a href="https://pagemyanmar.com"
-                                        class="text-danger">PageMyanmar</a></div>
+
+                                <div class="copyright mt-3">
+                                    Copyright © 2026 | Coded by
+                                    <a href="https://pagemyanmar.com" class="text-danger">PageMyanmar</a>
+                                </div>
+
                             </div>
                         </div>
 

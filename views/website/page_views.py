@@ -16,7 +16,7 @@ from core.models import (
     ProgramModel,
     DonationModel,
 )
-from helpers.pagination import pagination_queryset
+
 from enums.donation import StatusEnum
 
 
@@ -164,14 +164,12 @@ def blogs(request):
     recent_blogs = BlogModel.objects.all()[:2]
     blogs = BlogModel.objects.all().order_by("-created_at")
     category_id = request.GET.get("category")
-    if category_id:
-        blogs = blogs.filter(category_id=category_id)
-    page_obj = pagination_queryset(request, blogs, per_page=6)
-
+    paginator = Paginator(blogs,6)
+    page_number = request.GET.get("page")
+    blogs = paginator.get_page(page_number)
     context = {
         "blog_categories": blog_categories,
         "blogs": blogs,
-        "page_obj": page_obj,
         "recent_blogs": recent_blogs,
         "category_id": category_id,
     }

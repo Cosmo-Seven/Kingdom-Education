@@ -37,6 +37,7 @@ def blog_create(request):
                 category_id = request.POST.get("category"),
                 featured_image = request.FILES.get("featured_image"),
                 description = request.POST.get("description"),
+                link = request.POST.get("link"),
                 is_popular = "is_popular" in request.POST
             )
             blog.save()
@@ -55,6 +56,7 @@ def blog_update(request, pk):
             blog.title = request.POST.get("title")
             blog.category_id = request.POST.get("category")
             blog.description = request.POST.get("description")
+            blog.link = request.POST.get("link")
             blog.is_popular = "is_popular" in request.POST
             if request.FILES.get("featured_image"):
                 if blog.featured_image:
