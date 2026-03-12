@@ -139,7 +139,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Link</label>
-                                <input type="text" name="link" class="form-control" required>
+                                <input type="url" name="link" class="form-control" required>
                             </div>
                         </div>
 
@@ -206,7 +206,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Link</label>
-                                <input type="text" value="{{blog.link}}" name="link" class="form-control" required>
+                                <input type="url" value="{{blog.link | default:''}}" name="link" class="form-control" required>
                             </div>
                         </div>
 

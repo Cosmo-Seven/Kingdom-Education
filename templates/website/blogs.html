@@ -58,7 +58,7 @@
                                             alt="AA"></a>
                                 </div>
                                 <div class="lower-content">
-                                    <h5><a href="{{blog.link}}" target="_blank">{{blog.title}}</a></h5>
+                                    <h5><a {% if blog.link %}href="{{blog.link}}"{% endif %} target="_blank">{{blog.title}}</a></h5>
                                     <div class="text">{{blog.description|truncatewords:10}}</div>
                                     <div class="clearfix">
                                         <div class="pull-left">
