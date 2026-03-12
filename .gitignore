@@ -9,3 +9,4 @@ staticfiles/
 .idea/
 
 .DS_Store
+media/
