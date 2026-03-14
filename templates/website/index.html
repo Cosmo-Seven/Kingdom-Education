@@ -10,7 +10,8 @@
         <!-- Content Boxed -->
         <div class="content-boxed">
             <div class="inner-column">
-                <h1>Learn Math, Science, English and Test <br> Prep from our Experts</h1>
+                <h1>Welcome To Kingdom Education Mission Euro ry! "Wisdom is True Life, Wealth, and Honor" (Proverbs 3:13-20)
+                    HOPE STARTS HERE</h1>
                 <div class="buttons-box">
                     <a href="{% url 'courses'%}" class="theme-btn btn-style-one"><span class="txt">Get Stared <i
                                 class="fa fa-angle-right"></i></span></a>
@@ -98,7 +99,7 @@
                             <div class="pull-left">
                                 <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
                             </div>
-                            <div class="pull-right">
+                            <div class="pull-left mt-2">
                                 <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
                             </div>
                         </div>
@@ -108,11 +109,12 @@
                                 <div class="students">{{course.enrollment_count}} Students</div>
                             </div>
                             <div class="pull-right">
-                                <a href="{% if course.sale_price > 0 %}{% url 'enroll_course' course.id %}{% else %}{{course_details_url}}?title={{course.slug}}{% endif %}" class="enroll">     {% if course.sale_price > 0 %}
-                                Enroll Now
-                                {% else %}
-                                View Course
-                                {% endif %}</a>
+                                <a href="{% if course.sale_price > 0 %}{% url 'enroll_course' course.id %}{% else %}{{course_details_url}}?title={{course.slug}}{% endif %}"
+                                    class="enroll"> {% if course.sale_price > 0 %}
+                                    Enroll Now
+                                    {% else %}
+                                    View Course
+                                    {% endif %}</a>
                             </div>
                         </div>
                     </div>
@@ -190,7 +192,7 @@
             <!-- News Column -->
 
             {% for blog in blogs %}
-      {% if blog.is_popular %}
+            {% if blog.is_popular %}
             <div class="news-block col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-box">
                     <div class="image">

@@ -45,6 +45,9 @@ def routes(request):
         # Text Key And Translate
         "translation_list_url": reverse_lazy("translation_list"),
         "text_key_create_url": reverse_lazy("text_key_create"),
+        # Volunteer 
+        "volunteer_list_url":reverse_lazy("volunteer_list"),
+        "volunteer_create_url":reverse_lazy("volunteer_create"),
         # ======================================== Website ========================================
         "home_url": reverse_lazy("home"),
         "courses_url": reverse_lazy("courses"),

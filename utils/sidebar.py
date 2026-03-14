@@ -43,6 +43,18 @@ def sidebar(request):
                 ],
             },
             {
+                "title": "volunteer",
+                "permissions": ["view_volunteermodel"],
+                "items": [
+                    {
+                        "label": "Volunteer",
+                        "url_name": "volunteer_list",
+                        "icon": "ti ti-empathize",
+                        "permission": "view_volunteermodel",
+                    }
+                ],
+            },
+            {
                 "title": "payment method",
                 "permissions": ["view_paymentmethodmodel"],
                 "items": [

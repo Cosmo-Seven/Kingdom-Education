@@ -15,6 +15,7 @@ from core.models import (
     PartnerModel,
     ProgramModel,
     DonationModel,
+    VolunteerModel,
 )
 
 from enums.donation import StatusEnum
@@ -100,7 +101,7 @@ def course_topics(request):
     topics = CourseTopicModel.objects.all()
     courses = CourseModel.objects.all()
 
-    context = {"topics": topics,"courses":courses}
+    context = {"topics": topics, "courses": courses}
 
     return render(request, "website/course_topics.html", context)
 
@@ -164,7 +165,7 @@ def blogs(request):
     recent_blogs = BlogModel.objects.all()[:2]
     blogs = BlogModel.objects.all().order_by("-created_at")
     category_id = request.GET.get("category")
-    paginator = Paginator(blogs,6)
+    paginator = Paginator(blogs, 6)
     page_number = request.GET.get("page")
     blogs = paginator.get_page(page_number)
     context = {
@@ -301,6 +302,6 @@ def form_upload(request):
 
 def about(request):
     page = request.GET.get("page")
-
-    context = {"page": page}
+    volunteers = VolunteerModel.objects.all().order_by("-created_at")
+    context = {"page": page, "volunteers": volunteers}
     return render(request, "website/about.html", context)

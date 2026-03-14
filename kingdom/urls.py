@@ -18,6 +18,7 @@ from views.dashboard import (
     role_views,
     language_views,
     text_key_views,
+    volunteer_views,
 )
 from views.website import page_views as website_views
 from views.website import auth_views as website_auth_views
@@ -47,7 +48,7 @@ urlpatterns = (
             dashboard_views.course_form,
             name="course_update",
         ),
-        # User 
+        # User
         path("dashboard/user/list/", user_views.user_list, name="user_list"),
         path("dashboard/user/create/", user_views.user_create, name="user_create"),
         path(
@@ -60,7 +61,7 @@ urlpatterns = (
             user_views.user_delete,
             name="user_delete",
         ),
-        # Role 
+        # Role
         path("dashboard/role/list/", role_views.role_list, name="role_list"),
         path("dashboard/role/create/", role_views.role_create, name="role_create"),
         path(
@@ -170,10 +171,24 @@ urlpatterns = (
             course_topic_views.course_topic_delete,
             name="course_topic_delete",
         ),
-        path("dashboard/partner/list/",partner_views.partner_list, name="partner_list"),
-        path("dashboard/partner/create/",partner_views.partner_create, name="partner_create"),
-        path("dashboard/partner/update/<uuid:pk>/",partner_views.partner_update, name="partner_update"),
-        path("dashboard/partner/delete/<uuid:pk>/",partner_views.partner_delete, name="partner_delete"),
+        path(
+            "dashboard/partner/list/", partner_views.partner_list, name="partner_list"
+        ),
+        path(
+            "dashboard/partner/create/",
+            partner_views.partner_create,
+            name="partner_create",
+        ),
+        path(
+            "dashboard/partner/update/<uuid:pk>/",
+            partner_views.partner_update,
+            name="partner_update",
+        ),
+        path(
+            "dashboard/partner/delete/<uuid:pk>/",
+            partner_views.partner_delete,
+            name="partner_delete",
+        ),
         # ========== Contact Us ========== #
         path(
             "dashboard/contact_list/", contact_views.contact_list, name="contact_list"
@@ -184,10 +199,18 @@ urlpatterns = (
             name="contact_delete",
         ),
         # ============== Donation ============= #
-        path("dashboard/donation/list/",donation_views.donation_list,name="donation_list"),
-        path("dashboard/donation/delete/<uuid:pk>/",donation_views.donation_delete, name="donation_delete"),
+        path(
+            "dashboard/donation/list/",
+            donation_views.donation_list,
+            name="donation_list",
+        ),
+        path(
+            "dashboard/donation/delete/<uuid:pk>/",
+            donation_views.donation_delete,
+            name="donation_delete",
+        ),
         # ============== Language ===================== #
-         path(
+        path(
             "dashboard/language/list/",
             language_views.language_list,
             name="language_list",
@@ -234,8 +257,33 @@ urlpatterns = (
             name="text_key_delete",
         ),
         # =========================== Enroll =======================#
-        path("dashboard/enroll/list/",enroll_views.enroll_list, name="enroll_list"),
-        path("dashboard/enroll/status/<uuid:pk>/",enroll_views.status_change, name="status_change"),
+        path("dashboard/enroll/list/", enroll_views.enroll_list, name="enroll_list"),
+        path(
+            "dashboard/enroll/status/<uuid:pk>/",
+            enroll_views.status_change,
+            name="status_change",
+        ),
+        # =========================== Volunteer ====================
+        path(
+            "dashboard/volunteer/list/",
+            volunteer_views.volunteer_list,
+            name="volunteer_list",
+        ),
+        path(
+            "dashboard/volunteer/create/",
+            volunteer_views.volunteer_create,
+            name="volunteer_create",
+        ),
+        path(
+            "dashboard/volunteer/update/<uuid:pk>/",
+            volunteer_views.volunteer_update,
+            name="volunteer_update",
+        ),
+        path(
+            "dashboard/volunteer/delete/<uuid:pk>/",
+            volunteer_views.volunteer_delete,
+            name="volunteer_delete",
+        ),
         # ================================================================================================
         # WEBSITE URL
         # ================================================================================================
@@ -255,7 +303,7 @@ urlpatterns = (
         path("student-profile/", website_views.student_profile, name="student_profile"),
         path("edit-profile/", website_views.edit_profile, name="edit_profile"),
         path("blogs/", website_views.blogs, name="blogs"),
-        path("partners/",website_views.partner, name="partners"),
+        path("partners/", website_views.partner, name="partners"),
         path(
             "blog-details/<uuid:pk>/", website_views.blog_details, name="blog_details"
         ),
@@ -270,10 +318,9 @@ urlpatterns = (
             website_views.enroll_course,
             name="enroll_course",
         ),
-        path("donation/form/",website_views.donation_form, name="donation_form"),
-        path("donation/form/upload/",website_views.form_upload, name="form_upload"),
-        path("about/",website_views.about, name="about"),  
-         
+        path("donation/form/", website_views.donation_form, name="donation_form"),
+        path("donation/form/upload/", website_views.form_upload, name="form_upload"),
+        path("about/", website_views.about, name="about"),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
