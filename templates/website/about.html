@@ -45,33 +45,42 @@
     }
 
     .modern-card:hover img {
-        transform: scale(1.0.8);
+        transform: scale(1.02);
     }
 
     .card-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3), transparent 70%);
         display: flex;
         align-items: flex-end;
-        padding: 25px;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 70%);
     }
 
     .overlay-content {
+        width: 100%;
         color: #fff;
-        transform: translateY(40px);
-        transition: all 0.4s ease;
     }
 
     .overlay-content h4 {
+        margin: 0;
         font-weight: 600;
+    }
 
+    .overlay-content .details {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .modern-card:hover .overlay-content .details {
+        max-height: 200px;
+        margin-top: 10px;
     }
 
     .overlay-content p {
         font-size: 14px;
-        opacity: 0;
-        transition: opacity 0.4s ease;
+        margin: 3px 0;
     }
 
     .objective-card {
@@ -568,8 +577,13 @@
                     <img src="{% static 'website/images/f-1.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Dr. Lahpai Shawng Htoi</h4>
-                            <p>Chairman & Founder</p>
+                            <h4>Rev.Dr. Shawng Htoi Lahpai</h4>
+
+                            <div class="details">
+                                <p>Founder, Education & Spritual Consultant</p>
+                                <p>+1 973 769 8755</p>
+                                <p>shawnghtoilahpai@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -580,8 +594,13 @@
                     <img src="{% static 'website/images/f-3.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Sr. Sumlut Yaku</h4>
-                            <p style="white-space: nowrap;">Organizational Development Consultant (ODC)</p>
+                            <h4>Yar Kote @ Sumlut Yaku</h4>
+
+                            <div class="details">
+                                <p>Organizational Development Consultant</p>
+                                <p>+66 83455239 / +959 777103260</p>
+                                <p>yarkote@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -592,20 +611,12 @@
                     <div class="card-overlay">
                         <div class="overlay-content">
                             <h4>Mr. Htoi Aung</h4>
-                            <p>Chief Executive Officer (CEO)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
-                    <img src="{% static 'website/images/f-4.jpg'%}" alt="Card Image">
-                    <div class="card-overlay">
-                        <div class="overlay-content">
-                            <h4>Ms. Ida keränen</h4>
-                            <p>Director (Global Partnership Executive)</p>
+                            <div class="details">
+                                <p>Chairman</p>
+                                <p>+358 465947284</p>
+                                <p>htoiaung@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -615,8 +626,29 @@
                     <img src="{% static 'website/images/f-5.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Dr. Dashi Tu Ring</h4>
-                            <p> Principal (Vocational Trainning School)</p>
+                            <h4>Lu Lu Aung</h4>
+
+                            <div class="details">
+                                <p>Marketing Manager</p>
+                                <p>+358 469389339</p>
+                                <p>luluaung@keme.fi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="modern-card mt-5">
+                    <img src="{% static 'website/images/f-4.jpg'%}" alt="Card Image">
+                    <div class="card-overlay">
+                        <div class="overlay-content">
+                            <h4>Seng Naw</h4>
+
+                            <div class="details">
+                                <p>Finance Director</p>
+                                <p>+358 469669480</p>
+                                <p>lsengnaw@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -626,146 +658,189 @@
                     <img src="{% static 'website/images/f-6.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Mr. Seng Naw</h4>
-                            <p>Finance Director</p>
+                            <h4>Naw Hkawng @ Rev.Maji Naw Hkawng</h4>
+
+                            <div class="details">
+                                <p>Business Consultant</p>
+                                <p>+86 13187572699/ +959 47</p>
+                                <p>nawhkawng@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="d-flex justify-content-center align-items-center gap-5">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="modern-card mt-5">
+                        <img src="{% static 'website/images/f-8.jpg'%}" alt="Card Image">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h4>Lu San</h4>
 
+                                <div class="details">
+                                    <p>Secretary</p>
+                                    <p>+358 466376904</p>
+                                    <p>lusan@keme.fi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="modern-card mt-5">
+                        <img src="{% static 'website/images/f-9.jpg'%}" alt="Card Image">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h4>Zay Khaung</h4>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
-                    <img src="{% static 'website/images/f-7.jpg'%}" alt="Card Image">
-                    <div class="card-overlay">
-                        <div class="overlay-content">
-                            <h4>Sr. Maji Naw Hkaung</h4>
-                            <p>Business Consultant</p>
+                                <div class="details">
+                                    <p>Admission Director</p>
+                                    <p>+905015892503</p>
+                                    <p>zaykhaung@keme.fi</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <h2 class="text-center" style="color: #fff;">Mission Fields Coordinators</h2>
             <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
-                    <img src="{% static 'website/images/f-8.jpg'%}" alt="Card Image">
-                    <div class="card-overlay">
-                        <div class="overlay-content">
-                            <h4>Mr. Sinpraw Tu Tawng</h4>
-                            <p style="white-space: nowrap;">Coordinator (Mission Schools Development)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
-                    <img src="{% static 'website/images/f-9.jpg'%}" alt="Card Image">
-                    <div class="card-overlay">
-                        <div class="overlay-content">
-                            <h4>Mr. Zay Khaung</h4>
-                            <p>Admission Director</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
+                <div class="modern-card">
                     <img src="{% static 'website/images/f-10.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Mrs. Twehi Lu San</h4>
-                            <p>Finance Manager</p>
+                            <h4>Sr. Lashi Hkun Gam(Elderly Health Care Centre)</h4>
+
+                            <div class="details">
+                                <p>Founder & Director</p>
+                                <p>+959 448437756 / +959 770756723</p>
+                                <p>hkungamlashi56@gmail.com</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
+                <div class="modern-card">
                     <img src="{% static 'website/images/f-11.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Ms. Lu Lu Aung</h4>
-                            <p>Marketing Director</p>
+                            <h4>Mr. David La San(Beth Shalom Children's Palace)</h4>
+
+                            <div class="details">
+                                <p>Founder & Director</p>
+                                <p>+66 08 27262700</p>
+                                <p>lasanlahpai1978@gmail.com</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
+                <div class="modern-card">
                     <img src="{% static 'website/images/f-12.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Mr. Gyung Hkawng</h4>
-                            <p>Assistant (Media Team)</p>
+                            <h4>Dr. Tu Ring Dashi(Nazareth School – NSLVE)</h4>
+
+                            <div class="details">
+                                <p>School Principal</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <h2 class="text-center" style="color: #fff;">Lecturers</h2>
             <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
+                <div class="modern-card">
                     <img src="{% static 'website/images/f-19.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Naw Ja Myitung</h4>
-                            <p>Czech Language Teacher & Coordinator</p>
+                            <h4>Tr.Nyein Nyein Ei San</h4>
+
+                            <div class="details">
+                                <p>Finnish Language Teacher(Beginner to Pre-intermediate Levels)</p>
+                                <p>+358 458040434</p>
+                                <p>nyeinnyeineisan@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card mt-5">
+                <div class="modern-card">
                     <img src="{% static 'website/images/f-20.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4>Mary Awn Lu</h4>
-                            <p>Graphic Designer </p>
+                            <h4>Sr.Naw Ja Myitung</h4>
+
+                            <div class="details">
+                                <p>Czech Language Teacher § Coordinator(Beginner to Pre-intermediate Levels)</p>
+                                <p>+420 604220209</p>
+                                <p>nawjamyitung@keme.fi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</section>
-<section class="py-5 white-section">
-    <div class="container">
-        <!-- <h1 class="text-center">Our Founder</h1> -->
-        <div class="row g-5 align-items-center justify-content-center mt-2">
-
-            <!-- Card -->
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="modern-card">
                     <img src="{% static 'website/images/f-13.jpg'%}" alt="Card Image">
                     <div class="card-overlay">
                         <div class="overlay-content">
-                            <h4 style="white-space: nowrap;">Dr. Lahpai Shawng Htoi</h4>
-                            <p>Mission School Manager</p>
-                            <p style="white-space: nowrap;">(Beth Shalom Children's Palace)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Repeat Cards -->
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="modern-card">
-                    <img src="{% static 'website/images/f-14.jpg'%}" alt="Card Image">
-                    <div class="card-overlay">
-                        <div class="overlay-content">
-                            <h4>Sr. Sumlut Yaku</h4>
-                            <p style="white-space: nowrap;">Founder & Director </p>
-                            <p style="white-space: nowrap;">(Elderly Health care Centre- SLLG)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <h4>Tr.Ida Keränen</h4>
 
+                            <div class="details">
+                                <p>Finnish Language Teacher(Beginner to Advance Levels)</p>
+                                <p>+358 401599855</p>
+                                <p>idakeränen@keme.fi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-center" style="color: #fff;">Volunteer Staffs</h2>
+            <!-- Card -->
+            <div class="d-flex justify-content-center align-items-center gap-5">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="modern-card">
+                        <img src="{% static 'website/images/b-1.jpg'%}" alt="Card Image">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h4>Mary Awn Lu</h4>
+                                <div class="details">
+                                    <p>Graphic Designer</p>
+                                    <p>+358 469389685</p>
+                                    <p>maryawnlu@keme.fi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat Cards -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="modern-card">
+                        <img src="{% static 'website/images/b-2.jpg'%}" alt="Card Image">
+                        <div class="card-overlay">
+                            <div class="card-overlay">
+                                <div class="overlay-content">
+                                    <h4>Jing Hpau Yeing Sawng</h4>
+                                    <div class="details">
+                                        <p>Project Coordinator</p>
+                                        <p>+358 41 7234834</p>
+                                        <p>jinghpauyeingswang@keme.fi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
 {% elif page == "contact-information" %}
 <section class="hero-section">
     <div class="container">
