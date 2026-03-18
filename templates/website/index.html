@@ -2,6 +2,22 @@
 {% block title %}Home{% endblock %}
 {% load static %}
 {% block body %}
+<style>
+    .h5_course{
+        overflow-y: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    .h5_des{
+        overflow-y: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+</style>
 <!-- Banner Section -->
 <section class="banner-section">
     <div class="pattern-layer" style="background-image: url({% static 'website/images/1.png' %})"></div>
@@ -96,18 +112,20 @@
                     </div>
                     <div class="lower-content">
                         <div class="clearfix">
-                            <div class="pull-left">
+                            <div class="h5_course">
                                 <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
                             </div>
-                            <div class="pull-left mt-2">
+                            <div class="mt-2">
                                 <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
                             </div>
                         </div>
-                        <div class="text">{{course.description|truncatewords:20}}</div>
+                        <div class="text h5_des">{{course.description}}</div>
                         <div class="clearfix">
+                            {% if course.enrollment_count > 0 %}
                             <div class="pull-left">
                                 <div class="students">{{course.enrollment_count}} Students</div>
                             </div>
+                            {% endif %}
                             <div class="pull-right">
                                 <a href="{% if course.sale_price > 0 %}{% url 'enroll_course' course.id %}{% else %}{{course_details_url}}?title={{course.slug}}{% endif %}"
                                     class="enroll"> {% if course.sale_price > 0 %}
@@ -184,7 +202,7 @@
                             you’re, they’re two waters own morning gathered greater shall had behold had seed.
                         </div>
                     </div>
-                    <a href="course.html" class="theme-btn btn-style-three"><span class="txt">All Blog Post <i
+                    <a href="{% url 'blogs' %}" class="theme-btn btn-style-three"><span class="txt">All Blog Post <i
                                 class="fa fa-angle-right"></i></span></a>
                 </div>
             </div>
@@ -192,7 +210,6 @@
             <!-- News Column -->
 
             {% for blog in blogs %}
-            {% if blog.is_popular %}
             <div class="news-block col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-box">
                     <div class="image">
@@ -206,7 +223,6 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
             {% endfor %}
 
 

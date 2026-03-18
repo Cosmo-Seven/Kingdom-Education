@@ -29,7 +29,7 @@ def set_language(request):
 
 def index(request):
     popular_courses = CourseModel.objects.all()
-    blogs = BlogModel.objects.all()
+    blogs = BlogModel.objects.all()[:1]
     context = {
         "popular_courses": popular_courses,
         "blogs": blogs,
