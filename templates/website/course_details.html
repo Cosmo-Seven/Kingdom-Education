@@ -5,7 +5,7 @@
 {% load humanize %}
 <style>
     .student-block .image {
-        width: 100%;    
+        width: 100%;
         margin: 0 auto 15px;
         overflow: hidden;
         border-radius: 50%;
@@ -228,6 +228,13 @@
             </div>
             <div class="modal-body">
                 <p>{{ lesson.description }}</p>
+                <div class="ratio ratio-16x9">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{lesson.video_url}}" frameborder="0" allow="autoplay; encrypted-media"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
                 {% for file in lesson.files.all %}
                 <div class="mb-3">
                     <div class="card">

@@ -74,7 +74,7 @@ def course_form(request, id=None):
                 requirements=requirements,
                 access_duration_days=access_duration_days or None,
                 is_popular=is_popular,
-                enrollment_count = enrollment_count,
+                enrollment_count=enrollment_count,
                 featured_image=request.FILES.get("featured_image"),
             )
 
@@ -155,6 +155,7 @@ def course_form(request, id=None):
             title=request.POST.get("lesson_title"),
             description=request.POST.get("lesson_description"),
             section_id=request.POST.get("section_id"),
+            video_url=request.POST.get("video_url"),
         )
         messages.success(request, f"Lesson '{lesson.title}' created successfully")
         return redirect("course_update", course.id)
@@ -166,6 +167,7 @@ def course_form(request, id=None):
         lesson = LessonModel.objects.get(id=request.POST.get("lesson_id"))
         lesson.title = request.POST.get("lesson_title")
         lesson.description = request.POST.get("lesson_description")
+        lesson.video_url = request.POST.get("video_url")
         lesson.save()
         messages.success(request, "Lesson updated successfully")
         return redirect("course_update", course.id)

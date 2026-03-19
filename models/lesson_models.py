@@ -6,6 +6,7 @@ from django.utils.text import slugify
 class LessonModel(BaseModel):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, blank=True)
+    video_url = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True, blank=True)
     section = models.ForeignKey(
         "core.SectionModel",
