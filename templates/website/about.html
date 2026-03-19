@@ -803,7 +803,7 @@
         </div>
     </div>
 </section>
-
+<!-- 
 {% elif page == "contact-information" %}
 <section class="hero-section">
     <div class="container">
@@ -996,7 +996,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 {% elif page == "volunteer-staff"%}
 <section class="hero-section">
     <div class="container">
@@ -1011,7 +1011,7 @@
             <!-- LEFT -->
             <div class="col-lg-7">
 
-                <h3 class="fw-bold text-success mb-3">{{ volunteer.name }}</h3>
+                <h3 class="fw-bold text-warning mb-3">{{ volunteer.name }}</h3>
 
                 <div class="mb-2">
                     <span class="fw-semibold text-dark">Position:</span>
@@ -1027,7 +1027,13 @@
                 <p class="text-muted">
                     {{volunteer.about}}
                 </p>
-
+                <div class="mb-3">
+                    <h3>Information</h3>
+                    <div class="mt-2">
+                        <p>Email:<span>{{volunteer.email}}</span></p>
+                        <p>Phone:<span>{{volunteer.phone}}</span></p>
+                    </div>
+                </div>
             </div>
 
             <!-- RIGHT -->

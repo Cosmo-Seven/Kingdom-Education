@@ -8,6 +8,8 @@ class VolunteerModel(BaseModel):
     department = models.CharField(max_length=100)
     image = models.ImageField(upload_to="volunteer")
     about = models.TextField(null=True)
+    phone  = models.CharField(max_length=100,null=True)
+    email = models.EmailField(max_length=150,null=True)
 
     class Meta:
         app_label = "core"

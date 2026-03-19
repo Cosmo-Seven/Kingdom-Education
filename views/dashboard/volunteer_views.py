@@ -21,14 +21,16 @@ def volunteer_list(request):
 def volunteer_create(request):
     try:
         if request.method == "POST":
-            partner = VolunteerModel.objects.create(
+            volunteer = VolunteerModel.objects.create(
                 name=request.POST.get("name"),
                 position=request.POST.get("position"),
                 department=request.POST.get("department"),
                 image=request.FILES.get("image"),
                 about=request.POST.get("about"),
+                email = request.POST.get("email"),
+                phone = request.POST.get("phone")
             )
-            partner.save()
+            volunteer.save()
             messages.success(request, "Volunteer Create Successfully!")
             return redirect("volunteer_list")
     except Exception as e:
@@ -44,6 +46,8 @@ def volunteer_update(request, pk):
             volunteer.position = request.POST.get("position")
             volunteer.department = request.POST.get("department")
             volunteer.about = request.POST.get("about")
+            volunteer.email = request.POST.get("email")
+            volunteer.phone = request.POST.get("phone")
             if request.FILES.get("image"):
                 if volunteer.image:
                     volunteer.image.delete()

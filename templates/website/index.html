@@ -3,14 +3,15 @@
 {% load static %}
 {% block body %}
 <style>
-    .h5_course{
+    .h5_course {
         overflow-y: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         line-clamp: 1;
         -webkit-box-orient: vertical;
     }
-    .h5_des{
+
+    .h5_des {
         overflow-y: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -26,9 +27,9 @@
         <!-- Content Boxed -->
         <div class="content-boxed">
             <div class="inner-column">
-                <h1><b>Welcome To Kingdom Education Mission Euro ry!</b> <span style="color: white; font-size: 40px;">"Wisdom is True Life, Wealth, and Honor" (Proverbs 3:13-20)
-                    HOPE STARTS HERE</span></h1>
-                <div class="buttons-box">
+                <h2 style="color: #fff;font-size: 45px;font-weight: bolder;">Welcome To Kingdom Education Mission Euro ry!</h2>
+                <h4 style="color: #fff;font-size: 30px;margin-top: 20px;">"Wisdom is True Life, Wealth, and Honor"<br class="mt-2">(Proverbs 3:13-20) HOPE STARTS HERE</h4>
+                <div class="buttons-box mt-4">
                     <a href="{% url 'courses'%}" class="theme-btn btn-style-one"><span class="txt">Get Stared <i
                                 class="fa fa-angle-right"></i></span></a>
                     <a href="{% url 'courses'%}" class="theme-btn btn-style-two"><span class="txt">All Courses <i
@@ -116,7 +117,8 @@
                                 <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
                             </div>
                             <div class="mt-2">
-                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
+                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else
+                                    %}<span class="text-success">Free</span>{% endif %}</div>
                             </div>
                         </div>
                         <div class="text h5_des">{{course.description}}</div>

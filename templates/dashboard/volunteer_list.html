@@ -74,7 +74,7 @@
                         <th>Position</th>
                         <th>Department</th>
                         <th>Image</th>
-                 
+
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -96,7 +96,7 @@
                             </div>
                             {% endif %}
                         </td>
-                  
+
                         <td>{{volunteer.created_at | date:'d M Y'}}</td>
                         <td>
                             <div class="action-icon d-inline-flex">
@@ -149,7 +149,19 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Image</label>
-                                <input type="file" name="image"  class="form-control">
+                                <input type="file" name="image" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="text" name="phone" class="form-control">
                             </div>
                         </div>
                         <!-- <div class="col-md-4">
@@ -207,13 +219,26 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Department</label>
-                                <input type="text" name="department" value="{{volunteer.department}}" class="form-control">
+                                <input type="text" name="department" value="{{volunteer.department}}"
+                                    class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Image</label>
-                                <input type="file" name="image" value="{{volunteer.image}}"  class="form-control">
+                                <input type="file" name="image" value="{{volunteer.image}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" value="{{volunteer.email}}" name="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="text" value="{{volunteer.phone}}" name="phone" class="form-control">
                             </div>
                         </div>
                         <!-- <div class="col-md-4">
@@ -225,7 +250,8 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">About</label>
-                                <textarea style="height: 160px;"  name="about" id="" class="form-control">{{volunteer.about}}</textarea>
+                                <textarea style="height: 160px;" name="about" id=""
+                                    class="form-control">{{volunteer.about}}</textarea>
                             </div>
                         </div>
                     </div>
