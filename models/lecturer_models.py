@@ -22,11 +22,6 @@ class LecturerModel(BaseModel):
         db_table = "lecturers"
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
         if self.video_url and "drive.google.com" in self.video_url:
             self.video_url = self.video_url.replace("/view", "/preview")
 

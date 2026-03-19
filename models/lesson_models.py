@@ -22,6 +22,10 @@ class LessonModel(BaseModel):
         db_table = "lessons"
 
     def save(self, *args, **kwargs):
+        if self.video_url and "drive.google.com" in self.video_url:
+            self.video_url = self.video_url.replace("/view", "/preview")
+
         if not self.slug:
             self.slug = slugify(self.title)
+
         super().save(*args, **kwargs)
