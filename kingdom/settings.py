@@ -63,7 +63,7 @@ TEMPLATES = [
                 "utils.site.site",
                 "utils.routes.routes",
                 "utils.sidebar.sidebar",
-                "utils.languages.languages"
+                "utils.languages.languages",
             ],
         },
     },
@@ -79,6 +79,10 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "https://drive.google.com",
+]
 
 WSGI_APPLICATION = f"{PROJECT_NAME}.wsgi.application"
 ASGI_APPLICATION = f"{PROJECT_NAME}.asgi.application"

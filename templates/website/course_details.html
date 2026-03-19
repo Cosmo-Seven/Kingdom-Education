@@ -182,7 +182,8 @@
 
                         <!-- img Box -->
                         <div class="img-box mb-4">
-                            <div style="width: 100%;height: 100%"><img src="{{ course.featured_image.url }}"
+                            <div style="width: 100%;height: 100%"><img
+                                    src="{% if course.featured_image %}{{ course.featured_image.url }}{% else %}{% static 'website/images/no-image.png' %}{% endif %}"
                                     style="width: 100%;height: 100%" alt="{{ course.name }}"></div>
                         </div>
 
