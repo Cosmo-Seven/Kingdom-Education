@@ -2,14 +2,12 @@ from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from utils.decorators import custom_login_required
-from helpers.filters import filter_querysets
-from helpers.exports import export_to_pdf, export_to_excel, filter_queryset_for_export
+from helpers.allowed_models import get_allowed_models
 from core.models import RoleModel
 from datetime import datetime
 from django.contrib.auth.models import Permission
 from collections import defaultdict
 from decorators.role_decorators import role_permission_required
-from helpers.allowed_models import get_allowed_models
 
 
 # ========================
@@ -27,18 +25,13 @@ def role_list(request):
                 "-created_at"
             )
 
-        filters = filter_querysets(
-            request,
-            roles,
-            search_fields=["name"],
-            date_field="created_at",
-            order="-created_at",
-        )
+     
 
         permissions = (
             Permission.objects.filter(
                 content_type__app_label="core", content_type__model__in=ALLOWED_MODELS
             )
+            .exclude(codename__icontains="logentry")
             .select_related("content_type")
             .order_by("content_type__model", "codename")
         )
@@ -46,12 +39,10 @@ def role_list(request):
         modules = defaultdict(
             lambda: {"view": None, "add": None, "change": None, "delete": None}
         )
+
         for p in permissions:
-            model_class = p.content_type.model_class()
-            model_name = model_class._meta.verbose_name.title()
-
+            model_name = p.content_type.model.replace("model", "").title()
             codename = p.codename.lower()
-
             if codename.startswith("add_"):
                 modules[model_name]["add"] = p
             elif codename.startswith("change_"):
@@ -64,9 +55,8 @@ def role_list(request):
         grouped_permissions = sorted(modules.items(), key=lambda x: x[0].lower())
 
         context = {
-            "roles": filters["page_obj"],
-            "grouped_permissions": grouped_permissions,
-            **filters,
+            "roles": roles,
+            "grouped_permissions": grouped_permissions
         }
         return render(request, "dashboard/role_list.html", context)
 
@@ -151,90 +141,6 @@ def role_delete(request, pk):
         role.delete()
         messages.success(request, "Role deleted successfully.")
         return redirect("role_list")
-
-    except Exception as e:
-        messages.error(request, f"Error: {str(e)}")
-        return redirect("role_list")
-
-
-# ========================
-# Role Export PDF
-# ========================
-@custom_login_required("dashboard_login")
-@role_permission_required("view_rolemodel")
-def role_export_pdf(request):
-    try:
-        search = request.GET.get("search", "")
-        date = request.GET.get("date", "")
-        date_range = request.GET.get("date_range", "")
-
-        roles = filter_queryset_for_export(
-            RoleModel.objects.exclude(name=settings.HYPER),
-            search=search,
-            date=date,
-            date_range=date_range,
-            search_fields=["name"],
-            date_field="created_at",
-        )
-
-        rows = []
-        for idx, role in enumerate(roles, start=1):
-            perms_text = ", ".join([p.name for p in role.permissions.all()])
-            rows.append(
-                [
-                    idx,
-                    role.name.title(),
-                    role.created_at.strftime("%d %b %Y"),
-                    perms_text,
-                ]
-            )
-
-        filename = f"role_{datetime.now().strftime('%b-%d-%Y')}.pdf"
-        return export_to_pdf(
-            filename, ["No", "Role Name", "Created Date", "Permissions"], rows
-        )
-
-    except Exception as e:
-        messages.error(request, f"Error: {str(e)}")
-        return redirect("role_list")
-
-
-# ========================
-# Role Export Excel
-# ========================
-@custom_login_required("dashboard_login")
-@role_permission_required("view_rolemodel")
-def role_export_excel(request):
-    try:
-        search = request.GET.get("search", "")
-        date = request.GET.get("date", "")
-        date_range = request.GET.get("date_range", "")
-
-        roles = filter_queryset_for_export(
-            RoleModel.objects.exclude(name=settings.HYPER),
-            search=search,
-            date=date,
-            date_range=date_range,
-            search_fields=["name"],
-            date_field="created_at",
-        )
-
-        rows = []
-        for idx, role in enumerate(roles, start=1):
-            perms_text = ", ".join([p.name for p in role.permissions.all()])
-            rows.append(
-                [
-                    idx,
-                    role.name.title(),
-                    role.created_at.strftime("%d %b %Y"),
-                    perms_text,
-                ]
-            )
-
-        filename = f"role_{datetime.now().strftime('%b-%d-%Y')}.xlsx"
-        return export_to_excel(
-            filename, ["No", "Role Name", "Created Date", "Permissions"], rows
-        )
 
     except Exception as e:
         messages.error(request, f"Error: {str(e)}")
