@@ -14,6 +14,8 @@ class RoleModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "roles"
+        verbose_name = "Role"
+        verbose_name_plural = "Roles"
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -20,6 +20,8 @@ class LessonModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "lessons"
+        verbose_name = "Lesson"
+        verbose_name_plural = "Lessons"
 
     def save(self, *args, **kwargs):
         if self.video_url and "drive.google.com" in self.video_url:

@@ -12,6 +12,8 @@ class TranslationModel(BaseModel):
         unique_together = ("language", "text_key")
         app_label = "core"
         db_table = "translations"
+        verbose_name = "Translation"
+        verbose_name_plural = "Translations"
 
     def __str__(self):
         return f"{self.language} - {self.text_key} - {self.translated_text}"

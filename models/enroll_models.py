@@ -30,6 +30,8 @@ class EnrollModel(BaseModel):
         app_label = "core"
         db_table = "enrollments"
         unique_together = ("student", "course")
+        verbose_name = "Enrollment"
+        verbose_name_plural = "Enrollments"
 
     def recalculate_progress(self):
         self.progress = calculate_course_progress(self.student, self.course)

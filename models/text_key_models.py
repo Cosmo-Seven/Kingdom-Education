@@ -12,3 +12,5 @@ class TextKeyModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "text_keys"
+        verbose_name = "Text Key"
+        verbose_name_plural = "Text Keys"

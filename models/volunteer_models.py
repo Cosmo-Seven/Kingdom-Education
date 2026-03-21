@@ -14,6 +14,8 @@ class VolunteerModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "volunteer"
+        verbose_name = "Volunteer"
+        verbose_name_plural = "Volunteers"
 
     def __str__(self):
         return self.name

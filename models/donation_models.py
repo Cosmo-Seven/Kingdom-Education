@@ -20,3 +20,5 @@ class DonationModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "donation"
+        verbose_name = "Donation"
+        verbose_name_plural = "Donations"

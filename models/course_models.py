@@ -46,6 +46,8 @@ class CourseModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "courses"
+        verbose_name = "Course"
+        verbose_name_plural = "Courses"
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -19,6 +19,8 @@ class SectionModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "sections"
+        verbose_name = "Section"
+        verbose_name_plural = "Sections"
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -20,6 +20,8 @@ class FileModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "files"
+        verbose_name = "File"
+        verbose_name_plural = "Files"
 
     def save(self, *args, **kwargs):
         if not self.slug:

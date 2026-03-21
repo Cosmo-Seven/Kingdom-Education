@@ -13,3 +13,5 @@ class LanguageModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "languages"
+        verbose_name = "Language"
+        verbose_name_plural = "Languages"

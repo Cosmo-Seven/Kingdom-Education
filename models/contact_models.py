@@ -17,6 +17,8 @@ class ContactModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "contacts"
+        verbose_name = "Contact"
+        verbose_name_plural = "Contacts"
 
     def save(self, *args, **kwargs):
         if not self.slug:

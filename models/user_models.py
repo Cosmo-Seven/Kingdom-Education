@@ -38,6 +38,8 @@ class UserModel(AbstractBaseUser, PermissionsMixin, BaseModel):
     class Meta:
         app_label = "core"
         db_table = "users"
+        verbose_name = "User"
+        verbose_name_plural = "Users"
 
     def save(self, *args, **kwargs):
         if not self.slug:

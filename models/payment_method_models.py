@@ -17,6 +17,8 @@ class PaymentMethodModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "payment_methods"
+        verbose_name = "Payment"
+        verbose_name_plural = "Payments"
 
     def save(self, *args, **kwargs):
         if not self.slug:

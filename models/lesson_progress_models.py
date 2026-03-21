@@ -16,3 +16,5 @@ class LessonProgressModel(BaseModel):
         app_label = "core"
         unique_together = ("student", "lesson")
         db_table = "lesson_progresses"
+        verbose_name = "Lesson Progress"
+        verbose_name_plural = "Lesson Progresses"

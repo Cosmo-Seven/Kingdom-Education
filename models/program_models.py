@@ -11,3 +11,5 @@ class ProgramModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "program_model"
+        verbose_name = "Program"
+        verbose_name_plural = "Programs"

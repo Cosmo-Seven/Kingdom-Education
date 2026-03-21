@@ -13,3 +13,5 @@ class PartnerModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "partner_model"
+        verbose_name = "Partner"
+        verbose_name_plural = "Partners"

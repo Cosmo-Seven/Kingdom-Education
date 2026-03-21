@@ -14,6 +14,8 @@ class SiteModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "sites"
+        verbose_name = "Site"
+        verbose_name_plural = "Sites"
 
     def save(self, *args, **kwargs):
         if not self.slug:

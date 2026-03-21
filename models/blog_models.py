@@ -21,6 +21,8 @@ class BlogModel(BaseModel):
     class Meta:
         app_label = "core"
         db_table = "blogs"
+        verbose_name = "Blog"
+        verbose_name_plural = "Blogs"
 
     def save(self, *args, **kwargs):
         if not self.slug:
