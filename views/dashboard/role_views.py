@@ -41,7 +41,8 @@ def role_list(request):
         )
 
         for p in permissions:
-            model_name = p.content_type.model.replace("model", "").title()
+            model_class = p.content_type.model_class()
+            model_name = model_class._meta.verbose_name.title()
             codename = p.codename.lower()
             if codename.startswith("add_"):
                 modules[model_name]["add"] = p
