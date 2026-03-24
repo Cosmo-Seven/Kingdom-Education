@@ -37,6 +37,7 @@ def lecturer_create(request):
                 featured_image = request.FILES.get("featured_image"),
                 position = request.POST.get("position"),
                 total_students = request.POST.get("total_students"),
+                video_url = request.POST.get("video_url"),
                 about = request.POST.get("about")
             )
             lecturer.save()
@@ -56,6 +57,7 @@ def lecturer_update(request, pk):
             lecturer.position = request.POST.get("position")
             lecturer.total_students = request.POST.get("total_students")
             lecturer.about = request.POST.get("about")
+            lecturer.video_url = request.POST.get("video_url")
             if request.FILES.get("featured_image"):
                if lecturer.featured_image:
                   lecturer.featured_image.delete(save=False)

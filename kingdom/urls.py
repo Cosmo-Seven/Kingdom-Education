@@ -48,6 +48,11 @@ urlpatterns = (
             dashboard_views.course_form,
             name="course_update",
         ),
+        path(
+            "dashboard/course-form/delete/<uuid:pk>",
+            dashboard_views.course_delete,
+            name="course_delete",
+        ),
         # User
         path("dashboard/user/list/", user_views.user_list, name="user_list"),
         path("dashboard/user/create/", user_views.user_create, name="user_create"),

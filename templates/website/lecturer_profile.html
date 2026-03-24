@@ -3,38 +3,44 @@
 {% load static %}
 {% block body %}
 <style>
-.cource-block-two .image{
-    position: relative;
-    width: 100%;
-    height: 230px;
-    overflow: hidden;
-}
+    .cource-block-two .image {
+        position: relative;
+        width: 100%;
+        height: 230px;
+        overflow: hidden;
+    }
 
-.cource-block-two .image img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.cource-block-two{
-    margin-bottom:30px;
-}
+    .cource-block-two .image img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-.cource-block-two .inner-box{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-}
+    .cource-block-two {
+        margin-bottom: 30px;
+    }
 
-.cource-block-two .lower-content{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-}
+    .cource-block-two .inner-box {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
-.cource-block-two .text{
-    flex:1;
-}
+    .cource-block-two .lower-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cource-block-two .text {
+        flex: 1;
+    }
+
+    .profile-video iframe {
+        border-radius: 10px;
+        border: none;
+    }
 </style>
 <!-- Page Title -->
 <section class="page-title">
@@ -50,12 +56,12 @@
             <!-- Content Section -->
             <div class="content-column col-lg-7 col-md-12 col-sm-12">
                 <div class="inner-column">
-                
+
                     <h2>{{profile.name}}</h2>
                     <h4>{{profile.position}}</h4>
                     <h5>About Me</h5>
                     <p>{{profile.about}}</p>
-                   
+
                 </div>
             </div>
 
@@ -63,15 +69,14 @@
             <div class="image-column col-lg-5 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="image">
-                        <img src="{% if profile.featured_image %}{{profile.featured_image.url}}{% else %}{% static 'dashboard/images/no-profile.png' %}{% endif %}" alt="AA">
+                        <img src="{% if profile.featured_image %}{{profile.featured_image.url}}{% else %}{% static 'dashboard/images/no-profile.png' %}{% endif %}"
+                            alt="AA">
                     </div>
+
                     <h3>{{profile.name}}</h3>
                     <div class="text">{{profile.position}}</div>
-                    <div class="social-box">
-                        <a href="#" class="fa fa-facebook-square"></a>
-                        <a href="#" class="fa fa-twitter-square"></a>
-                        <a href="#" class="fa fa-linkedin-square"></a>
-                        <a href="#" class="fa fa-github"></a>
+                    <div class="buttons-box">
+                        <a data-bs-toggle="modal" data-bs-target="#pdfFileModal" class="theme-btn btn-style-one"><span class="txt">View Video</span></a>
                     </div>
                 </div>
             </div>
@@ -83,7 +88,7 @@
     <!-- Browse Course Section -->
     <div class="browse-course-section">
         <div class="auto-container">
-           
+
             <div class="sec-title">
                 <h2>All Courses by {{profile.name}}</h2>
             </div>
@@ -93,11 +98,13 @@
                 <div class="cource-block-two col-lg-3 col-md-6 col-sm-12">
                     <div class="inner-box">
                         <div class="image">
-                            <a href="{{course_details_url}}?title={{course.slug}}"><img src="{% if course.featured_image %}{{course.featured_image.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}" alt=""></a>
+                            <a href="{{course_details_url}}?title={{course.slug}}"><img
+                                    src="{% if course.featured_image %}{{course.featured_image.url}}{% else %}{% static 'images/no-profile.png' %}{% endif %}"
+                                    alt=""></a>
                         </div>
                         <div class="lower-content">
                             <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
-                            <div class="text">{{course.description | truncatewords:10   }}</div>
+                            <div class="text">{{course.description | truncatewords:10 }}</div>
                             <div class="clearfix">
                                 <div class="pull-left">
                                     <div class="students">{{course.lecturers.count}} Lecturers</div>
@@ -109,9 +116,30 @@
                         </div>
                     </div>
                 </div>
-                 {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
+<!-- Video -->
+<div class="modal fade" id="pdfFileModal" tabindex="-1" aria-labelledby="pdfFileModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="pdfFileModalLabel_{{lesson.id}}">{{lesson.title}}</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{profile.video_url}}" frameborder="0" allow="autoplay; encrypted-media"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

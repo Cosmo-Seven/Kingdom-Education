@@ -40,7 +40,7 @@
                         <th>Title</th>
                         <th>Topics</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,8 +56,11 @@
                             {% endif %}
                         </td>
                         <td>
-                            <div class="action-icon d-inline-flex">
-                                <a href="{% url 'course_update' course.id %}" class="me-2"><i class="ti ti-eye"></i></a>
+                            <div class="action-icon d-inline-flex gap-2">
+                                <a href="{% url 'course_update' course.id %}" data-bs-toggle="modal"><i
+                                        class="ti ti-eye"></i></a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal_{{course.id}}"><i
+                                        class="ti ti-trash"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -67,5 +70,19 @@
         </div>
     </div>
 </div>
-
+{% for course in courses %} 
+<div class="modal fade" id="deleteModal_{{course.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="text-center modal-body"> <span class="mb-3 avatar avatar-xl bg-transparent-danger text-danger">
+                    <i class="ti ti-trash-x fs-36"></i> </span>
+                <h4 class="mb-1">Confirm Delete</h4>
+                <p class="mb-3">You want to delete all the marked course, this cant be undone once you delete.</p>
+                <div class="d-flex justify-content-center"> <a href="javascript:void(0);"
+                        class="btn btn-outline-light border me-2" data-bs-dismiss="modal">Cancel</a> <a
+                        href="{% url 'course_delete' course.id %}" class="btn btn-danger">Yes, Delete</a> </div>
+            </div>
+        </div>
+    </div>
+</div> {% endfor %}
 {% endblock %}

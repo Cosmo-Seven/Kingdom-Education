@@ -223,3 +223,19 @@ def course_form(request, id=None):
         return redirect("course_update", course.id)
 
     return render(request, "dashboard/course_form.html", context)
+
+def course_delete(request, pk):
+    try:
+        course = get_object_or_404(CourseModel, id=pk)
+
+        if course.featured_image:
+            course.featured_image.delete(save=False)
+
+        course.delete()
+
+        messages.success(request, "Course has been deleted!")
+        return redirect("dashboard")
+
+    except Exception as e:
+        messages.error(request, f"Error : {str(e)}")
+        return redirect("dashboard")

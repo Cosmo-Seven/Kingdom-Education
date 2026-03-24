@@ -174,8 +174,14 @@
                                 <input type="text" name="name" value="{{lecturer.name}}" class="form-control" required>
                             </div>
                         </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Video Url</label>
+                                <input type="url" value="{{lecturer.video_url}}" name="video_url" class="form-control">
+                            </div>
+                        </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Featured Image</label>
                                 <input type="file" name="featured_image" class="form-control">
@@ -183,7 +189,7 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Position</label>
                                 <input type="text" value="{{lecturer.position}}" name="position" class="form-control">
@@ -191,7 +197,7 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Total Students</label>
                                 <input type="number" value="{{lecturer.total_students}}" name="total_students"
