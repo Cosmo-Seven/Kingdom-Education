@@ -1,0 +1,217 @@
+{% extends 'website/components/base.html' %}
+{% block title %}Student Profile{% endblock %}
+{% load static %}
+{% block body %}
+<style>
+    .hero-section {
+        background: #0d1b3d;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+
+    }
+
+    .section-box {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title {
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .down {
+        background: #F6B81E;
+        color: #fff;
+        padding: 10px;
+        border-radius: .5rem;
+        transition: all .3s ease-in-out;
+    }
+
+    .down:hover {
+        color: #fff;
+        background: #ffc73a;
+
+    }
+</style>
+
+
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+<!-- Intro Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Terms and Conditions</h1>
+        <h5>Kingdom Education Mission Euro Ry</h5>
+    </div>
+</section>
+<section class="py-4">
+    <div class="container">
+        <div class="section-box">
+            <p>
+                Welcome to Kingdom Education Mission Euro Ry (“we,” “us,” or “the Association”).
+                By participating in our programs, using our services, or visiting our website,
+                you agree to the following Terms and Conditions.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section1 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">1. Who We Are</h5>
+            <p>
+                Kingdom Education Mission Euro Ry is a registered non-profit association based in Lahti, Finland.
+                Our mission is to provide faith-based educational programs, community support, and mentorship.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 2 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">2. Our Programs and Services</h5>
+            <p>
+                We organize educational courses, seminars, youth programs, and community events.
+                We reserve the right to modify schedules, locations, content, or instructors when necessary.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">3. Your Responsibilities</h5>
+            <ul>
+                <li><strong>Respect and Conduct:</strong> Treat everyone with respect.</li>
+                <li><strong>Accuracy:</strong> Provide correct information.</li>
+                <li><strong>Compliance:</strong> Follow rules and instructions.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Section 4 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">4. Fees and Donations</h5>
+            <ul>
+                <li>Fees will be clearly stated before registration.</li>
+                <li>Donations are voluntary and non-refundable.</li>
+                <li>Fees are non-transferable unless stated.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Section 5 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">5. Cancellations and Refunds</h5>
+            <ul>
+                <li>Cancel 7 days before for refund eligibility.</li>
+                <li>If we cancel → full refund.</li>
+                <li>No-shows are non-refundable.</li>
+            </ul>
+            <h5 class="section-title mt-2">Refund Claims Form</h5>
+            <li>Thank you for contacting us regarding a refund request.</li>
+            <li>To help us process your claim efficiently,please complete this form and return it to us at&nbsp;<a
+                    href="mailto:refund@keme.fi">refund@keme.fi</a>&nbsp;or to our office address.</li>
+            <li class="mt-3"><a href="{% static 'website/images/refund.pdf' %}" download="" class="down">Download
+                    PDF</a></li>
+        </div>
+    </div>
+</section>
+
+<!-- Section 6 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">6. Media and Photography</h5>
+            <p>
+                Photos and videos may be taken during events.
+                Participation means consent unless stated otherwise.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 7 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">7. Personal Data (GDPR)</h5>
+            <p>
+                Personal data is handled according to GDPR and Finnish laws for administration and communication.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 8 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">8. Limitation of Liability</h5>
+            <p>
+                We are not liable for damages unless caused by negligence.
+                Force majeure conditions apply.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 9 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">9. Changes to Terms</h5>
+            <p>
+                Terms may be updated anytime. Continued use means acceptance.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 10 -->
+<section>
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">10. Governing Law</h5>
+            <p>
+                Governed by Finnish law. Disputes handled in Lahti district court.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 11 -->
+<section class="pb-5">
+    <div class="container">
+        <div class="section-box">
+            <h5 class="section-title">11. Contact Us</h5>
+            <p>
+                Kingdom Education Mission Euro Ry<br>
+                Tarjantie 69A, 15950, Lahti, Finland<br>
+                Email: info@keme.fi<br>
+                Phone: +358 465947284
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

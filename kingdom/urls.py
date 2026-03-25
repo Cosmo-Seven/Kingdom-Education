@@ -26,6 +26,16 @@ from views.website import auth_views as website_auth_views
 urlpatterns = (
     [
         path(settings.ADMIN_LOGIN_URL, admin.site.urls),
+        path(
+            "dashboard/site-settings/",
+            dashboard_views.site_settings,
+            name="site_settings",
+        ),
+        path(
+            "dashboard/home-text/",
+            dashboard_views.home_text,
+            name="home_text",
+        ),
         # ================================================================================================
         # DASHBOARD URL
         # ================================================================================================
@@ -326,6 +336,10 @@ urlpatterns = (
         path("donation/form/", website_views.donation_form, name="donation_form"),
         path("donation/form/upload/", website_views.form_upload, name="form_upload"),
         path("about/", website_views.about, name="about"),
+        path(
+            "terms-conditions/", website_views.terms_conditions, name="terms_conditions"
+        ),
+        path("refund-policy/", website_views.refund, name="refund"),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

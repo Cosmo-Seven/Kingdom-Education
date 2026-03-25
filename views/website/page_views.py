@@ -16,6 +16,7 @@ from core.models import (
     ProgramModel,
     DonationModel,
     VolunteerModel,
+    HomeTextModel
 )
 
 from enums.donation import StatusEnum
@@ -29,10 +30,12 @@ def set_language(request):
 
 def index(request):
     popular_courses = CourseModel.objects.all()
+    texts = HomeTextModel.objects.all()
     blogs = BlogModel.objects.all()[:1]
     context = {
         "popular_courses": popular_courses,
         "blogs": blogs,
+        "texts":texts
     }
     return render(request, "website/index.html", context)
 
@@ -305,3 +308,9 @@ def about(request):
     volunteers = VolunteerModel.objects.all().order_by("-created_at")
     context = {"page": page, "volunteers": volunteers}
     return render(request, "website/about.html", context)
+
+def terms_conditions(request):
+    return render(request,"website/terms_condition.html")
+
+def refund(request):
+    return render(request,"website/refund.html")

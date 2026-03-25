@@ -3,6 +3,9 @@ from django.urls import reverse_lazy
 
 def routes(request):
     return {
+        # ======================================= Site Settings =====================================
+        "site_settings_url": reverse_lazy("site_settings"),
+        "home_text_url": reverse_lazy("home_text"),
         # ======================================== Dashboard ========================================
         "dashboard_url": reverse_lazy("dashboard"),
         "course_create_url": reverse_lazy("course_create"),
@@ -38,16 +41,16 @@ def routes(request):
         # ========== Enroll =========== #
         "enroll_list_url": reverse_lazy("enroll_list"),
         # ========== Donation ========= #
-        "donation_list_url":reverse_lazy("donation_list"),
+        "donation_list_url": reverse_lazy("donation_list"),
         # LanguageModel
         "language_list_url": reverse_lazy("language_list"),
         "language_create_url": reverse_lazy("language_create"),
         # Text Key And Translate
         "translation_list_url": reverse_lazy("translation_list"),
         "text_key_create_url": reverse_lazy("text_key_create"),
-        # Volunteer 
-        "volunteer_list_url":reverse_lazy("volunteer_list"),
-        "volunteer_create_url":reverse_lazy("volunteer_create"),
+        # Volunteer
+        "volunteer_list_url": reverse_lazy("volunteer_list"),
+        "volunteer_create_url": reverse_lazy("volunteer_create"),
         # ======================================== Website ========================================
         "home_url": reverse_lazy("home"),
         "courses_url": reverse_lazy("courses"),
@@ -61,7 +64,6 @@ def routes(request):
         "course_topics_url": reverse_lazy("course_topics"),
         "course_details_url": reverse_lazy("course_details"),
         "partners_url": reverse_lazy("partners"),
-        "donation_form_url":reverse_lazy("donation_form"),
-        "form_upload_url":reverse_lazy("form_upload"),
-        
+        "donation_form_url": reverse_lazy("donation_form"),
+        "form_upload_url": reverse_lazy("form_upload"),
     }

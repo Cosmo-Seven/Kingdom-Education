@@ -18,6 +18,15 @@
         line-clamp: 2;
         -webkit-box-orient: vertical;
     }
+
+    .testimonial-card {
+        background: #fff;
+        transition: 0.3s;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+    }
 </style>
 <!-- Banner Section -->
 <section class="banner-section">
@@ -27,8 +36,12 @@
         <!-- Content Boxed -->
         <div class="content-boxed">
             <div class="inner-column">
-                <h2 style="color: #fff;font-size: 45px;font-weight: bolder;">Welcome To Kingdom Education Mission Euro ry!</h2>
-                <h4 style="color: #fff;font-size: 30px;margin-top: 20px;">"Wisdom is True Life, Wealth, and Honor"<br class="mt-2">(Proverbs 3:13-20) HOPE STARTS HERE</h4>
+                {% for text in texts %}
+                <h2 style="color: #fff;font-size: 45px;font-weight: bolder;">{{text.title}}</h2>
+
+                <h4 style="color: #fff;font-size: 30px;margin-top: 20px;">{{text.description}}</h4>
+                {% endfor %}
+
                 <div class="buttons-box mt-4">
                     <a href="{% url 'courses'%}" class="theme-btn btn-style-one"><span class="txt">Get Stared <i
                                 class="fa fa-angle-right"></i></span></a>
@@ -68,14 +81,89 @@
             <!-- Content Column -->
             <div class="content-column col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-column">
-                    <h2>Our education system <br> works for you</h2>
-                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                        you’re, they’re two waters own morning gathered greater shall had behold had seed.</div>
-                    <a href="course.html" class="theme-btn btn-style-two"><span class="txt">Learn More <i
-                                class="fa fa-angle-right"></i></span></a>
+                    <h2>Education in Europe </h2>
+                    <div class="text">1–3 year post‑study work visas (e.g., Germany’s 18‑month work visa)
+                        With high demand for skilled professionals in engineering, IT, healthcare, and sustainability,
+                        Europe offers strong career pathways.
+                        Cultural Diversity & Safe Environment</div>
+                          <a href="{% url 'courses' %}" class="theme-btn btn-style-three mt-3">
+                        <span class="txt">
+                            All Course <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+                   
                 </div>
             </div>
+            <div class="row g-4">
 
+                <!-- LEFT SIDE -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="inner-column">
+
+                        <h2 class="mb-3">Students Enjoy</h2>
+
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> Multicultural campuses with people from 150+ countries</li>
+                            <li class="mb-2"> Easy travel within the Schengen Area</li>
+                        </ul>
+
+                        <h4 class="mt-4">High-Quality Education Across Europe</h4>
+                        <p>
+                            Europe is one of the most popular and fast‑growing destinations for international students.
+                            It offers world‑class universities, affordable tuition fees, and many English‑taught
+                            programs.
+                        </p>
+
+                        <p>
+                            Europe hosts many top‑ranked universities such as Oxford, ETH Zurich, and Sorbonne
+                            University. Degrees follow the Bologna Process, meaning they are easily recognized worldwide
+                        </p>
+
+                        <p>
+                            More than 4,500 universities across Europe provide modern, research‑based teaching and
+                            global academic standards.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="inner-column">
+
+                        <h2 class="mb-3">Affordable Tuition & Living Costs</h2>
+
+                        <h5>Many European countries offer:</h5>
+                        <ul>
+                            <li>Low or free tuition fees (Germany, France, Norway, Austria)</li>
+                            <li> Scholarships such as DAAD, Erasmus+, and national grants.
+                                This makes Europe more affordable compared to countries like the US or Australia.</li>
+                        </ul>
+                        <h4 class="mt-4">Growing International Student Popularity</h4>
+                        <p>
+                            A major shift in 2026 shows that international students increasingly choose Europe because
+                            of safety, cost effectiveness, and post study opportunities. Central Europe is projected to
+                            grow faster in international student numbers than the US, UK, Canada, or Australia.
+                        </p>
+
+                        <h4 class="mt-4">Work & Career Opportunities</h4>
+                        <ul>
+                            <li>Most European countries allow</li>
+                            <li>Part-time work during studies</li>
+                            <li>Safe and welcoming societies with supportive student services </li>
+                        </ul>
+
+                        <h4 class="mt-4">Education Strength in Numbers (Europe)</h4>
+                        <ul>
+                            <li>44.1% of young adults in the EU now hold a tertiary degree</li>
+                            <li>Average education spending in the EU is 4.7% of GDP</li>
+                            <li>This shows strong public support and commitment to education across Europe.</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>
@@ -86,17 +174,67 @@
     <div class="auto-container">
         <div class="row clearfix">
 
-            <!-- Title Column -->
+
             <div class="title-column col-lg-4 col-md-12 col-sm-12">
                 <div class="inner-column">
-                    <!-- Sec Title -->
+
+
                     <div class="sec-title">
-                        <h2>Our top courses</h2>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                            you’re, they’re two waters own morning gathered.</div>
+                        <h2>Our Top Courses</h2>
+
+                        <p class="text">
+                            We offer high-quality language courses including Finnish, German, Czech, and Kachin,
+                            along with IELTS & SAT exam preparation and music classes such as guitar, piano,
+                            and song composition.
+                        </p>
+
+                        <p class="text">
+                            Our programs are designed to help students build skills for studying and working
+                            in Finland, Germany, the Czech Republic, and across Europe.
+                        </p>
                     </div>
-                    <a href="{% url 'courses'%}" class="theme-btn btn-style-three"><span class="txt">Get Stared <i
-                                class="fa fa-angle-right"></i></span></a>
+
+                    <!-- Extra Content -->
+                    <div class="course-info mt-3">
+
+                        <h5>Our Mission & Services</h5>
+                        <ul>
+                            <li>KEME also serves communities through environmental safety</li>
+                            <li>Orphanage care, elderly support, emergency relief, humanitarian outreach,</li>
+                            <li>sustainable development projects.</li>
+                        </ul>
+
+                        <h5 class="mt-3">Who Can Join?</h5>
+                        <p>
+                            Anyone can join — high school students, vocational learners, university, master’s,
+                            and PhD students, newcomers to Finland, adults, and international learners.
+                        </p>
+
+                        <h5 class="mt-3">Fees & Scholarships</h5>
+                        <p>
+                            Program fees depend on the course, and some classes are free. Scholarships and fee support
+                            may be available. All income is reinvested into our humanitarian work to help others.
+                        </p>
+
+                        <h5 class="mt-3">Collaboration</h5>
+                        <p>
+                            KEME also welcomes volunteers and partnerships with organizations, schools, churches, and
+                            companies that share our mission.
+                        </p>
+
+                        <p class="mt-3 fw-bold">
+                            We are here to help you learn, grow, and build a better future
+                        </p>
+
+                    </div>
+
+                    <!-- Button -->
+                    <a href="{% url 'courses'%}" class="theme-btn btn-style-three mt-3">
+                        <span class="txt">
+                            Get Started <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+
                 </div>
             </div>
 
@@ -153,15 +291,49 @@
     <div class="auto-container">
         <div class="row clearfix">
 
-            <!-- Title Column -->
+
             <div class="title-column col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-column">
-                    <!-- Sec Title -->
+
+
                     <div class="sec-title">
-                        <h2>Live the experience <br> learn at your own pace</h2>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                            you’re, they’re two waters.</div>
+                        <h2>Education in Finland</h2>
+
+                        <p class="text">
+                            Finland is known around the world for having one of the best education systems. It focuses
+                            on equality, student well‑being, and strong learning outcomes.
+                        </p>
+
+                        <p class="text">
+                            Teachers are highly trained and all hold Master’s degrees, and classrooms follow a
+                            student‑centered, low‑stress model with minimal homework and almost no standardized tests.
+                        </p>
+
+                        <p class="text">
+                            Finland also provides a clear and supportive learning pathway for all ages—from early
+                            education to university—with national guidelines and local flexibility.
+                        </p>
                     </div>
+
+                    <!-- Why Finland -->
+                    <div class="finland-benefits mt-4">
+
+                        <h4>Why Finland is a Top Study Destination</h4>
+                        <ul>
+                            <li>Over 400 English‑taught programs for international students.</li>
+                            <li>Safe, clean, and stable environment.</li>
+                            <li>Strong equality in access to education.</li>
+                            <li> High PISA scores and almost 100% literacy rate.</li>
+                            <li> Affordable education with strong public support.</li>
+                        </ul>
+
+                        <p class="mt-3">
+                            Studying in Finland gives students high‑quality learning, a calm environment, and excellent
+                            opportunities for future careers.
+                        </p>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -194,18 +366,43 @@
     <div class="auto-container">
         <div class="row clearfix">
 
-            <!-- Title Column -->
+
             <div class="title-column col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-column">
+
                     <!-- Sec Title -->
                     <div class="sec-title">
-                        <h2>Our Latest blog posts</h2>
-                        <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                            you’re, they’re two waters own morning gathered greater shall had behold had seed.
-                        </div>
+                        <h2>Our Latest Blog Posts</h2>
+
+                        <p class="text">
+                            Stay tuned to our blog!
+                            Discover updates, stories, events, and learning tips from KEME.
+                        </p>
+                        <p class="text">We also post small reflections, simple guides, and helpful information for
+                            anyone learning, living, or beginning a new journey in Finland and Europe.</p>
+                        <p class="text">
+                            We share news about education in Finland, community work, student experiences, and our
+                            latest programs.
+                        </p>
+
+                        <p class="text">
+                            Our blog is a humble space where we share what we learn, the people we meet, and the
+                            progress we make together as a community.
+                        </p>
+
+                        <p class="text">
+                            We hope our posts encourage you, support your goals, and give you a closer look at the heart
+                            of KEME.
+                        </p>
                     </div>
-                    <a href="{% url 'blogs' %}" class="theme-btn btn-style-three"><span class="txt">All Blog Post <i
-                                class="fa fa-angle-right"></i></span></a>
+
+                    <!-- CTA Button -->
+                    <a href="{% url 'blogs' %}" class="theme-btn btn-style-three mt-3">
+                        <span class="txt">
+                            All Blog Posts <i class="fa fa-angle-right"></i>
+                        </span>
+                    </a>
+
                 </div>
             </div>
 
@@ -234,74 +431,100 @@
 <!-- End News Section -->
 
 <!-- Testimonial Section -->
-<section class="testimonial-section">
-    <div class="auto-container">
-        <!-- Sec Title -->
-        <div class="sec-title centered">
-            <h2>Students & Parents Opinion</h2>
+<section class="testimonial-section py-5">
+    <div class="container">
+
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Student Reviews</h2>
+            <p class="text-muted">Real experiences from our students around the world</p>
         </div>
 
-        <!-- Authors Box -->
-        <div class="authors-box">
-            <div class="author-one"><img src="{% static 'website/images/author-2.jpg' %}" alt=""></div>
-            <div class="author-two"><img src="{% static 'website/images/author-3.jpg' %}" alt=""></div>
-            <div class="author-three"><img src="{% static 'website/images/author-4.jpg' %}" alt=""></div>
-            <div class="author-four"><img src="{% static 'website/images/author-5.jpg' %}" alt=""></div>
+        <!-- Cards -->
+        <div class="row g-4 justify-content-center">
 
-            <div class="author-five"><img src="{% static 'website/images/author-6.jpg' %}" alt=""></div>
-            <div class="author-six"><img src="{% static 'website/images/author-7.jpg' %}" alt=""></div>
-            <div class="author-seven"><img src="{% static 'website/images/author-8.jpg' %}" alt=""></div>
-            <div class="author-eight"><img src="{% static 'website/images/author-9.jpg' %}" alt=""></div>
-        </div>
+            <div class="col-lg-6">
+                <div class="testimonial-card p-4 shadow-sm rounded h-100 bg-white d-flex flex-column">
+                    <h5 class="mb-3">
+                        KEME helped me learn Finnish quickly and confidently.
+                    </h5>
+                    <p class="mb-3">
+                        I joined the Finnish beginner class, and the teachers were very patient. Now I can speak in
+                        shops, buses, and with local people. This made my life in Finland much easier.
+                    </p>
+                    <div class="fw-bold">Aye Chan, Finland</div>
+                    <div class="mt-auto pt-3 text-warning fs-5">⭐⭐⭐⭐⭐</div>
 
-        <div class="single-item-carousel owl-carousel owl-theme">
-
-            <!-- Testimonial Block Two -->
-            <div class="testimonial-block">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <div class="quote-icon flaticon-quote-5"></div>
-                        <div class="image">
-                            <img src="{% static 'website/images/author-1.jpg' %}" alt="">
-                        </div>
-                    </div>
-                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                        you’re, they’re two waters own morning gathered greater shall had behold had seed.
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                        piece of classical Latin literature from 45 BC, making it</div>
                 </div>
             </div>
 
-            <!-- Testimonial Block Two -->
-            <div class="testimonial-block">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <div class="image">
-                            <img src="{% static 'website/images/author-5.jpg' %}" alt="">
-                        </div>
-                    </div>
-                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                        you’re, they’re two waters own morning gathered greater shall had behold had seed.
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                        piece of classical Latin literature from 45 BC, making it</div>
+            <div class="col-lg-6">
+                <div class="testimonial-card p-4 shadow-sm rounded h-100 bg-white d-flex flex-column">
+
+
+                    <h5 class="mb-3">
+                        The German course opened new opportunities for me.
+                    </h5>
+
+                    <!-- Content -->
+                    <p class="mb-3">
+                        I always wanted to study in Germany. KEME’s German class helped me build strong speaking skills,
+                        and the teacher explained everything step by step. I feel ready for my future studies
+                    </p>
+
+                    <!-- Author -->
+                    <div class="fw-bold">Mariam, Germany pathway student</div>
+
+                    <!-- ⭐ Star at bottom -->
+                    <div class="mt-auto pt-3 text-warning fs-5">⭐⭐⭐⭐⭐</div>
+
                 </div>
             </div>
 
-            <!-- Testimonial Block Two -->
-            <div class="testimonial-block">
-                <div class="inner-box">
-                    <div class="image-box">
-                        <div class="image">
-                            <img src="{% static 'website/images/author-5.jpg' %}" alt="">
-                        </div>
-                    </div>
-                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered
-                        you’re, they’re two waters own morning gathered greater shall had behold had seed.
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                        piece of classical Latin literature from 45 BC, making it</div>
+            <div class="col-lg-6">
+                <div class="testimonial-card p-4 shadow-sm rounded h-100 bg-white d-flex flex-column">
+
+
+                    <h5 class="mb-3">
+                        KEME supported me not only in learning but also in my life in Finland
+                    </h5>
+
+
+                    <p class="mb-3">
+                        The community is friendly and welcoming. The teachers helped me practice language, understand
+                        Finnish culture, and build confidence. I am very thankful
+                    </p>
+
+
+                    <div class="fw-bold">David, International student</div>
+
+
+                    <div class="mt-auto pt-3 text-warning fs-5">⭐⭐⭐⭐⭐</div>
+
                 </div>
             </div>
 
+            <div class="col-lg-6">
+                <div class="testimonial-card p-4 shadow-sm rounded h-100 bg-white d-flex flex-column">
+
+
+                    <h5 class="mb-3">
+                        IELTS class improved my score in a short time.
+                    </h5>
+
+
+                    <p class="mb-3">
+                        I needed IELTS for my university application. KEME’s IELTS class taught me good strategies
+                    </p>
+
+
+                    <div class="fw-bold">SengSeng, Myanmar</div>
+
+
+                    <div class="mt-auto pt-3 text-warning fs-5">⭐⭐⭐⭐⭐</div>
+
+                </div>
+            </div>
         </div>
 
     </div>

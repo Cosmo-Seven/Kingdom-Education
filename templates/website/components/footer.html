@@ -9,16 +9,17 @@
         line-height: 1.7;
         max-width: 350px;
     }
-    .logo-widget{
-    max-width:100%;
-}
 
-.footer-about{
-    font-size:14px;
-    line-height:1.8;
-    color:#333;
-    margin-bottom:12px;
-}
+    .logo-widget {
+        max-width: 100%;
+    }
+
+    .footer-about {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #333;
+        margin-bottom: 12px;
+    }
 </style>
 <footer class="main-footer">
     <!-- Pattern Layer -->
@@ -63,16 +64,17 @@
                                 </p>
 
                                 <div class="social-box mt-3">
-                                    <a href="#" class="fa fa-facebook"></a>
-                                    <a href="#" class="fa fa-instagram"></a>
-                                    <a href="#" class="fa fa-twitter"></a>
-                                    <a href="#" class="fa fa-google"></a>
-                                    <a href="#" class="fa fa-pinterest-p"></a>
+                                    <a href="https://www.facebook.com/share/1CCGim7BKy/?mibextid=wwXIfr" target="_blank" class="fa fa-facebook"></a>
+                                    <a href="https://youtube.com/@kingdomeducationmissioneurory?si=3LAG7QB3SLmIBv7b" target="_blank" class="fa fa-youtube"></a>
+                                    <a href="tel:+358 46 9389339" target="_blank"><img src="{% static 'website/images/wp.png'%}" alt="" width="40"></a>
+  
+                                
                                 </div>
 
                                 <div class="copyright mt-3">
                                     Copyright © 2026 | Coded by
-                                    <a href="https://pagemyanmar.com" class="text-danger">PageMyanmar</a>
+                                    <a href="https://pagemyanmar.com" target="_blank"
+                                        class="text-danger">PageMyanmar</a>
                                 </div>
 
                             </div>
@@ -81,13 +83,16 @@
                         <!--Footer Column-->
                         <div class="footer-column col-lg-5 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4>About Us</h4>
+                                <h4>Quick Links</h4>
                                 <ul class="links-widget">
-                                    <li><a href="#">Afficiates</a></li>
-                                    <li><a href="#">Partners</a></li>
-                                    <li><a href="#">Reviews</a></li>
-                                    <li><a href="#">Blogs</a></li>
-                                    <li><a href="#">Newsletter</a></li>
+                                    <li><a href="{% url 'home'%}">Home</a></li>
+                                    <li><a href="{% url 'about'%}">About</a></li>
+                                    <li><a href="{% url 'courses'%}">Programs</a></li>
+                                    <li><a href="{% url 'course_topics'%}">Topics</a></li>
+                                    <li><a href="{% url 'donation_form'%}">Donation</a></li>
+                                    <li><a href="{% url 'student_profile'%}">Profile</a></li>
+                                    <li><a href="{% url 'blogs'%}">Contact</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -102,13 +107,10 @@
                         <!--Footer Column-->
                         <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4>Resource</h4>
+                                <h4>Sections</h4>
                                 <ul class="links-widget">
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Support Area</a></li>
-                                    <li><a href="#">Documentations</a></li>
-                                    <li><a href="#">How it works</a></li>
-                                    <li><a href="#">Terms of Policy</a></li>
+                                    <li><a href="{% url 'terms_conditions'%}">Terms & Conditions</a></li>
+                                    <li><a href="{% url 'refund'%}">Refund Policy</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -116,13 +118,13 @@
                         <!--Footer Column-->
                         <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4>Quick Links</h4>
+                                <h4>Other</h4>
                                 <ul class="links-widget">
-                                    <li><a href="#">home</a></li>
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Features</a></li>
-                                    <li><a href="#">Pricing</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="/about/?page=historical-background">Historical Background</a></li>
+                                    <li><a href="/about/?page=mission-statement">Mission Statement</a></li>
+                                    <li><a href="/about/?page=board-members">Board Members</a></li>
+                                    <li><a href="/about/?page=volunteer-staff">Volunteer Staff</a></li>
+                                  
                                 </ul>
                             </div>
                         </div>

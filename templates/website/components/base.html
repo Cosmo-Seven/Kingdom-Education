@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>{{site.title}} - {% block title %}{% endblock %}</title>
     {% include 'website/components/css.html' %}
-    {% include 'website/components/favicon.html' %}
+    {% include 'common/favicon.html' %}
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Titillium+Web:wght@300;400;600;700;900&display=swap"
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-   {% include 'dashboard/components/toast.html' %}
+    {% include 'dashboard/components/toast.html' %}
     <div class="page-wrapper">
 
         <!-- Preloader -->
@@ -33,8 +33,9 @@
             <div class="auto-container">
                 <div class="content">
                     <h2>Ready to get started?</h2>
-                    <div class="text">Replenish him third creature and meat blessed void a fruit gathered you’re,
-                        they’re two <br> waters own morning gathered greater shall had behold had seed.</div>
+                    <div class="text">We are here to support you every step of the way.
+                        Whether you want to learn a new language, prepare for exams, build your future in Finland or
+                        Europe, or join our community programs, KEME is ready to guide you.</div>
                     <div class="buttons-box">
                         <a href="{{courses_url}}" class="theme-btn btn-style-one"><span class="txt">All Courses <i
                                     class="fa fa-angle-right"></i></span></a>

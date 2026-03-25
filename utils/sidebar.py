@@ -128,6 +128,8 @@ def sidebar(request):
                 "permissions": [
                     "view_languagemodel",
                     "view_translationmodel",
+                    "view_sitemodel",
+                    "view_hometextmodel",
                 ],
                 "items": [
                     {
@@ -141,6 +143,18 @@ def sidebar(request):
                         "url_name": "translation_list",
                         "icon": "ti ti-speakerphone",
                         "permissions": "view_translationmodel",
+                    },
+                    {
+                        "label": "site_settings",
+                        "url_name": "site_settings",
+                        "icon": "ti ti-settings",
+                        "permission": "view_sitemodel",
+                    },
+                    {
+                        "label": "home_text",
+                        "url_name": "home_text",
+                        "icon": "ti ti-book",
+                        "permission": "view_hometextmodel",
                     },
                 ],
             },

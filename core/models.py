@@ -21,3 +21,4 @@ from models.text_key_models import TextKeyModel
 from models.translation_models import TranslationModel
 from models.language_models import LanguageModel
 from models.volunteer_models import VolunteerModel
+from models.home_text_models import HomeTextModel

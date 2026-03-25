@@ -11,6 +11,8 @@ from core.models import (
     LessonModel,
     FileModel,
     ContactModel,
+    SiteModel,
+    HomeTextModel
 )
 from django.contrib import messages
 
@@ -224,6 +226,7 @@ def course_form(request, id=None):
 
     return render(request, "dashboard/course_form.html", context)
 
+
 def course_delete(request, pk):
     try:
         course = get_object_or_404(CourseModel, id=pk)
@@ -239,3 +242,49 @@ def course_delete(request, pk):
     except Exception as e:
         messages.error(request, f"Error : {str(e)}")
         return redirect("dashboard")
+
+
+def site_settings(request):
+
+    site = SiteModel.objects.first()
+    if request.method == "GET":
+        context = {"site": site}
+        return render(request, "dashboard/site_settings.html", context)
+    if request.method == "POST":
+        title = request.POST.get("title")
+        favicon = request.FILES.get("favicon")
+        logo = request.FILES.get("logo")
+        if not site:
+            site = SiteModel.objects.create(title=title, favicon=favicon, logo=logo)
+            site.save()
+        else:
+            site.title = title
+            if favicon:
+                if site.favicon:
+                    site.favicon.delete()
+                site.favicon = favicon
+            if logo:
+                if site.logo:
+                    site.logo.delete()
+                site.logo = logo
+            site.save()
+            messages.success(request, "Update successfully")
+        return redirect("site_settings")
+    
+def home_text(request):
+    text = HomeTextModel.objects.first()
+    if request.method == "GET":
+        context = {"text": text}
+        return render(request, "dashboard/home_text.html", context)
+    if request.method == "POST":
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        if not text:
+            text = HomeTextModel.objects.create(title=title,description=description)
+            text.save()
+        else:
+            text.title = title
+            text.description = description
+            text.save()
+            messages.success(request, "Update successfully")
+        return redirect("home_text")
