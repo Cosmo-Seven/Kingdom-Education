@@ -54,7 +54,7 @@ urlpatterns = (
             "dashboard/course-form/", dashboard_views.course_form, name="course_create"
         ),
         path(
-            "dashboard/course-form/<uuid:id>/",
+            "dashboard/course-form/<uuid:pk>/",
             dashboard_views.course_form,
             name="course_update",
         ),

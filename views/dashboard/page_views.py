@@ -27,7 +27,7 @@ def index(request):
 
 @custom_login_required("dashboard_login")
 @role_permission_required("add_coursemodel")
-def course_form(request, id=None):
+def course_form(request, pk=None):
     context = {
         "lecturers": LecturerModel.objects.all(),
         "topics": CourseTopicModel.objects.all(),
@@ -35,8 +35,8 @@ def course_form(request, id=None):
     }
 
     course = None
-    if id:
-        course = CourseModel.objects.get(id=id)
+    if pk:
+        course = CourseModel.objects.get(id=pk)
         sections = SectionModel.objects.filter(course=course)
         context["course"] = course
         context["sections"] = sections
