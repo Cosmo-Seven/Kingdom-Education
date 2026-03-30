@@ -27,6 +27,25 @@
     .testimonial-card:hover {
         transform: translateY(-5px);
     }
+    .image-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+    max-width: 100%;
+}
+
+.image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Hover Effect */
+.image-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
 </style>
 <!-- Banner Section -->
 <section class="banner-section">
@@ -71,12 +90,14 @@
 
             <!-- Image Column -->
             <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-column parallax-scene-1">
-                    <div class="image parallax-layer" data-depth="0.30">
-                        <img src="{% static 'website/images/education.png' %}" alt="">
-                    </div>
-                </div>
+        <div class="inner-column d-flex justify-content-center">
+            
+            <div class="image-card">
+                <img src="{% static 'website/images/keme.jpg' %}" alt="">
             </div>
+
+        </div>
+</div>
 
             <!-- Content Column -->
             <div class="content-column col-lg-6 col-md-12 col-sm-12">
