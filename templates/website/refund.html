@@ -2,5 +2,389 @@
 {% block title %}Register{% endblock %}
 {% load static %}
 {% block body %}
-<h1>Hello Refund</h1>
+<style>
+      .hero-section {
+        background: #0d1b3d;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+
+    }
+@media(max-width:760px){
+    .hero-section .h1{
+        font-size: 13px;
+    }
+}
+</style>
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+<section class="hero-section">
+    <div class="container">
+        <h1>Kingdom Education Mission Euro Ry</h1>
+        <p class="mt-3">At Kingdom Education Mission Euro Ry, we are committed to transparency and fairness when processing
+        refund requests. This policy explains how our refund claim form works, what information is required, and how we
+        handle submissions.</p>
+    </div>
+</section>
+<div class="container my-5">
+     <!-- Accordion for sections -->
+    <div class="accordion" id="refundPolicyAccordion">
+
+        <!-- Section 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    1. Purpose of the Refund Claim Form
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse  collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>The Refund Claim Form is our official tool for collecting the information needed to process your
+                        refund request. Using this form ensures that:</p>
+                    <ul>
+                        <li>We receive all necessary details to process your request efficiently</li>
+                        <li> Your request is handled consistently and fairly</li>
+                        <li> We have proper documentation for our records and for any third-party institutions (such as
+                            schools or universities)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo">
+                    2.When to Use the Refund Claim Form
+                </button>
+            </h2>
+
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>The Refund Claim Form is our official tool for collecting the information needed to process your
+                        refund request. Using this form ensures that:</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Situation</th>
+                                <th>Form Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Refund for a KEME program or event</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Refund for school fees paid through KEME</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Refund for university fees paid through KEME</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Dispute regarding a payment</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Request to transfer a payment to another program</td>
+                                <td>Contact us directly</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Note:</strong> Donations are generally non-refundable and do not require a claim form
+                        unless exceptional circumstances apply.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree">
+                    3. Information Required on the Form
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>To process your refund request without delay, please ensure all relevant sections of the form are
+                        completed accurately.</p>
+                    <h5>3.1 Mandatory Information</h5>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Requirement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Full Name</td>
+                                <td>Must match the name used during registration or payment</td>
+                            </tr>
+                            <tr>
+                                <td>Contact Information</td>
+                                <td>Valid email and phone number for updates</td>
+                            </tr>
+                            <tr>
+                                <td>Program /Institution Name</td>
+                                <td>Clearly identify what the payment was for</td>
+                            </tr>
+                            <tr>
+                                <td>Payment Amount</td>
+                                <td>Exact amount paid</td>
+                            </tr>
+                            <tr>
+                                <td>Payment Date</td>
+                                <td>When the payment was made</td>
+                            </tr>
+                            <tr>
+                                <td>Reason for Refund</td>
+                                <td>Select the appropriate reason and provide details</td>
+                            </tr>
+                            <tr>
+                                <td>Signature</td>
+                                <td>Electronic or handwritten signature confirming accuracy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5>3.2 Supporting Documents</h5>
+                    <p class="mt-2">You must attach the following documents where applicable:</p>
+                    <ul>
+                        <li>Payment confirmation or receipt (required for all refunds)</li>
+                        <li>Withdrawal confirmation (for school or university fee refunds)</li>
+                        <li>Official correspondence from the institution (if applicable)</li>
+                        <li>Medical certificate (if requesting a refund due to illness or emergency)</li>
+                    </ul>
+                    <p>Incomplete submissions may result in processing delays or denial of the request.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue after previous sections in the same accordion -->
+
+        <!-- Section 4 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour">
+                    4. Submission Methods
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>You may submit your completed Refund Claim Form and supporting documents through any of the
+                        following channels:</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Email</td>
+                                <td>Send to <a href="mailto:info@keme.fi">info@keme.fi</a> with subject: Refund Request
+                                    – [Your Name] – [Program/Institution]</td>
+                            </tr>
+                            <tr>
+                                <td>Phone / SMS / WhatsApp</td>
+                                <td>Contact +358 41 328 2857 to discuss your request. You may be asked to email the form
+                                    afterward.</td>
+                            </tr>
+                            <tr>
+                                <td>Mail</td>
+                                <td>Send to: Kingdom Education Mission Euro Ry, Tarjantie 69A, 15950, Lahti, Finland
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>In Person</td>
+                                <td>Visit our office during business hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-danger"><strong>Note:</strong> For security reasons, please do not send bank account
+                        details via SMS. Use email or the official form for sensitive information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive">
+                    5. Processing Timeline
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>Once your Refund Claim Form is received, the following timeline applies:</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Timeline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Acknowledgment of receipt</td>
+                                <td>Within 2–3 business days</td>
+                            </tr>
+                            <tr>
+                                <td>Review of request (KEME programs)</td>
+                                <td>Within 5–7 business days</td>
+                            </tr>
+                            <tr>
+                                <td>Review of request (school/university fees)</td>
+                                <td>Dependent on institution’s response</td>
+                            </tr>
+                            <tr>
+                                <td>Refund processing (if approved)</td>
+                                <td>30–45 business days for KEME programs</td>
+                            </tr>
+                            <tr>
+                                <td>Final notification</td>
+                                <td>Within 3 business days of decision</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix">
+                    6. Approval and Denial Criteria
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <h5>6.1 Grounds for Approval</h5>
+                    <p class="mt-2">A refund request may be approved if:</p>
+                    <ul>
+                        <li>The request is submitted in accordance with the applicable refund policy (KEME Terms or
+                            institution’s policy)</li>
+                        <li>All required information and supporting documents are provided</li>
+                        <li>The request falls within the permitted cancellation or refund window</li>
+                        <li>The program was cancelled by KEME</li>
+                    </ul>
+                    <h5>6.2 Grounds for Denial</h5>
+                    <p class="mt-2">A refund request may be denied if:</p>
+                    <ul>
+                        <li>The request is submitted after the cancellation deadline</li>
+                        <li>Required supporting documents are missing or incomplete</li>
+                        <li>The refund does not align with the institution’s refund policy (for school/university fees)
+                        </li>
+                        <li>The request is for a non-refundable donation or administrative fee</li>
+                        <li>The participant was removed from a program due to misconduct</li>
+                    </ul>
+                    <p>If your request is denied, we will provide a written explanation and, where possible, guidance on
+                        next steps.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven">
+                    7. Appeals Process
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>If your refund request is denied, you may appeal the decision by following these steps:</p>
+                    <ol>
+                        <li>Contact us within 14 days of receiving the denial notice</li>
+                        <li>Provide additional information or documentation that supports your appeal</li>
+                        <li>Submit your appeal in writing to <a href="mailto:info@keme.fi">info@keme.fi</a> with the
+                            subject line: Appeal – Refund Denial – [Your Name]</li>
+                    </ol>
+                    <p>Appeals will be reviewed by a designated staff member not involved in the original decision. You
+                        will receive a final decision within 14 business days.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight">
+                    8. Data Handling and Privacy
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>All information submitted through the Refund Claim Form is processed in accordance with the EU
+                        General Data Protection Regulation (GDPR) and our Privacy Policy. Your data is used solely for:
+                    </p>
+                    <ul>
+                        <li>Processing your refund request</li>
+                        <li>Communicating with you regarding your request</li>
+                        <li>Liaising with educational institutions when applicable</li>
+                        <li>Maintaining accurate financial records</li>
+                    </ul>
+                    <p>We do not share your personal data with third parties except as necessary to process your refund
+                        (e.g., with schools or universities) or as required by law.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseNine">
+                    9. Contact Information
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>If you have any questions about this policy or need assistance completing the Refund Claim Form,
+                        please contact us:</p>
+                    <ul>
+                        <li>Kingdom Education Mission Euro Ry</li>
+                        <li>Email: <a href="mailto:info@keme.fi">info@keme.fi</a></li>
+                        <li>Phone / SMS / WhatsApp: +358 41 328 2857</li>
+                        <li>Address: Tarjantie 69A, 15950, Lahti, Finland</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTen">
+                    10. Policy Updates
+                </button>
+            </h2>
+            <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#refundPolicyAccordion">
+                <div class="accordion-body">
+                    <p>We may update this Refund Claim Form Policy from time to time to reflect changes in our practices
+                        or legal requirements. The latest version will always be available on our website. Continued use
+                        of the refund process after changes are posted constitutes acceptance of the updated policy.</p>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End accordion -->
+
+</div>
 {% endblock %}
