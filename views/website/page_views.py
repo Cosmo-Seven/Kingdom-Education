@@ -314,3 +314,10 @@ def terms_conditions(request):
 
 def refund(request):
     return render(request,"website/refund.html")
+
+def qualification(request):
+    page = request.GET.get("page")
+    context = {
+        "page":page
+    }
+    return render(request,"website/qualification.html",context)

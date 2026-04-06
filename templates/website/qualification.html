@@ -1,0 +1,1756 @@
+{% extends 'website/components/base.html' %}
+{% block title %}About Page{% endblock %}
+{% load static %}
+{% block body %}
+<style>
+    .hero-section {
+        background: #0d1b3d;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+
+    }
+
+    .hero-section h1 {
+        font-size: 48px;
+        font-weight: 700;
+    }
+
+    .hero-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .hero-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .quick-box {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .circle-img {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .btn-primary {
+        background: rgba(255, 166, 0, 0.836);
+        border: none;
+        outline: none;
+    }
+
+    .btn-primary:hover {
+        background: orange;
+    }
+</style>
+<section class="page-title">
+    <div class="auto-container">
+
+    </div>
+</section>
+{% if page == "VOCATIONAL"%}
+<section class="hero-section">
+    <div class="container">
+        <h1>Vocational</h1>
+    </div>
+</section>
+
+<div class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT CONTENT -->
+        <div class="col-lg-8">
+
+            <!-- HERO IMAGE CARD -->
+            <div class="hero-card shadow">
+                <img src="{% static 'website/images/v-1.jpg'%}">
+                <div class="hero-overlay">
+                    <h5>Your Path to a Rewarding Career</h5>
+                    <p class="mb-0">
+                        Vocational Qualification in Unlock high-and Quaidensy, EU residency, and a bist bright future in
+                        finland
+                    </p>
+                </div>
+            </div>
+
+            <!-- WHY SECTION -->
+            <div class="bg-white mt-4 p-4 shadow-sm rounded">
+                <h5>Why Chose Cleaning and Property Services in Finland?</h5>
+                <p class="text-muted mt-3">A stable,in-demand career with excellent prospects </p>
+                <ul class="mt-3">
+                    <li>✔ Practical Expertise</li>
+                    <li>✔ Customer Orientation</li>
+                    <li>✔ Sustainability Focus</li>
+                    <li>✔ Workplace Integration</li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 mt-3">
+
+                    <img src="{% static 'website/images/v-2.jpg'%}" class="rounded">
+                </div>
+                <h5 class="mt-3">Program Overview:Your Journey Begins Here!</h5>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE QUICK FACTS -->
+        <div class="col-lg-4">
+            <div class="quick-box shadow-sm">
+
+                <h6 class="fw-bold">Quick Facts</h6>
+                <hr>
+
+                <p>Total Credits: 180 CP</p>
+                <p>Duration: 2–3 Years</p>
+                <p>Language: English/Finland</p>
+                <p>Outcome: EU Qualification</p>
+                <p>Location: Finland</p>
+                <p>Next Intake: 2027+</p>
+
+                <a href="/" class="btn btn-primary w-100 mt-3">
+                    Apply Now
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PROGRAM STRUCTURE -->
+    <div class="bg-white mt-5 p-4 rounded shadow-sm">
+        <h5 class="text-center">Program Structure:Modules Designed for success</h5>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <p><strong>Compulosir Units</strong></p>
+                <p class="text-muted">
+                    Production of Customer-Oriented Cleaning and Property Services (15 competence points )
+                </p>
+            </div>
+
+            <div class="col-md-6">
+                <p><strong>Vocational Units</strong></p>
+                <p class="text-muted">
+                    145 Competence competence points
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container py-5">
+
+    <!-- TITLE -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Vocational Qualification in Cleaning and Property Services</h2>
+
+    </div>
+
+    <!-- INTRO CARD -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <p>
+                Are you looking for a stable, in-demand career with excellent employment prospects in Finland and across
+                the EU?
+                Kingdom Education Mission Euro ry (KEME) invites international students to embark on a high-quality
+                vocational
+                education journey to become a certified professional in Cleaning and Property Services. We bridge the
+                gap, bringing
+                the excellence of Finnish vocational training to you.
+
+            </p>
+        </div>
+    </div>
+
+    <!-- WHY FINLAND -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">Why Choose Cleaning and Property Services in Finland?</h5>
+            <p>
+                Finland is renowned for its high standards in maintenance, cleanliness, and sustainable practices.
+                Professionals in this
+                sector are vital, ensuring safe, healthy, and functional environments across various industries. With a
+                strong demand
+                for skilled workers, this qualification offers immediate employability, competitive salaries, and clear
+                pathways for
+                career growth and long-term residency in Finland.
+                KEME works closely with leading Finnish vocational institutions to deliver a program that is not just
+                education, but a
+                stepping stone to a successful future.
+
+            </p>
+        </div>
+    </div>
+
+    <!-- PROGRAM OVERVIEW -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">Program Overview: Your Journey Begins Here!</h5>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Qualification Awarded:</strong>: Vocational Qualification in Cleaning and Property
+                        Services
+                        (Puhtaus- ja kiinteistöpalvelualan
+                        perustutkinto)</p>
+                    <p><strong>Total Scope:</strong>180 Competence Points (Finnish National Agency for Education
+                        Standard)</p>
+                    <p><strong>Duration:</strong>2–3 years (Adjustable based on prior learning and individual study
+                        pace)</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Mode:</strong>Competence-based learning with a strong emphasis on hands-on practice and
+                        extensive on-the-job training.
+                        Language of Instruction: Primarily Finnish, with crucial English-supported preparatory and
+                        contact teaching during
+                        initial phases for international students.</p>
+                    <p><strong>Location:</strong> Partner institutions across Finland, including regions with
+                        established English-supported pathways</p>
+                    <p><strong>Intake:</strong>Continuous applications with specific English-supported intakes often
+                        commencing annually (e.g., monitor for 2027+). </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHAT YOU GAIN -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">Here's what you'll gain</h5>
+
+            <div class="row text-center g-4">
+
+                <div class="col-md-3">
+                    <div class="p-3 border rounded">
+                        <h6>Practical Expertise</h6>
+                        <small>Master modern cleaning techniques, equipment operation, and property
+                            maintenance.</small>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 border rounded">
+                        <h6>Customer Orientation</h6>
+                        <small>Develop strong communication and service skills essential for
+                            client satisfaction</small>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 border rounded">
+                        <h6>Sustainability Focus</h6>
+                        <small>Learn environmentally responsible practices and resource
+                            efficiency.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="p-3 border rounded">
+                        <h6>Finnish Workplace Integration</h6>
+                        <small>Experience real work environments and adapt to Nordic
+                            professional standards.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PROGRAM STRUCTURE -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3">Program Structure: Modules Designed for Success</h5>
+            <p class="mt-3">The qualification is modular, ensuring you build a comprehensive skill set.</p>
+            <h6 class="fw-bold">I.Common Units (35 competence points)</h6>
+
+            <div class="row mt-3">
+
+                <!-- COMMON -->
+                <div class="col-md-12">
+                    <div class="border rounded p-3 h-100">
+
+                        <p class="text-muted mt-2">These transversal skills are mandatory for all vocational
+                            qualifications in Finland,
+                            preparing you for success in anyprofessional environment</p>
+                        <ul>
+                            <li>Communication & Interaction</li>
+                            <li>Mathematics and Natural Sciences</li>
+                            <li>Social and Working Life Skills</li>
+                            <li>Promotion of Sustainable Development</li>
+                            <li>Promotion of Well-being, Health, and Safety</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <h6 class="fw-bold mt-3">II. Vocational Units (145 competence points)</h6>
+
+            <div class="row mt-3 g-3">
+                <div class="col-md-12">
+                    <div class="border rounded p-3 h-100">
+
+                        <p class="text-muted mt-2">1. Compulsory Unit (15 competence points): Production of
+                            Customer-Oriented Cleaning and Property Services
+                            Learn to interpret service agreements, plan tasks efficiently, select appropriate methods
+                            and equipment, ensure quality
+                            and safety, and document your work while always prioritizing customer satisfaction.</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="border rounded p-3 h-100">
+
+                        <p class="text-muted mt-2">2.Compulsory Vocational Units within a Chosen Competence Area
+                            (typically 60 competence points)
+                            You will specialize in one of the following key areas:
+                            Competence Area of Site Facilities Services (Site Facilities Operative): Focus on
+                            comprehensive maintenance and
+                            basic cleaning in non-residential settings like offices, schools, and commercial spaces.
+                            You'll master professional
+                            techniques, machinery operation, specialized surface care, waste management, and customer
+                            service in institutional
+                            environments.
+                            Competence Area of Domestic Services (Housekeeper): Specialization in household cleaning,
+                            home maintenance,
+                            and support services for private residences or individuals with special needs.
+                            Competence Area of Property Maintenance: Broader facility upkeep, including minor repairs,
+                            outdoor areas, and
+                            integrated property services.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="border rounded p-3 h-100">
+
+                        <p class="text-muted mt-2">3. Optional Units (Remaining competence points, e.g., 70 competence
+                            points)
+                            Customize your expertise with electives such as:
+                            Deep cleaning and specialized services (e.g., healthcare, food industry)
+                            Advanced machine handling
+                            Enhanced sustainability practices
+                            Additional competence areas for broader skill development
+                            Assessment: Your skills will be evaluated through demonstrated professional performance in
+                            real or simulated work
+                            environments, portfolio development, and workplace evaluations, ensuring you meet Finland's
+                            high competence-based
+                            standards
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container py-5">
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h4 class="fw-bold mb-3 text-center">Applicant Requirements: Are You Ready?</h4>
+            <p class="text-muted">
+                KEME provides personalized guidance through the application process. Eligibility is assessed
+                individually:
+
+            </p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li class="mt-2"><strong>Education:</strong>Completed basic education or equivalent (e.g., high
+                            school
+                            diploma or international secondary
+                            certificate, translated and verified)</li>
+                        <li class="mt-2"><strong>Age:</strong>Minimum 18 years for most programs</li>
+                        <li class="mt-2"><strong>Language:</strong>Basic to intermediate Finnish recommended. English
+                            proficiency (e.g., Duolingo 85+ or equivalent) is required for English-supported pathways.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 mt-2">
+                    <ul>
+                        <li><strong>IT Skills: Moderate</strong> IT literacy for documentation and learning platforms
+                        </li>
+                        <li class="mt-2"><strong>Physical & Mental Suitability:</strong> Capacity for practical work,
+                            including lifting, standing, and safe handling of chemicals and equipment</li>
+                        <li class="mt-2"><strong>Non-EU Applicants:</strong>: Proof of sufficient funds, health
+                            insurance, and successful acquisition of a Finnish residence permit for studies.</li>
+                        <li class="mt-2"><strong>Motivation:</strong> Demonstrated enthusiasm and suitability via
+                            application, interview, or motivation statement.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow-md border-0 mb-4">
+        <div class="card-body">
+            <h4 class="fw-bold mb-3">KEME’s Value-Added Support: Your Partner in Success</h4>
+            <p class="text-muted">
+                KEME; we are your dedicated support system for a seamless transition to studying and living in Finland.
+
+            <ul>
+                <li>Personalized Eligibility Assessments: Tailored guidance for prior learning recognition (RPL).</li>
+                <li>Application Assistance: support through direct provider channels.</li>
+                <li>Language & Foundational Training: Resources to prepare you for studies in Finland.</li>
+                <li>Holistic Consultation: Spiritual encouragement and comprehensive integration support.</li>
+                <li>Strategic Partnerships: Access to providers offering English contact teaching to ease your
+                    transition.</li>
+                <li>This program directly addresses significant labor market needs in Finland and the wider EU, offering
+                    strong employability, clear career progression.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card shadow-sm border-0 mb-4 text-center">
+        <div class="card-body">
+            <h4 class="fw-bold">Ready to Build Your Future in Finland?</h4>
+            <p class="text-muted">
+                Contact KEME today for detailed program mapping, intake updates, and a customized application strategy.
+                We are
+                committed to delivering Finnish educational excellence within a professional, supportive framework.
+            </p>
+        </div>
+    </div>
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h4 class="fw-bold mb-4">Ready to Start Your Career in Finland?</h4>
+            <p class="mt-3">Take the first step toward your Vocational Qualification in Cleaning and Property Services.
+                Our
+                preliminary
+                assessment helps you determine your eligibility before you start the formal Finnish government process.
+            </p>
+
+            <h4>2. The Application Flow (The 3-Step Process)</h4>
+            <a class="mt-2" href="">Fill the Applications form: Application Link</a>
+
+            <!-- STEP 1 -->
+            <div class="mt-3">
+                <h6 class="fw-bold">Step 1: Basic Information & Eligibility</h6>
+                <ul>
+                    <li>Full Name (as it appears on passport)</li>
+                    <li>Nationality (to determine visa/residence permit requirements)</li>
+                    <li>Current Country of Residenc</li>
+                    <li>Age Check:I am 18 years of age or older</li>
+                </ul>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="mb-4">
+                <h6 class="fw-bold">Step 2: Education & Language</h6>
+
+                <ul>
+                    <li>Highest Level of Education: (Drop-down: High School Diploma, Vocational Certificate, Bachelor’s
+                        Degree, etc.)</li>
+                    <li>English Proficiency: (Drop-down: I have a Duolingo/IELTS score, I am a native speaker, I have no
+                        certificate)</li>
+                    <li>Finnish Language Level: (Drop-down: Beginner A1, Elementary A2, Intermediate B1+, None)</li>
+                </ul>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="mb-4">
+                <h6 class="fw-bold">Step 3: Document Submission (Optional but Recommended)</h6>
+                <p class="mt-3">To speed up the process, allow them to upload</p>
+                <ul>
+                    <li>CV / Resume (PDF/Word)</li>
+                    <li>Copy of Secondary School Certificate</li>
+                    <li>Brief Motivation Statement (Why do you want to study in Finland?)</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h4 class="fw-bold mb-3 text-center">What happens next?</h4>
+
+            <ul>
+                <li><strong>Initial Review:</strong>Our KEME education consultants will review your profile against the
+                    Finnish National Agency for Education standards.</li>
+                <li><strong>Feedback:</strong>You will receive an email within 3–5 business days regarding your
+                    eligibility</li>
+                <li><strong>Consultation:</strong> If eligible, we will invite you to a brief interview to discuss your
+                    study path and residence permit requirements</li>
+                <li><strong>Check Email:</strong>Check your inbox (and spam folder) for a confirmation email.</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if page == "ENGINEERING-IT"%}
+<section class="hero-section">
+    <div class="container">
+        <h1>ENGINEERING & IT</h1>
+       <h4>FAST PROGRAM</h4>
+    </div>
+</section>
+<div class="container py-5">
+
+    <!-- Title -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">ENGINEERING & IT IN ENGLISH – FAST PROGRAM</h2>
+    </div>
+
+    <!-- Intro -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <p class="mb-4">
+                The Engineering & IT in English FAST Program is an intensive two-trimester (7-month)
+                foundation course designed by Charles University experts to prepare international students for
+                university studies in Engineering, Computer Science, and Technical Fields in the Czech
+                Republic.
+            </p>
+
+            <p>
+                This program is ideal for students who already speak English at B1–B2 level and want a faster,
+                focused pathway toward engineering and IT degree programs.
+            </p>
+        </div>
+    </div>
+
+    <!-- Key Details -->
+    <div class="row mt-5 g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Place of Teaching:</strong><br>
+                Poděbrady
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Language:</strong><br>
+                English
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Opening:</strong><br>
+                November 2026
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Intensity:</strong><br>
+                25 hours / week
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Length of Study:</strong><br>
+                Two Trimesters (7 months)
+
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Form:</strong><br>
+                In-Person
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Apply With Visa:</strong><br>
+                31.07.2026
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Apply Without Visa:</strong><br>
+                25.10.2026
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Price:</strong><br>
+                <span class="text-primary fw-bold">€4,850</span><br>
+                <small>CZK 113,000</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Support -->
+    <div class="mt-5">
+        <p class="text-center">
+            KEME provides full support with application, visa processing, relocation,
+            and student guidance to ensure a smooth study experience.
+        </p>
+    </div>
+
+</div>
+<div class="container py-5">
+
+    <div class="row align-items-center">
+
+        <!-- Left Content -->
+        <div class="col-lg-6">
+            <h3 class="fw-bold mb-4">Who This Program</h3>
+
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    <i class="bi bi-check-circle text-primary me-2"></i>
+                    Students who need to bridge academic gaps between high school and Czech technical universities
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle text-primary me-2"></i>
+                    Students requiring visa support and smooth relocation processes
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle text-primary me-2"></i>
+                    Students needing diploma recognition (nostrification) assistance
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle text-primary me-2"></i>
+                    Students seeking cultural guidance to adapt to Czech student life
+                </li>
+                <li class="mb-3">
+                    <i class="bi bi-check-circle text-primary me-2"></i>
+                    Students preparing for technical university entrance examinations
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Content -->
+        <div class="col-lg-6">
+            <div class="p-4 bg-light rounded shadow-sm">
+                <p>
+                    With over 50 years of experience, ÚJOP UK (Charles University) has a proven
+                    track record of successfully preparing international students for
+                    university-level technical studies.
+                </p>
+
+                <p class="mb-0">
+                    KEME enhances this experience by providing Myanmar-language support,
+                    personalized mentoring, and holistic student care throughout the entire journey.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="py-5 container">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">INCLUDED IN THE PROGRAMME</h2>
+    </div>
+    <div class="row g-4">
+
+        <!-- Academic Instruction -->
+        <div class="col-lg-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <h5 class="fw-bold mb-3">1. Academic Instruction (675 Total Lessons)</h5>
+                <p class="mt-2">Delivered through lectures, interactive seminars, practical assignments, and
+                    continuous testing.
+                </p>
+
+
+                <ul class="small">
+                    <li>Mathematics</li>
+                    <li>Information Technology</li>
+                    <li>Physics</li>
+                    <li>Academic English</li>
+                    <li>Technical English</li>
+                    <li>Basics of Czech Language</li>
+                </ul>
+
+                <hr>
+                <h4>What You Gain
+                </h4>
+                <p class="small mb-1">✔ Entrance exam preparation</p>
+                <p class="small mb-1">✔ Strong technical foundation</p>
+                <p class="small mb-1">✔ Access to MS Teams & Moodle</p>
+                <p class="small mb-1">✔ Progress monitoring</p>
+                <p class="small mb-0">✔ University visits & consultations</p>
+            </div>
+        </div>
+
+        <!-- Settling Support -->
+        <div class="col-lg-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <h5 class="fw-bold mb-3">2. Settling-In Support</h5>
+
+                <ul class="small">
+                    <li>Workshops on Czech culture and student life</li>
+                    <li>Alumni advice from previous international students</li>
+                    <li>Social, cultural, and sports activities</li>
+                    <li>Help with daily-life issues (including medical guidance)</li>
+                    <li>Local Czech SIM card</li>
+                    <li>Eduroam Wi-Fi access</li>
+                    <li>Airport arrival assistance</li>
+                </ul>
+
+                <hr>
+
+                <p class="small mb-0">
+                    KEME strengthens this with onboarding support, community groups, and Myanmar-language help
+
+                </p>
+            </div>
+        </div>
+
+        <!-- Administrative -->
+        <div class="col-lg-4">
+            <div class="p-4 bg-white rounded shadow-sm h-100">
+                <h5 class="fw-bold mb-3">3. Administrative Support</h5>
+
+                <ul class="small">
+                    <li>Visa document preparation & submission</li>
+                    <li>Immigration registration</li>
+                    <li>High school diploma recognition (nostrification)</li>
+                    <li>Guidance for choosing and applying to universities</li>
+                    <li>Support with visa extension</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container py-5">
+
+    <h2 class="fw-bold text-center mb-5">Program Details & Student Support</h2>
+
+    <!-- Additional Services -->
+    <div class="mb-5">
+        <h4 class="fw-semibold mb-3">Additional Services (Extra Fee)</h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="border rounded p-3 h-100 text-center">
+                    Student dormitory accommodation
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="border rounded p-3 h-100 text-center">
+                    Student health insurance
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Process Accordion -->
+    <div class="accordion mb-5" id="studyProcessAccordion">
+
+        <!-- Orientation -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Orientation – Week 1
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#studyProcessAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Introduction to the Study Center</li>
+                        <li>Overview of Czech culture & history</li>
+                        <li>Orientation to Charles University systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Progression -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Academic Progression
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#studyProcessAccordion">
+                <div class="accordion-body">
+                    <p>From day one, students begin studying specialized subjects required for engineering- and
+                        ITrelated entrance exams.</p>
+                    <ul class="mb-0">
+                        <li>Lectures & seminars</li>
+                        <li>Practical tasks</li>
+                        <li>Teacher feedback</li>
+                        <li>Time-management & study-skills training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Examination Structure
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#studyProcessAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Continuous tests</li>
+                        <li>End-of-trimester exams</li>
+                        <li>Final Certificate of Completion exam</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- English Requirement -->
+    <div class="border rounded p-4 mb-5 bg-light">
+        <h5 class="fw-bold">English Requirement</h5>
+        <p class="mb-1">FAST Program requires minimum English <strong>B1</strong>.</p>
+        <p class="mb-0 text-muted">Students below B1/B2 should enroll in the COMPLEX Program instead.</p>
+    </div>
+    <div class="border rounded p-4 mb-5 bg-light">
+        <h5 class="fw-bold">UNIVERSITY STUDIES</h5>
+        <p class="mb-1">During your FAST Program, you will receive guidance on choosing engineering and IT</p>
+    </div>
+
+    <!-- University Pathway -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="border rounded p-4 h-100 bg-light">
+                <h5 class="fw-bold mb-3">Possible Fields of Study</h5>
+                <ul class="mb-0 small">
+                    <li>Software Engineering / Informatics</li>
+                    <li>Database / Network Administration</li>
+                    <li>Mechanical Engineering</li>
+                    <li>Civil & Building Engineering</li>
+                    <li>Electrical / Power Engineering</li>
+                    <li>Automation & Robotics</li>
+                    <li>Transport Technology & Logistics</li>
+                    <li>Mathematics & Physics</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="border rounded p-4 h-100 bg-light">
+                <h5 class="fw-bold mb-3">Top Universities</h5>
+                <ul class="mb-0 small">
+                    <li>Czech Technical University (CTU), Prague</li>
+                    <li>Charles University</li>
+                    <li>Brno University of Technology</li>
+                    <li>University of West Bohemia</li>
+                    <li>Technical University of Liberec</li>
+                    <li>VŠB – Technical University Ostrava</li>
+                    <li>Palacký University</li>
+                    <li>Czech University of Life Sciences</li>
+                    <li>University of Hradec Králové</li>
+                    <li>University of Pardubice</li>
+                    <li>Tomáš Baťa University in Zlín</li>
+                    <li>University of Chemistry and Technology (UCT), Prague</li>
+                </ul>
+                <p class="mt-2 small text-muted text-center">
+                    Academic supervisors help students select the best options.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h5 class="fw-bold mb-3">Location – Poděbrady Study Center</h5>
+            <ul class="small">
+                <li>Peaceful spa town environment</li>
+                <li>Safe neighborhoods ideal for focused study</li>
+                <li>Access to large parks and recreation areas</li>
+                <li>Easy transportation links to Prague</li>
+                <li>Student dormitory within walking distance</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 mt-3">
+            <img src="{% static 'website/images/pg.png' %}" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    <!-- KEME Support -->
+    <div class="bg-dark text-white p-5 rounded text-center">
+        <h5 class="fw-bold mb-4">KEME Student Support</h5>
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-4">✅ Application guidance</div>
+            <div class="col-md-4">✅ Visa documentation support</div>
+            <div class="col-md-4">✅ Pre-departure orientation</div>
+            <div class="col-md-4">✅ Cultural & emotional support</div>
+            <div class="col-md-4">✅ Myanmar/English communication</div>
+            <div class="col-md-4">✅ Student mentoring & follow-up</div>
+        </div>
+        <p class="mt-4 small">
+            KEME ensures every student is supported from application to successful completion.
+        </p>
+    </div>
+
+</div>
+{% endif %}
+
+{% if page == "MEDICINE-COMPLETE"%}
+<section class="hero-section">
+    <div class="container">
+        <h1>MEDICINE PHARMACY</h1>
+        <h4>COMPLEX PROGRAM</h4>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="text-center mb-5">
+            <p class="lead">university preparation course designed by Charles University experts. It provides
+                international
+            </p>
+        </div>
+
+        <!-- Key Details -->
+        <div class="row g-3 mb-5">
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Place of Teaching:</strong> Poděbrady Campus
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Language:</strong> English
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Opening:</strong> September 2026
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Intensity:</strong> 35 hours/week
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Length of Study:</strong> Three Trimesters
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Form:</strong> In-Person
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Apply With Visa:</strong> 31.05.2026
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Apply Without Visa:</strong> 25.08.2026
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-3 h-100">
+                    <strong>Price:</strong> CZK 182,000 / €7,811
+                </div>
+            </div>
+            <p class="text-muted text-center">KEME offers full support throughout the admission, relocation, and study
+                preparation process.
+            </p>
+        </div>
+
+        <!-- About the Programme -->
+        <div class="mb-5">
+            <h3 class="fw-bold mb-3">About the Programme</h3>
+            <ul class="mb-0">
+                <li>Need to bridge academic gaps between their high school background and Czech </li>
+                <li>Require assistance navigating the student visa and relocation process.</li>
+                <li>Need help with diploma recognition (nostrification).</li>
+                <li>Want guidance in adapting to a new culture, lifestyle, and academic environment.</li>
+                <li>Seek a second chance after unsuccessful entrance exams or academic struggles.</li>
+            </ul>
+            <p class="mt-3 text-muted">
+                universities. KEME complements this with additional cultural, academic, and pastoral supporttailored for
+                Myanmar and international students.
+            </p>
+        </div>
+
+        <!-- Included in the Programme – Accordion -->
+        <div class="accordion mb-5" id="complexProgramAccordion">
+
+            <!-- Academic Instruction -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAcademic">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAcademic" aria-expanded="false" aria-controls="collapseAcademic">
+                        Academic Instruction (1250 lessons)
+                    </button>
+                </h2>
+                <div id="collapseAcademic" class="accordion-collapse collapse" aria-labelledby="headingAcademic"
+                    data-bs-parent="#complexProgramAccordion">
+                    <div class="accordion-body">
+                        <h5>Subjects Covered</h5>
+                        <ul class="mt-3">
+                            <li>Biology & Somatology</li>
+                            <li>Chemistry</li>
+                            <li>Physics</li>
+                            <li>Medical Ethics</li>
+                            <li>Academic English</li>
+                            <li>Latin Medical Terminology</li>
+                            <li>Basics of Czech Language</li>
+                        </ul>
+                        <h5 class="mt-3">What You Gain</h5>
+                        <ul class="mt-3">
+                            <li>Intensive entrance exam preparation</li>
+                            <li>Strong academic foundation for first-year medical studies</li>
+                            <li>Access to Charles University libraries, materials, and online systems (MS Teams &
+                                Moodle)</li>
+                            <li>Academic progress monitoring and attendance support</li>
+                            <li>Study visits and medically related excursions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settling-in Support -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSettling">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSettling" aria-expanded="false" aria-controls="collapseSettling">
+                        Settling-in Support
+                    </button>
+                </h2>
+                <div id="collapseSettling" class="accordion-collapse collapse" aria-labelledby="headingSettling"
+                    data-bs-parent="#complexProgramAccordion">
+                    <div class="accordion-body">
+                        <ul class="mb-0">
+                            <li>Cultural orientation workshops</li>
+                            <li>Assistance with Czech lifestyle and daily situations</li>
+                            <li>Use of Eduroam Wi-Fi across Europe</li>
+                            <li>Local SIM card</li>
+                            <li>Guidance for airport pickup arrangements</li>
+                            <li>Social, sport, and cultural events</li>
+                        </ul>
+                        <p class="mt-2 small text-muted">
+                            KEME strengthens this with personalized mentoring, Myanmar-language support (if needed),
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Administrative Support -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAdmin">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
+                        Administrative Support
+                    </button>
+                </h2>
+                <div id="collapseAdmin" class="accordion-collapse collapse" aria-labelledby="headingAdmin"
+                    data-bs-parent="#complexProgramAccordion">
+                    <div class="accordion-body">
+                        <ul class="mb-0">
+                            <li>Visa application & documentation</li>
+                            <li>Immigration registration</li>
+                            <li>Help with diploma recognition (nostrification)</li>
+                            <li>Guidance for university selection and applications</li>
+                            <li> Support with visa extension if needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional Services -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOptional">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOptional" aria-expanded="false" aria-controls="collapseOptional">
+                        Optional Services (Extra Fee)
+                    </button>
+                </h2>
+                <div id="collapseOptional" class="accordion-collapse collapse" aria-labelledby="headingOptional"
+                    data-bs-parent="#complexProgramAccordion">
+                    <div class="accordion-body">
+                        <ul class="mb-0">
+                            <li>Student dormitory accommodation</li>
+                            <li>Student insurance arrangements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Study Process -->
+        <div class="mb-5">
+            <h3 class="fw-bold mb-3">Study Process</h3>
+            <ul>
+                <li><strong>Orientation (Weeks 1–2):</strong> Intensive Czech & English, Poděbrady campus intro, Charles
+                    University systems</li>
+                <li><strong>Specialized Subject Instruction (Week 3 onward):</strong> Core preparation for General
+                    Medicine, Dentistry, Pharmacy, and other healthcare fields</li>
+                <li>Continuous tests, trimester exams, final certificate after trimester 3</li>
+            </ul>
+            <p class="mt-3">You will take continuous tests and trimester exams. A certificate is awarded after
+                successfully
+            </p>
+        </div>
+
+        <!-- Entry Requirements -->
+        <div class="mb-5 border rounded p-4 bg-light">
+            <h5 class="fw-bold">Entry Requirements</h5>
+            <ul class="mb-0">
+                <li>English Level: Minimum B1 (IELTS, TOEFL, PTE, Cambridge, or equivalent)</li>
+                <li>Academic Background: Completed secondary education</li>
+                <li>Motivation for medical or pharmacy studies</li>
+                <li>Additional English testing may be required if certificates vary</li>
+            </ul>
+        </div>
+
+        <!-- University Progression -->
+        <div class="mb-5">
+            <h3 class="fw-bold mb-3">University Progression Support</h3>
+            <p class="text-muted">During your studies, academic advisors help you identify suitable universities across
+                the Czech
+            </p>
+            <ul class="mb-0">
+                <li>Charles University – 1st, 2nd, 3rd Medical Faculties</li>
+                <li>Faculty of Medicine Plzeň</li>
+                <li>Faculty of Medicine Hradec Králové</li>
+                <li>Faculty of Pharmacy</li>
+                <li>Czech Technical University – Biomedical Engineering</li>
+                <li>Masaryk University (Brno)</li>
+                <li>Palacký University (Olomouc)</li>
+            </ul>
+        </div>
+
+        <!-- Location -->
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <h5 class="fw-bold mb-3">Location</h5>
+                <p class="text-muted mt-3">Poděbrady – Your Study Town</p>
+                <ul class="small">
+                    <li>Beautiful spa town with historic castle campus</li>
+                    <li>Safe, peaceful environment for focused study</li>
+                    <li>Student dormitory nearby (10-min walk)</li>
+                    <li>Easy access to Prague (1 hour by train/bus)</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 mt-3">
+                <img src="{% static 'website/images/pm.jpg' %}" class="img-fluid rounded shadow">
+            </div>
+        </div>
+
+        <!-- KEME Support -->
+        <div class="bg-dark text-white p-5 rounded text-center">
+            <h5 class="fw-bold mb-4"> KEME’S ROLE
+</h5>
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-4">✅ Application guidance</div>
+                <div class="col-md-4">✅ Visa & documentation assistance</div>
+                <div class="col-md-4">✅ Pre-departure orientation</div>
+                <div class="col-md-4">✅ Pastoral & community support</div>
+                <div class="col-md-4">✅ Cultural & emotional support</div>
+                <div class="col-md-4">✅ Communication in English/Myanmar</div>
+            </div>
+            <p class="mt-4 small">Kingdom Education Mission Euro ry acts as a bridge for international learners by
+                providing:</p>
+        </div>
+
+    </div>
+</section>
+{% endif %}
+
+{% if page == "MEDICINE-FAST" %}
+<section class="hero-section">
+    <div class="container">
+        <h1>MEDICINE PHARMACY</h1>
+        <h4>FAST PROGRAM</h4>
+    </div>
+</section>
+<div class="container py-5">
+    <div>
+        <h3>Program Overview</h3>
+        <p class="mt-3">Do you already speak English at B2 level?
+            If yes, this effective 7-month program is designed for you.
+            The FAST Program prepares international students to successfully pass entrance examinations
+            for medicine, pharmacy, dentistry, and healthcare-related majors at top universities in the
+            Czech Republ</p>
+        <p class="lead">Here is a clean, professional, KEME-branded program design for the Medicine &
+            Pharmacy in English – FAST Program, fully rewritten in a polished format and ready
+            for website upload, brochure, or poster use</p>
+    </div>
+    <!-- Key Details -->
+    <div class="row g-3 mb-5">
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Place of Teaching:</strong> Prague – Krystal Centre
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Language:</strong> English
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Opening:</strong> November 2026
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Intensity:</strong> 25 hours/week
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Length of Study:</strong> Two Trimesters (7 months)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Form:</strong> In-Person
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Apply With Visa:</strong> 31.07.2026
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Apply Without Visa:</strong> 25.10.2026
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Price:</strong> CZK 115,000 / EUR 4,936
+            </div>
+        </div>
+        <p class="text-muted text-center">KEME provides full support for application, visa, relocation, and ongoing
+            student care.</p>
+    </div>
+
+    <!-- About the Programme -->
+    <div class="mb-5">
+        <h3 class="fw-bold mb-3">About the Programme</h3>
+        <p>This programme is ideal for students who need support with:</p>
+        <ul class="mb-0">
+            <li>Bridging the academic gap between their high school background and Czech </li>
+            <li>Visa application support to study in the Czech Republic without delays</li>
+            <li>Diploma recognition (nostrification)</li>
+            <li>Adapting to Czech culture, lifestyle, and student life</li>
+            <li>Improving academic readiness after struggling with previous studies</li>
+        </ul>
+        <p class="mt-3 text-muted">
+            With more than 50 years of expertise, ÚJOP UK has helped thousands of international
+            students begin their medical education with strong foundations.
+            KEME complements this with personalized guidance, cultural support, and Myanmar/English
+            communication
+
+        </p>
+    </div>
+
+    <!-- Programme Contents Accordion -->
+    <div class="accordion mb-5" id="fastProgramAccordion">
+        <h3>INCLUDED IN THE PROGRAMME
+        </h3>
+        <!-- Academic Instruction -->
+        <div class="accordion-item mt-3">
+            <h2 class="accordion-header" id="headingAcademic">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseAcademic" aria-expanded="false" aria-controls="collapseAcademic">
+                    Academic Instruction (675 Lessons)
+                </button>
+            </h2>
+            <div id="collapseAcademic" class="accordion-collapse collapse" aria-labelledby="headingAcademic"
+                data-bs-parent="#fastProgramAccordion">
+                <div class="accordion-body">
+                    <p>Delivered through engaging lectures, seminars, practical assignments, and continuous
+
+                    </p>
+                    <h6>Specialized Subjects in English</h6>
+                    <ul class="mb-0 mt-2">
+                        <li>General Biology</li>
+                        <li>Biology for Doctors</li>
+                        <li>Chemistry</li>
+                        <li>Physics</li>
+                        <li>Academic English</li>
+                        <li>Basics of Czech Language</li>
+                    </ul>
+                    <h6 class="mt-3">What You Gain</h6>
+                    <ul class="mt-2">
+                        <li>Intensive preparation for medical entrance exams</li>
+                        <li>Strong foundations in biology, chemistry, physics</li>
+                        <li>Access to Charles University libraries & lectures</li>
+                        <li>MS Teams & Moodle learning platforms</li>
+                        <li>Academic progress monitoring</li>
+                        <li>Individual consultations and university guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settling-in Support -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSettling">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSettling" aria-expanded="false" aria-controls="collapseSettling">
+                    Settling-In Support
+                </button>
+            </h2>
+            <div id="collapseSettling" class="accordion-collapse collapse" aria-labelledby="headingSettling"
+                data-bs-parent="#fastProgramAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Orientation to Czech culture & lifestyle</li>
+                        <li>Workshops and advice from alumni</li>
+                        <li>Cultural, sports, and entertainment events</li>
+                        <li>Help with everyday life situations (including medical support)</li>
+                        <li>Local Czech SIM card</li>
+                        <li>Eduroam Wi-Fi access across Europe</li>
+                        <li>Airport arrival assistance</li>
+                        <li>Myanmar-language support</li>
+                        <li>Pre-departure guidance</li>
+                        <li>Pastoral and community care</li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Administrative Support -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAdmin">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
+                    Administrative Support
+                </button>
+            </h2>
+            <div id="collapseAdmin" class="accordion-collapse collapse" aria-labelledby="headingAdmin"
+                data-bs-parent="#fastProgramAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Visa documentation support</li>
+                        <li>Immigration registration</li>
+                        <li>Nostrification (diploma recognition)</li>
+                        <li>University selection & application guidance</li>
+                        <li>Visa extension support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional Services -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOptional">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOptional" aria-expanded="false" aria-controls="collapseOptional">
+                    Optional Services (Not Included)
+                </button>
+            </h2>
+            <div id="collapseOptional" class="accordion-collapse collapse" aria-labelledby="headingOptional"
+                data-bs-parent="#fastProgramAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Student dormitory accommodation</li>
+                        <li>Student insurance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Study Process -->
+    <div class="mb-5">
+        <h3 class="fw-bold mb-3">Study Process</h3>
+        <ul>
+            <li><strong>Week 1:</strong> Orientation – study centre intro, Czech culture & history,Familiarization with
+                Charles University academic environment
+
+            <li><strong>Trimester Instruction:</strong>From day one, students begin studying specialized subjects
+                necessary for entrance exams in</li>
+            <li>Exams:Lectures,Seminars,Assignments,Teacher feedback,Development of independent study & time-management
+                skills
+            </li>
+            <li><strong>Exams:</strong>Continuous,End-of-trimester exams,Final examination → Certificate of Completion
+            </li>
+        </ul>
+    </div>
+
+    <!-- Entry Requirement -->
+    <div class="mb-5 border rounded p-4 bg-light">
+        <h5 class="fw-bold">Entry Requirement</h5>
+        <ul class="mb-0">
+            <li>Minimum English B2 (IELTS, TOEFL, PTE, Cambridge, or diploma from English-medium school)</li>
+            <li>Applicants below B2 should join the COMPLEX program</li>
+        </ul>
+    </div>
+
+    <!-- University Studies -->
+    <div class="mb-5">
+        <p class="fw-bold mb-3">University Studies</p>
+        <h5>During the program, advisors help you identify suitable medical and healthcare pathways.</h5>
+        <h6 class="mt-2">Possible Majors:</h6>
+        <ul class="small">
+            <li>General Medicine, Dentistry, Pharmacy, Physiotherapy, Rehabilitation</li>
+            <li>Biomedical Technology, Medical Diagnostics, Veterinary Medicine</li>
+            <li>Biology / Biochemistry, Environmental Sciences, Chemistry</li>
+        </ul>
+
+        <h5 class="mb-2 mt-3">Top Universities Our Students Progress To:</h5>
+        <ul class="small">
+            <li>Charles University – all medical faculties & Faculty of Pharmacy, Science, PE & Sport</li>
+            <li>Czech Technical University – Biomedical Engineering</li>
+            <li>Masaryk University (Brno)</li>
+            <li>Palacký University (Olomouc)</li>
+        </ul>
+    </div>
+
+    <!-- Location -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h5 class="fw-bold mb-3">Location – Prague Krystal Centre</h5>
+            <p>The FAST programme is held at Krystal Centre in Prague 6 (Nádraží Veleslavín – Metro A).</p>
+
+            <h4 class="mt-3">Advantage</h4>
+            <ul class="small">
+                <li>Study, meals, and accommodation in one location</li>
+                <li>Large natural park nearby</li>
+                <li>Access to Charles University sports & recreation areas</li>
+                <li>15 minutes to Prague city centre by metro</li>
+                <li>Perfect environment for focused study and comfortable student life</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 mt-3">
+            <img src="{% static 'static website/images/pc.jfif' %}" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    <!-- KEME Support -->
+    <div class="bg-dark text-white p-5 rounded text-center">
+        <h5 class="fw-bold mb-4">✅ KEME’S ROLE</h5>
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-4">✅ Application guidance</div>
+            <div class="col-md-4">✅ Visa & documentation assistance</div>
+            <div class="col-md-4">✅ Pre-departure orientation</div>
+            <div class="col-md-4">✅ Pastoral & community support</div>
+            <div class="col-md-4">✅ Cultural & emotional support</div>
+            <div class="col-md-4">✅ English/Myanmar communication</div>
+        </div>
+        <p class="mt-4 small">
+            Kingdom Education Mission Euro ry acts as a bridge for international learners by providing:
+
+        </p>
+    </div>
+
+</div>
+{% endif %}
+{% if page == "BUSINESS-GLOBAL"%}
+<section class="hero-section">
+    <div class="container">
+        <h1>ECONOMICS, BUSINESS & GLOBAL AFFAIRS</h1>
+        <h4>FAST PROGRAM</h4>
+    </div>
+</section>
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <p class="lead">prepare international students for Economics, Business, Finance, and Global Affairs degree
+            programs taught in English across Czech universities.
+            It offers a focused academic curriculum, professional communication training, and structured
+            exam preparation—ideal for students who already speak English at B1–B2 level.</p>
+    </div>
+
+    <!-- Key Details -->
+    <div class="row g-3 mb-5">
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Place of Teaching:</strong> Poděbrady
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Language:</strong> English
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Opening:</strong> November 2026
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Intensity:</strong> 25 hours/week
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Length of Study:</strong> Two Trimesters (7 months)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Form:</strong> In-Person
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Apply With Visa:</strong> 31.07.2026
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Apply Without Visa:</strong> 25.10.2026
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded p-3 h-100">
+                <strong>Price:</strong> CZK 113,000 / EUR 4,850
+            </div>
+        </div>
+        <p class="text-muted text-center">KEME provides extensive support in application, visa processing, relocation,
+            and ongoing </p>
+    </div>
+
+    <!-- About the Programme -->
+    <div class="mb-5">
+        <h3 class="fw-bold mb-3">About the Programme</h3>
+        <p>This programme is ideal for students who</p>
+        <ul class="mb-0">
+            <li>Need to bridge academic differences between high school and Czech university </li>
+            <li>Require assistance with the visa process and timely relocation</li>
+            <li>Need help with high-school diploma recognition (nostrification)</li>
+            <li>Want to develop academic and cultural readiness for European university life</li>
+            <li>Seek strong preparation for business and economics entrance exams</li>
+        </ul>
+        <p class="mt-3 text-muted">
+            For over 50 years, ÚJOP UK has provided reliable and successful pathways to Czech higher
+            education.
+            KEME strengthens this pathway with Myanmar-language support, academic mentoring, and student care.
+        </p>
+    </div>
+
+    <!-- Programme Contents Accordion -->
+    <div class="accordion mb-5" id="econProgramAccordion">
+
+        <!-- Academic Instruction -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAcademic">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseAcademic" aria-expanded="false" aria-controls="collapseAcademic">
+                    Academic Instruction (675 Lessons)
+                </button>
+            </h2>
+            <div id="collapseAcademic" class="accordion-collapse collapse " aria-labelledby="headingAcademic"
+                data-bs-parent="#econProgramAccordion">
+                <div class="accordion-body">
+                    <h6>Delivered through lectures, seminars, practical assignments, and continuous assessment.</h6>
+                    <ul class="mb-0 mt-3">
+                        <li>Introduction to Economics, Business Management & Global Affairs</li>
+                        <li>Business Communication Skills</li>
+                        <li>Mathematics & Quantitative Reasoning</li>
+                        <li>English for Academic & Professional Communication</li>
+                        <li>CV Writing & Cover Letters</li>
+                        <li>Presentation & Communication Skills</li>
+                        <li>Basics of Czech Language</li>
+                    </ul>
+                    <h6 class="mt-3">What Students Gain</h6>
+                    <ul class="mb-0 mt-3">
+                        <li>Strong foundation in economics, business, and global affairs</li>
+                        <li>Professional English communication skills</li>
+                        <li>Improved mathematical reasoning</li>
+                        <li>Access to Charles University libraries, digital systems (MS Teams, Moodle)</li>
+                        <li>Academic monitoring and individualized consultation</li>
+                        <li>University visits + guided program selection</li>
+                        <li>Basics of Czech Language</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Settling-In Support -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSettling">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSettling" aria-expanded="false" aria-controls="collapseSettling">
+                    Settling-In Support
+                </button>
+            </h2>
+            <div id="collapseSettling" class="accordion-collapse collapse" aria-labelledby="headingSettling"
+                data-bs-parent="#econProgramAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Cultural adaptation workshops</li>
+                        <li>Advice from international alumni</li>
+                        <li>Cultural, sports, and entertainment activities</li>
+                        <li>Support with daily-life situations (including medical guidance)</li>
+                        <li>Local SIM card</li>
+                        <li>Eduroam Wi-Fi access across Europe</li>
+                        <li>Assistance arranging airport transfer</li>
+                        <li>Pre-departure training</li>
+                        <li>Myanmar/English communication</li>
+                        <li>Personal mentoring and student community support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Administrative Support -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAdmin">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseAdmin">
+                    Administrative Support
+                </button>
+            </h2>
+            <div id="collapseAdmin" class="accordion-collapse collapse" aria-labelledby="headingAdmin"
+                data-bs-parent="#econProgramAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Visa application & documentation support</li>
+                        <li>Immigration registration</li>
+                        <li>Diploma recognition (nostrification)</li>
+                        <li>University selection & application guidance</li>
+                        <li>Guidance on visa extension</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional Services -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOptional">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOptional" aria-expanded="false" aria-controls="collapseOptional">
+                    Optional Services (Extra Fee)
+                </button>
+            </h2>
+            <div id="collapseOptional" class="accordion-collapse collapse" aria-labelledby="headingOptional"
+                data-bs-parent="#econProgramAccordion">
+                <div class="accordion-body">
+                    <ul class="mb-0">
+                        <li>Student dormitory accommodation</li>
+                        <li>Student health insurance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Study Process -->
+    <div class="mb-5">
+        <h3 class="fw-bold mb-3">Study Process</h3>
+        <ul>
+            <li><strong>Week 1 – Orientation:</strong> Czech culture & history, Study Centre tour, Charles University
+                overview</li>
+            <li><strong>Academic Coursework:</strong>From the first day, students begin studying specialized subjects
+                relevant to economics, business,
+                Lectures, seminars, practical assignments, teacher feedback,
+                independence & time-management training,</li>
+            <li>Exams: Continuous assessments, trimester exams, final exam → Certificate of Completion</li>
+        </ul>
+    </div>
+
+    <!-- Entry Requirement -->
+    <div class="mb-5 border rounded p-4 bg-light">
+        <h5 class="fw-bold">English Requirement</h5>
+        <ul class="mb-0">
+            <li>Minimum B1 (IELTS, TOEFL, PTE, Cambridge, or equivalent)</li>
+            <li>Additional verification may be required</li>
+            <li>Students below B1 must join the COMPLEX Program</li>
+        </ul>
+    </div>
+
+    <!-- University Study Options -->
+    <div class="mb-5">
+        <h3 class="fw-bold mb-3">University Study Options</h3>
+        <p>During the program, academic advisors help students explore economic and business degree </p>
+        <h5 class="mt-2">Possible Majors:</h5>
+        <ul class="small">
+            <li>Economics & Economic Administration, Accounting & Taxes</li>
+            <li>Finance, Banking & Insurance, Management & Business Administration</li>
+            <li>International Business & Global Affairs, Law-related business programs</li>
+            <li>Interdisciplinary business majors</li>
+        </ul>
+        <h5 class="mb-2 mt-3">Top Universities Our Students Progress To:</h5>
+        <ul class="small">
+            <li>Charles University</li>
+            <li>Czech University of Life Sciences Prague</li>
+            <li>Institute of Technology and Business (České Budějovice)</li>
+            <li>Masaryk University (Brno)</li>
+            <li>Mendel University (Brno)</li>
+            <li>Prague University of Economics and Business (VŠE)</li>
+            <li>Silesian University in Opava</li>
+            <li>Tomas Bata University (Zlín)</li>
+            <li>University of Chemistry and Technology (VSCHT)</li>
+            <li>Technical University of Ostrava (VŠB)</li>
+        </ul>
+    </div>
+
+    <!-- Location -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h5 class="fw-bold mb-3">Location – Poděbrady Study Centre</h5>
+            <p>The Economics FAST programme is held in the heart of Poděbrady, a peaceful spa town known
+            </p>
+            <h5 class="mt-3">Location Advantages</h5>
+            <ul class="small">
+                <li>Safe & quiet environment for focused study</li>
+                <li>Dormitory 10-min walk from classrooms</li>
+                <li>Beautiful castle campus with gardens</li>
+                <li>Easy connection to Prague (1 hour by train/bus)</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 mt-3">
+            <img src="{% static 'website/images/ec.jfif' %}" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    <!-- KEME Support -->
+    <div class="bg-dark text-white p-5 rounded text-center">
+        <h5 class="fw-bold mb-4">KEME’S ROLE IN SUPPORTING STUDENTS</h5>
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-4">✅ Application guidance</div>
+            <div class="col-md-4">✅ Visa & documentation support</div>
+            <div class="col-md-4">✅ Pre-departure orientation</div>
+            <div class="col-md-4">✅ Cultural & emotional support</div>
+            <div class="col-md-4">✅ Myanmar/English communication</div>
+            <div class="col-md-4">✅ Student mentoring & follow-up</div>
+        </div>
+        <p class="mt-4 small">KEME ensures every student is supported from application to arrival and successful program
+
+        </p>
+    </div>
+
+</div>
+{% endif %}
+{% endblock %}

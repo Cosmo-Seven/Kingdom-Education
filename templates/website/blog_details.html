@@ -83,8 +83,8 @@
                         <div class="image">
                             <img src="{% if blog.featured_image %}{{blog.featured_image.url}}{% endif %}" alt="">
                         </div>
-                        <h4>{{blog.category}}</h4>
-                        <p>{{blog.description}}</p>
+                        <h4 class="mt-2">{{blog.set_title}}</h4>
+                        <p class="mt-3">{{blog.description}}</p>
                       
                     </div>
                 </div>

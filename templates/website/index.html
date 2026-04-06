@@ -27,25 +27,55 @@
     .testimonial-card:hover {
         transform: translateY(-5px);
     }
+
     .image-card {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    transition: all 0.4s ease;
-    max-width: 100%;
-}
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+        max-width: 100%;
+    }
 
-.image-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+    .image-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
-/* Hover Effect */
-.image-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-}
+    .banner-section {
+        padding-bottom: 0 !important;
+    }
+
+    .courses-section .title-column .inner-column {
+        padding-top: 0 !important;
+    }
+
+    .news-section .title-column .inner-column {
+        padding-top: 0 !important;
+    }
+
+    .image-column {
+        display: flex;
+        align-items: end;
+    }
+
+    /* Hover Effect */
+    .image-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .news-section {
+        padding: 0;
+    }
+
+    .call-to-action-section {
+        padding-bottom: 40px;
+    }
+
+    .education-section {
+        padding-bottom: 50px;
+    }
 </style>
 <!-- Banner Section -->
 <section class="banner-section">
@@ -90,14 +120,14 @@
 
             <!-- Image Column -->
             <div class="image-column col-lg-6 col-md-12 col-sm-12">
-        <div class="inner-column d-flex justify-content-center">
-            
-            <div class="image-card">
-                <img src="{% static 'website/images/keme.jpg' %}" alt="">
-            </div>
+                <div class="inner-column d-flex justify-content-center">
 
-        </div>
-</div>
+                    <div class="image-card">
+                        <img src="{% static 'website/images/keme.jpg' %}" alt="">
+                    </div>
+
+                </div>
+            </div>
 
             <!-- Content Column -->
             <div class="content-column col-lg-6 col-md-12 col-sm-12">
@@ -141,9 +171,22 @@
                         </p>
 
                         <p>
-                            More than 4,500 universities across Europe provide modern, research‑based teaching and
-                            global academic standards.
+                            Top-Tier Research Universities (QS Rankings 2026)
+                            If your goal is academic prestige and research output, the United Kingdom and
+                            Switzerland lead the pack. The UK dominates the top 10, while Swiss institutes are
+                            renowned for STEM excellence
+                        <p>
+                            Best Public Systems (NCEE & PISA Results)
+                            If you value equity, student well-being, and teacher quality (often highlighted by PISA
+                            scores), look to the Nordic and Baltic regions. The National Center on Education and the
+                            Economy (NCEE) recently identified these global high-performers :
                         </p>
+                        <p>
+                            High-Quality & Affordable Options
+                            For students seeking low tuition or fully-funded programs, Continental Europe is
+                            unmatched. Many EU countries offer degrees for under €500/semester .
+                        </p>
+                       
 
                     </div>
                 </div>
@@ -214,12 +257,7 @@
                             in Finland, Germany, the Czech Republic, and across Europe.
                         </p>
                     </div>
-                    <!-- Button -->
-                    <!-- <a href="{% url 'courses'%}" class="theme-btn btn-style-three mt-3">
-                        <span class="txt">
-                            Get Started <i class="fa fa-angle-right"></i>
-                        </span>
-                    </a> -->
+
 
                 </div>
             </div>
@@ -241,7 +279,8 @@
                                 <h5><a href="{{course_details_url}}?title={{course.slug}}">{{course.title}}</a></h5>
                             </div>
                             <div class="mt-2">
-                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else %}<span class="text-success">Free</span>{% endif %}</div>
+                                <div class="price">{% if course.regular_price %}Ks {{course.regular_price}}{% else
+                                    %}<span class="text-success">Free</span>{% endif %}</div>
                             </div>
                         </div>
                         <div class="text h5_des">{{course.description}}</div>
@@ -266,8 +305,8 @@
             {% endif %}
             {% endfor %}
             <div class="course-info mt-3">
-                <div class="row row-cols-lg-2">
-                    <div class="col">
+                <div class="our-mission row row-cols-lg-2">
+                    <div class="">
                         <h5>Our Mission & Services</h5>
                         <ul>
                             <li>KEME also serves communities through environmental safety</li>
@@ -276,14 +315,14 @@
                         </ul>
 
                     </div>
-                    <div class="col">
+                    <div class="">
                         <h5 class="mt-3">Who Can Join?</h5>
                         <p>
                             Anyone can join — high school students, vocational learners, university, master’s,
                             and PhD students, newcomers to Finland, adults, and international learners.
                         </p>
                     </div>
-                    <div class="col">
+                    <div class="">
                         <h5 class="mt-3">Fees & Scholarships</h5>
                         <p>
                             Program fees depend on the course, and some classes are free. Scholarships and fee support
@@ -292,20 +331,19 @@
 
 
                     </div>
-                     
-                    <div class="col">
+                    <div class="">
                         <h5 class="mt-3">Collaboration</h5>
                         <p>
                             KEME also welcomes volunteers and partnerships with organizations, schools, churches, and
                             companies that share our mission.
                         </p>
                     </div>
-                     
-            </div>
-              <p class="mt-3 fw-bold d-flex justify-content-center align-items-center">
-                            We are here to help you learn, grow, and build a better future
-                        </p>
+
                 </div>
+                <p class="mt-3 fw-bold d-flex justify-content-center align-items-center">
+                    We are here to help you learn, grow, and build a better future
+                </p>
+            </div>
         </div>
     </div>
 </section>
@@ -314,7 +352,7 @@
 <!-- Call To Action Section -->
 <section class="call-to-action-section">
     <div class="auto-container">
-        <div class="row clearfix">
+        <div class="row clearfix ">
 
 
             <div class="title-column col-lg-6 col-md-12 col-sm-12">

@@ -5,6 +5,7 @@ from django.utils.text import slugify
 
 class BlogModel(BaseModel):
     title = models.CharField(max_length=255)
+    set_title = models.CharField(max_length=255,null=True)
     slug = models.SlugField(max_length=255, blank=True)
     description = models.TextField(null=True, blank=True)
     featured_image = models.ImageField(upload_to="blogs", null=True, blank=True)

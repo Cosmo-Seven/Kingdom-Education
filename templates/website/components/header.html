@@ -123,6 +123,19 @@
 
                                     </ul>
                                 </li>
+                                <li
+                                    class="dropdown {% if request.resolver_match.url_name == 'qualification' %}current{% endif %}">
+                                    <a>Qualification</a>
+                                    <ul>
+                                        <li><a href="/qualification/?page=VOCATIONAL">VOCATIONAL</a></li>
+                                        <li><a href="/qualification/?page=ENGINEERING-IT">ENGINEERING & IT</a></li>
+                                        <li><a href="/qualification/?page=MEDICINE-COMPLETE">MEDICINE COMPLETE</a></li>
+                                        <li><a href="/qualification/?page=MEDICINE-FAST">MEDICINE FAST</a></li>
+                                         <li><a href="/qualification/?page=BUSINESS-GLOBAL"> BUSINESS AFFAIRS </a></li>
+                                       
+
+                                    </ul>
+                                </li>
                                 <li class="{% if request.resolver_match.url_name == 'courses' %}current{% endif %}"><a
                                         href="{{courses_url}}">{% translate 'programs' request.session.language %}</a>
                                 </li>

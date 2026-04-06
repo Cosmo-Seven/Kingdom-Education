@@ -16,6 +16,17 @@
         height: fit-content;
         object-fit: cover;
     }
+
+    .btn-view {
+        color: #fff;
+        background: orange;
+        padding: 10px 15px;
+        border-radius: .5rem;
+        transition: .3s ;
+    }
+    .btn-view:hover{
+        color: #fff;
+    }
 </style>
 <!-- Page Title -->
 <section class="page-title">
@@ -149,6 +160,7 @@
                                                                     <img src="{% static 'website/images/lock.jpg' %}"
                                                                         style="width:30px;height:30px;object-fit:contain;">
                                                                     {% else %}
+
                                                                     <button type="button" data-bs-toggle="modal"
                                                                         data-bs-target="#pdfFileModal_{{ lesson.id }}">
                                                                         <img
@@ -229,22 +241,23 @@
             </div>
             <div class="modal-body">
                 <p>{{ lesson.description }}</p>
-                <div class="ratio ratio-16x9">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="{{lesson.video_url}}" frameborder="0" allow="autoplay; encrypted-media"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
+                {% if lesson.video_url%}
+                <div class="card-body">
+                    <p class="card-text">{{ file.description }}</p>
+                    <a href="{{ lesson.video_url }}" target="_blank" class="btn-view"><i
+                            class="ti ti-player-play"></i>&nbsp;Play</a>
                 </div>
+                {% endif %}
                 {% for file in lesson.files.all %}
-                <div class="mb-3">
+                <div class="mb-3 mt-3">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">{{ file.title }}</h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ file.description }}</p>
-                            <a href="{{ file.file.url }}" class="btn btn-danger" download>Download File</a>
+                            <a href="{{ file.file.url }}" target="_blank" class="btn btn-danger" download>Download
+                                File</a>
                         </div>
                     </div>
                 </div>

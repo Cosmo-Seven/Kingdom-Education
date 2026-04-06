@@ -34,6 +34,7 @@ def blog_create(request):
             blog = BlogModel.objects.create(
                 created_by = request.user,
                 title = request.POST.get("title"),
+                set_title = request.POST.get("set_title"),
                 category_id = request.POST.get("category"),
                 featured_image = request.FILES.get("featured_image"),
                 description = request.POST.get("description"),
@@ -54,6 +55,7 @@ def blog_update(request, pk):
         if request.method == "POST":
             blog = get_object_or_404(BlogModel, id = pk)
             blog.title = request.POST.get("title")
+            blog.set_title = request.POST.get("set_title")
             blog.category_id = request.POST.get("category")
             blog.description = request.POST.get("description")
             blog.link = request.POST.get("link")

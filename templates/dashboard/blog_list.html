@@ -70,6 +70,7 @@
                     <tr>
                         <th>No</th>
                         <th>Title</th>
+                        <th>Set Title</th>
                         <th>Category</th>
                         <th>Featured Image</th>
                         <th>Active</th>
@@ -82,6 +83,7 @@
                     <tr>
                         <td>{{ forloop.counter}}</td>
                         <td>{{blog.title}}</td>
+                        <td>{{blog.set_title |default:'-'}}</td>
                         <td>{{blog.category}}</td>
                         <td>
                             {% if blog.featured_image %}
@@ -135,11 +137,17 @@
                                 <label class="form-label">Title</label>
                                 <input type="text" name="title" class="form-control" required>
                             </div>
+                            <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label">Set Title</label>
+                                <input type="text" name="set_title" class="form-control">
+                            </div>
+                        </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Link</label>
-                                <input type="url" name="link" class="form-control" required>
+                                <input type="url" name="link" class="form-control">
                             </div>
                         </div>
 
@@ -200,13 +208,17 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Title</label>
-                                <input type="text" value="{{blog.title}}" name="title" class="form-control" required>
+                                <input type="text" value="{{blog.title}}" name="title" class="form-control">
                             </div>
                         </div>
+                         <div class="mb-3">
+                                <label class="form-label">Set Title</label>
+                                <input type="text" name="set_title" value="{{blog.set_title |default:'-'}}" class="form-control" >
+                            </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">Link</label>
-                                <input type="url" value="{{blog.link | default:''}}" name="link" class="form-control" required>
+                                <input type="url" value="{{blog.link | default:''}}" name="link" class="form-control" >
                             </div>
                         </div>
 

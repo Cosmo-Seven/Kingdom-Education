@@ -75,9 +75,11 @@
 
                     <h3>{{profile.name}}</h3>
                     <div class="text">{{profile.position}}</div>
+                   {% if profile.video_url %}
                     <div class="buttons-box">
-                        <a data-bs-toggle="modal" data-bs-target="#pdfFileModal" class="theme-btn btn-style-one"><span class="txt">View Video</span></a>
+                        <a href="{{profile.video_url}}" target="_blank"  class="theme-btn btn-style-one"><span class="txt">View Video</span></a>
                     </div>
+                   {% endif %}
                 </div>
             </div>
 
@@ -122,6 +124,8 @@
     </div>
 </section>
 <!-- Video -->
+
+
 <div class="modal fade" id="pdfFileModal" tabindex="-1" aria-labelledby="pdfFileModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">

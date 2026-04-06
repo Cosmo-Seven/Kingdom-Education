@@ -340,6 +340,7 @@ urlpatterns = (
             "terms-conditions/", website_views.terms_conditions, name="terms_conditions"
         ),
         path("refund-policy/", website_views.refund, name="refund"),
+        path("qualification/", website_views.qualification, name="qualification"),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
