@@ -2,6 +2,22 @@
 {% block title %}Contact Us{% endblock %}
 {% load static %}
 {% block body %}
+<style>
+    .btn-success,.btn-outline-primary,
+    .btn-primary,
+    .bg-primary {
+        background: orange !important;
+        border: none;
+        outline: none;
+        color: #fff;
+    }
+
+    .btn-success,.btn-outline-primary,
+    .btn-primary,
+    .bg-primary:hover {
+        background: orange !important;
+    }
+</style>
 <!-- Page Title -->
 <section class="page-title">
     <div class="auto-container">
@@ -10,6 +26,22 @@
 <!--End Page Title-->
 
 <!-- Contact Page Section -->
+
+<!-- End Contact Page Section -->
+
+
+<!-- <section class="map-section">
+    <div class="map-boxed">
+        
+        <div class="map-outer">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s"
+                allowfullscreen=""></iframe>
+        </div>
+    </div>
+</section> -->
+
+
 <section class="contact-page-section" style="padding-top: 50px;">
     <div class="auto-container">
         <div class="inner-container">
@@ -110,20 +142,181 @@
 
     </div>
 </section>
-<!-- End Contact Page Section -->
+<section class="mt-5">
+    <div class="container">
 
-<!-- Map Section -->
-<section class="map-section">
-    <!-- Map Boxed -->
-    <div class="map-boxed">
-        <!--Map Outer-->
-        <div class="map-outer">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s"
-                allowfullscreen=""></iframe>
+        <!-- WhatsApp CTA -->
+        <div class="text-center mb-5">
+            <h4 class="fw-bold">Prefer WhatsApp?</h4>
+            <p class="text-muted">
+                Many international students find WhatsApp more convenient. Feel free to message us!
+            </p>
+            <a target="_blank" href="tel:+358413282857" class="btn btn-success">
+                Chat on WhatsApp
+            </a>
         </div>
+
+        <!-- Steps -->
+        <div class="text-center mb-4">
+            <h4 class="fw-bold">How to Get Help – Step by Step</h4>
+        </div>
+
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge bg-primary rounded-circle p-3">1</span>
+                        </div>
+                        <h6 class="fw-bold">Contact Us</h6>
+                        <p class="small text-muted mb-0">
+                            Send an email, call, or use WhatsApp. Tell us what you need help with.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge bg-primary rounded-circle p-3">2</span>
+                        </div>
+                        <h6 class="fw-bold">We Listen</h6>
+                        <p class="small text-muted mb-0">
+                            We'll ask questions to understand your situation. Everything is confidential.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge bg-primary rounded-circle p-3">3</span>
+                        </div>
+                        <h6 class="fw-bold">We Guide You</h6>
+                        <p class="small text-muted mb-0">
+                            We'll recommend the right services or guide you to proper resources.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge bg-primary rounded-circle p-3">4</span>
+                        </div>
+                        <h6 class="fw-bold">You Choose</h6>
+                        <p class="small text-muted mb-0">
+                            Decide to join an event, book a service, or become a member.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge bg-primary rounded-circle p-3">5</span>
+                        </div>
+                        <h6 class="fw-bold">We Support You</h6>
+                        <p class="small text-muted mb-0">
+                            We walk with you throughout your journey. You are not alone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FAQ -->
+        <div class="mt-5">
+            <h4 class="fw-bold text-center mb-4">Common Questions</h4>
+
+            <div class="accordion" id="faqAccordion">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Do I need to prepare anything before contacting you?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            No! Just reach out with your questions. We'll guide you on what information might be helpful
+                            as we learn more about your situation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Is everything I tell you confidential?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            Yes. We will not share your information without your consent. We follow GDPR and Finnish
+                            privacy laws
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            What if you can't help me?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            If we can't help directly, we'll try to point you to the right resources – whether that's a
+                            government office, professional service, or another organization.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Is there any obligation after I contact you?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            None at all. You decide whether to use our services, become a member, or simply get
+                            information. There's no pressure.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="text-center mb-4">
+            <h4 class="fw-bold">We’re Ready to Help You</h4>
+            <p class="text-muted">
+                Whether you have a small question or need full support, we’re here for you.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="mailto:info@keme.fi" class="btn btn-outline-primary">
+                    Email Us Now
+                </a>
+                <a href="tel:+358413282857" class="btn btn-primary">
+                    Call Us
+                </a>
+            </div>
+        </div>
+
     </div>
 </section>
-<!-- End Map Section -->
-
 {% endblock %}

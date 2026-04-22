@@ -177,7 +177,7 @@
                                             <a >VOCATIONAL</a>
                                             <ul class="submenu">
                                                 <li><a href="/qualification/?page=VOCATIONAL">Cleaning VET</a></li>
-                                                <li><a href="#">Nurse VET</a></li>
+                                                <li><a href="/qualification/?page=NURSE-VET">Nurse VET</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
@@ -198,6 +198,10 @@
                                 <li
                                     class="{% if request.resolver_match.url_name == 'course_topics' %}current{% endif %}">
                                     <a href="{{course_topics_url}}">{% translate 'topics' request.session.language%}</a>
+                                </li>
+                                 <li
+                                    class="{% if request.resolver_match.url_name == 'partners' %}current{% endif %}">
+                                    <a href="{{partners_url}}">{% translate 'partners' request.session.language%}</a>
                                 </li>
 
                                 <li class="{% if request.resolver_match.url_name == 'blogs' %}current{% endif %}">
