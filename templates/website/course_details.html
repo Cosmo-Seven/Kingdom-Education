@@ -248,11 +248,23 @@
                             class="ti ti-player-play"></i>&nbsp;Play</a>
                 </div>
                 {% endif %}
-                {% if not request.user in lesson.is_seen.all %}
-                <a href="{% url 'video_seen_toggle' lesson.id %}" class="btn btn-success">ကြည့်ပြီးပါပြီ</a>
-                {% else %}
-                <a href="{% url 'video_seen_toggle' lesson.id %}" class="btn btn-danger">မကြည့်ရသေးပါ</a>
-                {% endif %}
+                <div class="d-flex align-items-center mt-2">
+                    <span class="h6 me-2 {% if request.user not in lesson.is_seen.all %}text-danger{% else %}text-muted{% endif %}">
+                        မကြည့်ရသေးပါ
+                    </span>
+
+                    <div class="form-check form-switch p-0 m-0">
+                        <input class="form-check-input m-0" type="checkbox" role="switch" 
+                            id="lessonSwitch{{ lesson.id }}"
+                            {% if request.user in lesson.is_seen.all %} checked {% endif %}
+                            style="width: 45px; height: 23px; cursor: pointer;"
+                            onclick="location.href='{% url 'video_seen_toggle' lesson.id %}'">
+                    </div>
+
+                    <span class="h6 ms-2 {% if request.user in lesson.is_seen.all %}text-success{% else %}text-muted{% endif %}">
+                        ကြည့်ပြီးပါပြီ
+                    </span>
+                </div>
                 {% for file in lesson.files.all %}
                 <div class="mb-3 mt-3">
                     <div class="card">
