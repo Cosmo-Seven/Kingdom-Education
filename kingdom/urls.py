@@ -302,6 +302,11 @@ urlpatterns = (
         # ================================================================================================
         # WEBSITE URL
         # ================================================================================================
+        path(
+            "video-seen-toggle/<uuid:pk>/",
+            website_views.video_seen_toggle,
+            name="video_seen_toggle",
+        ),
         path("set-language/", website_views.set_language, name="set_language"),
         path("", website_views.index, name="home"),
         path("privacy-policy/", website_views.privacy_policy, name="privacy_policy"),

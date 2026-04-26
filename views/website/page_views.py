@@ -16,7 +16,9 @@ from core.models import (
     ProgramModel,
     DonationModel,
     VolunteerModel,
-    HomeTextModel
+    HomeTextModel,
+    LessonModel,
+    SectionModel,
 )
 
 from enums.donation import StatusEnum
@@ -32,11 +34,7 @@ def index(request):
     popular_courses = CourseModel.objects.all()
     texts = HomeTextModel.objects.all()
     blogs = BlogModel.objects.all()[:1]
-    context = {
-        "popular_courses": popular_courses,
-        "blogs": blogs,
-        "texts":texts
-    }
+    context = {"popular_courses": popular_courses, "blogs": blogs, "texts": texts}
     return render(request, "website/index.html", context)
 
 
@@ -309,15 +307,26 @@ def about(request):
     context = {"page": page, "volunteers": volunteers}
     return render(request, "website/about.html", context)
 
+
 def terms_conditions(request):
-    return render(request,"website/terms_condition.html")
+    return render(request, "website/terms_condition.html")
+
 
 def refund(request):
-    return render(request,"website/refund.html")
+    return render(request, "website/refund.html")
+
 
 def qualification(request):
     page = request.GET.get("page")
-    context = {
-        "page":page
-    }
-    return render(request,"website/qualification.html",context)
+    context = {"page": page}
+    return render(request, "website/qualification.html", context)
+
+
+def video_seen_toggle(request, pk):
+    lesson = LessonModel.objects.get(id=pk)
+    if not request.user in lesson.is_seen.all():
+        lesson.is_seen.add(request.user)
+    else:
+        lesson.is_seen.remove(request.user)
+    messages.success(request, "Marked successfully!")
+    return redirect(f"/course-details/?title={lesson.section.course.slug}")

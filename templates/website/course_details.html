@@ -241,12 +241,17 @@
             </div>
             <div class="modal-body">
                 <p>{{ lesson.description }}</p>
-                {% if lesson.video_url%}
+                {% if lesson.video_url %}
                 <div class="card-body">
                     <p class="card-text">{{ file.description }}</p>
                     <a href="{{ lesson.video_url }}" target="_blank" class="btn-view"><i
                             class="ti ti-player-play"></i>&nbsp;Play</a>
                 </div>
+                {% endif %}
+                {% if not request.user in lesson.is_seen.all %}
+                <a href="{% url 'video_seen_toggle' lesson.id %}" class="btn btn-success">ကြည့်ပြီးပါပြီ</a>
+                {% else %}
+                <a href="{% url 'video_seen_toggle' lesson.id %}" class="btn btn-danger">မကြည့်ရသေးပါ</a>
                 {% endif %}
                 {% for file in lesson.files.all %}
                 <div class="mb-3 mt-3">

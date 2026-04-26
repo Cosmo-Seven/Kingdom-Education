@@ -8,6 +8,7 @@ class LessonModel(BaseModel):
     slug = models.SlugField(max_length=255, blank=True)
     video_url = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True, blank=True)
+    is_seen = models.ManyToManyField("core.UserModel", related_name="seen_users")
     section = models.ForeignKey(
         "core.SectionModel",
         on_delete=models.CASCADE,
