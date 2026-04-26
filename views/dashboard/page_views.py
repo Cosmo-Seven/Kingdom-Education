@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
-from django.core.paginator import Paginator
+from enums.price import PriceEnum
 from utils.decorators import custom_login_required
 from decorators.role_decorators import role_permission_required
 from core.models import (
@@ -32,6 +32,7 @@ def course_form(request, pk=None):
         "lecturers": LecturerModel.objects.all(),
         "topics": CourseTopicModel.objects.all(),
         "level_choices": CourseModel.LEVEL_CHOICES,
+        "currencies":PriceEnum.choices
     }
 
     course = None
@@ -55,6 +56,7 @@ def course_form(request, pk=None):
         sale_price = request.POST.get("sale_price")
         learning_outcomes = request.POST.get("learning_outcomes")
         requirements = request.POST.get("requirements")
+        currency = request.POST.get("currency")
         access_duration_days = request.POST.get("access_duration_days")
         is_popular = True if request.POST.get("is_popular") else False
 
@@ -77,6 +79,7 @@ def course_form(request, pk=None):
                 access_duration_days=access_duration_days or None,
                 is_popular=is_popular,
                 enrollment_count=enrollment_count,
+                currency = currency,
                 featured_image=request.FILES.get("featured_image"),
             )
 
@@ -102,6 +105,7 @@ def course_form(request, pk=None):
             course.requirements = requirements
             course.access_duration_days = access_duration_days or None
             course.is_popular = is_popular
+            course.currency = currency
             course.enrollment_count = enrollment_count
 
             if request.FILES.get("featured_image"):

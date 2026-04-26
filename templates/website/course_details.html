@@ -209,7 +209,7 @@
                             {% if course.regular_price == 0 %}
                             <span class="text-success">Free Course</span>
                             {% else %}
-                            KS {{ course.regular_price }}
+                            {{ course.regular_price }} {{course.currency |upper}}
                             {% endif %}
                         </h3>
 

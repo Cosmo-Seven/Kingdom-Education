@@ -121,7 +121,7 @@
                         </div>
                         <div class="price fw-bold">
                             <h5 style="color: #F6B81E;"> {% if course.sale_price > 0 %}
-                                KS {{course.sale_price|intcomma}}
+                                 {{course.sale_price|intcomma}} {{course.currency|upper}}
                                 {% else %}
                                 Free
                                 {% endif %}</h5>

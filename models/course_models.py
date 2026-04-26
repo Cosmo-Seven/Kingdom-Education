@@ -1,7 +1,7 @@
 from django.db import models
 from models.base_models import BaseModel
 from django.utils.text import slugify
-
+from enums.price import PriceEnum
 
 class CourseModel(BaseModel):
     LEVEL_CHOICES = [
@@ -22,6 +22,7 @@ class CourseModel(BaseModel):
         null=True,
         blank=True,
     )
+    currency = models.CharField(max_length=30,choices=PriceEnum.choices, default=PriceEnum.EURO)
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES, default="beginner")
     enrollment_count = models.PositiveIntegerField(default=0)
     regular_price = models.DecimalField(max_digits=10, decimal_places=2)

@@ -110,7 +110,7 @@
 
                                 <div class="hours">
                                     {% if course.regular_price > 0 %}
-                                        KS {{course.regular_price }}
+                                         {{course.regular_price }} {{course.currency|upper}}
                                     {% else %}
                                         <span class="text-success">Free</span>
                                     {% endif %}
@@ -206,7 +206,7 @@
                             </div>
                             <div class="pull-right clearfix">
                                 <div class="students">{{course.lecturers.count}} Lecturer</div>
-                                <div class="hours">{% if course.regular_price > 0 %}KS {{ course.regular_price }}{% else %}<span class="text-success">Free</span>{% endif %}</div>
+                                <div class="hours">{% if course.regular_price > 0 %}{{ course.regular_price }} {{course.currency|upper}} {% else %}<span class="text-success">Free</span>{% endif %}</div>
                                 <!-- <div class="hours">{{course.duration}} Hours</div> -->
                             </div>
                         </div>
