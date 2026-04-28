@@ -48,11 +48,11 @@
                     <tr>
                         <td>{{course.title}}</td>
                         <td>{{course.topic.name}}</td>
-                        <td>
+                        <td style="color: orange;">
                             {% if course.regular_price == 0 %}
                             <span class="badge badge-success">Free Course</span>
                             {% else %}
-                            KS {{ course.regular_price }}
+                            {{ course.regular_price }} {{course.currency |upper}}
                             {% endif %}
                         </td>
                         <td>
