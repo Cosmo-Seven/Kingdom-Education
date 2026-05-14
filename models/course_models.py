@@ -40,7 +40,7 @@ class CourseModel(BaseModel):
         help_text="Number of days student can access this course. Leave blank for lifetime access.",
     )
     is_popular = models.BooleanField(default=False)
-
+    hour = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.title
 

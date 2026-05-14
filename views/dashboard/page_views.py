@@ -59,7 +59,7 @@ def course_form(request, pk=None):
         currency = request.POST.get("currency")
         access_duration_days = request.POST.get("access_duration_days")
         is_popular = True if request.POST.get("is_popular") else False
-
+        hour = request.POST.get("hour")
         topic = CourseTopicModel.objects.get(id=topic_id) if topic_id else None
 
         # ======================
@@ -80,6 +80,7 @@ def course_form(request, pk=None):
                 is_popular=is_popular,
                 enrollment_count=enrollment_count,
                 currency = currency,
+                hour = hour,
                 featured_image=request.FILES.get("featured_image"),
             )
 
@@ -106,6 +107,7 @@ def course_form(request, pk=None):
             course.access_duration_days = access_duration_days or None
             course.is_popular = is_popular
             course.currency = currency
+            course.hour = hour
             course.enrollment_count = enrollment_count
 
             if request.FILES.get("featured_image"):

@@ -171,7 +171,7 @@
                                 </li>
                                 <li
                                     class="dropdown {% if request.resolver_match.url_name == 'qualification' %}current{% endif %}">
-                                    <a>Qualification</a>
+                                    <a>Program</a>
                                     <ul>
                                         <li class="dropdown">
                                             <a >VOCATIONAL</a>
@@ -192,7 +192,7 @@
                                     </ul>
                                 </li>
                                 <li class="{% if request.resolver_match.url_name == 'courses' %}current{% endif %}"><a
-                                        href="{{courses_url}}">{% translate 'programs' request.session.language %}</a>
+                                        href="{{courses_url}}">{% translate 'lessons' request.session.language %}</a>
                                 </li>
 
                                 <li
